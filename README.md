@@ -9,8 +9,9 @@
 <学習したことを忘れないよう復習できる。
 エビングハウスの忘却曲線に沿ってベストな復習タイミングで学習できるように通知してくれる。>
 
-下記参考サイト
+参考サイト
 https://lernen-leag.com/about-the-forgetting-curve
+https://learn-tern.com/spaced-learning/
 
 ### テーマを選んだ理由
 
