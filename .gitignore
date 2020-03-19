@@ -34,3 +34,4 @@
 # /home/vagrant
 # /home/vagrant/.rbenv
 /home/vagrant/.rbenv/plugins/ruby-build
+/.vscode
