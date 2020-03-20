@@ -47,9 +47,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 
 # 画像ファイルをアップロード
-gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem 'refile', require: 'refile/rails', github: 'manfe/refile'
 # 画像のリサイズ機能
-gem "refile-mini_magick"
+gem 'refile-mini_magick'
 
 # BootstrapでSassを使うgem
 gem 'bootstrap-sass', '~> 3.4.1'
@@ -60,12 +60,12 @@ gem 'jquery-rails'
 # 論理削除するためのgem
 gem 'paranoia'
 
-#ページネーションするためのgem
+# ページネーションするためのgem
 gem 'kaminari'
 
 # Railsで定時処理をするためのgem
 # バッチスクリプトでしか使わないため、:require => false記載
-gem 'whenever', :require => false
+gem 'whenever', require: false
 
 # 環境変数を管理するためのgem
 gem 'dotenv-rails'
@@ -78,5 +78,3 @@ gem 'fullcalendar-rails'
 
 # カレンダーに時間を入力するためのgem
 gem 'momentjs-rails'
-
-
