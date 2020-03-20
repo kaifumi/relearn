@@ -1,0 +1,2 @@
+class DeleteComment < ApplicationRecord
+end

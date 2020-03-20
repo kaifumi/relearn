@@ -1,0 +1,2 @@
+class PlanTiming < ApplicationRecord
+end
