@@ -1,0 +1,2 @@
+class RelearnPoint < ApplicationRecord
+end
