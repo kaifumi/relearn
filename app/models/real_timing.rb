@@ -1,0 +1,2 @@
+class RealTiming < ApplicationRecord
+end
