@@ -1,14 +1,11 @@
 Rails.application.routes.draw do
-  get 'notifications/index'
   devise_for :users
   root 'homes#top'
   get '/about' => 'homes#about'
   # ジャンルごとの投稿一覧
-  get '/posts/genre_index' => 'posts#genre_index', as: 'genre_index_path'
+  get '/posts/genre_index' => 'posts#genre_index', as: 'genre_index'
   # 復習完了した投稿一覧
-  get '/posts/complete_top' => 'posts#complete_top', as: 'complete_top_path'
-  # 復習完了した投稿詳細
-  get '/posts/complete_show/:id' => 'posts#complete_show', as: 'complete_show_path'
+  get '/posts/completes' => 'completes#index', as: 'complete_posts'
   # 全体ポイントランキング表示
   get '/point_rank' => 'ranks#point_rank'
   # 友達ポイントランキング表示
@@ -19,11 +16,14 @@ Rails.application.routes.draw do
   get '/friend_rhythm_rank' => 'ranks#friend_rhythm_rank'
   # devise_for :users
   resources :users, only: [:edit, :update, :destroy, :destroy_confirm] do
-    resources :genres, only: [:create, :edit, :update, :detroy]
+    resources :genres, only: [:index, :create, :update, :detroy]
     resources :notifications, only: [:index, :update]
-    resources :plan_timings, only: [:edit, :update]
     resources :friends, only: [:search, :request, :index, :create, :update, :destroy]
   end
-  resources :posts
-  
+  resources :posts do
+    # 通知時間はpost_idが必要
+    # plan_timingのidは不要のためresourceを使用
+    resource :plan_timing, only: [:edit, :update]
+    resource :complete, only: [:show, :update, :destroy]
+  end
 end
