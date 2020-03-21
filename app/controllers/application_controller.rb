@@ -2,10 +2,9 @@ class ApplicationController < ActionController::Base
 	# CSRF対策 サイトへのコード攻撃を防ぐ
 	protect_from_forgery with: :exception
 	# devise動作時の利用カラムを制限する
-  before_action :configure_permitted_parameters, if: :devise_controller?
+	before_action :configure_permitted_parameters, if: :devise_controller?
 
-
-protected
+	 protected
 
 	def configure_permitted_parameters
 		added_attrs = [:name, :email, :password, :password_confirmation]
