@@ -12,6 +12,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+# railsの起動時の処理を最適化するgem
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
@@ -64,6 +65,9 @@ gem 'paranoia'
 
 # ページネーションするためのgem
 gem 'kaminari'
+
+# bootstrapに合わせたkaminariを使うためのgem
+gem 'kaminari-bootstrap', '~> 3.0.1'
 
 # Railsで定時処理をするためのgem
 # バッチスクリプトでしか使わないため、:require => false記載
