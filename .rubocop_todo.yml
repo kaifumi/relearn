@@ -98,9 +98,31 @@ Style/StringLiterals:
 Style/SymbolArray:
   EnforcedStyle: brackets
 
+# For rubocop < 1.0.0
+Style/HashEachMethods:
+  Enabled: true
+
+# For rubocop < 1.0.0
+Style/HashTransformKeys:
+  Enabled: true
+
+# For rubocop < 1.0.0
+Style/HashTransformValues:
+  Enabled: true
+
 # 最大行数の設定
 Layout/LineLength:
   Max: 112
+
+# タブが過剰(ストロングパラメータ用)
+Layout/Tab:
+  Exclude:
+    - "app/controllers/application_controller.rb"
+
+# インデントのしすぎの無視(ストロングパラメータ用)
+Layout/IndentationWidth:
+  Exclude:
+    - "app/controllers/application_controller.rb"
 
 # def endの間に入れることが可能な行数を設定
 Metrics/MethodLength:
