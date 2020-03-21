@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   # 投稿一覧画面の表示
   def index
     @posts = Post.where(user_id: current_user.id).page(params[:page]).per(20)
-    @genres = Genre.where(user_id:current_user.id)
+    @genres = Genre.where(user_id: current_user.id)
   end
 
   # ジャンルごとの投稿一覧
@@ -27,10 +27,10 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      flash[:success] = "投稿完了しました。"
+      flash[:success] = '投稿完了しました。'
       redirect_to post_path(@post)
     else
-      flash[:alert] = "投稿失敗しました。"
+      flash[:alert] = '投稿失敗しました。'
       render :new
     end
   end
