@@ -1,9 +1,7 @@
 class HomesController < ApplicationController
   # トップページの表示
-  def top
-  end
+  def top; end
 
   # アバウトページの表示
-  def about
-  end
+  def about; end
 end

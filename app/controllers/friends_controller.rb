@@ -1,25 +1,19 @@
 class FriendsController < ApplicationController
   # 友達検索
-  def search
-  end
+  def search; end
 
   # 友達リクエスト一覧表示
-  def request
-  end
+  def request; end
 
   # 友達一覧
-  def index
-  end
+  def index; end
 
   # 友達作成
-  def create
-  end
-  
+  def create; end
+
   # 友達リクエスト承認or拒否
-  def update
-  end
+  def update; end
 
   # 友達解除
-  def destroy
-  end
+  def destroy; end
 end
