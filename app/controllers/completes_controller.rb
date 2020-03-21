@@ -1,17 +1,13 @@
 class CompletesController < ApplicationController
   # 復習完了した投稿の一覧
-  def index
-  end
+  def index; end
 
   # 復習完了した投稿の詳細
-  def show
-  end
+  def show; end
 
   # 復習完了にする
-  def update
-  end
+  def update; end
 
   # もう一度復習にする
-  def destroy
-  end
+  def destroy; end
 end
