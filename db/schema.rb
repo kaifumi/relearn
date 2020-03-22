@@ -105,10 +105,10 @@ ActiveRecord::Schema.define(version: 2020_03_21_005236) do
 
   create_table "relearn_points", force: :cascade do |t|
     t.integer "post_id", null: false
-    t.integer "first_score"
-    t.integer "second_score"
-    t.integer "third_score"
-    t.integer "forth_score"
+    t.integer "first_score", default: 0, null: false
+    t.integer "second_score", default: 0, null: false
+    t.integer "third_score", default: 0, null: false
+    t.integer "forth_score", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
