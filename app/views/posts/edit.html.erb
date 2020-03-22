@@ -1,2 +1,32 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+<h1>投稿編集</h1>
+  <%# 項目を横並びにするためにテーブル化 %>
+  <table>
+    <%# デフォルトで非同期処理のため、local: trueで同期必須化 %>
+    <%# form_withを使用して、かつdata: {"turbolinks" => false}をlink_to内に入れれば遷移先でjquery異常発火しない %>
+    <%= form_with(url: post_path(@post.id), model: @post, local: true) do |f| %>
+      <tbody>
+        <tr>
+          <td><p>学習ジャンル</p></td>
+          <%# セレクトボックスでジャンル一覧を表示 %>
+          <td>
+		        <%= f.select :genre_id, Genre.all.map{|g| [g.type, g.id]} %></td>
+          <td><%= link_to "+新規ジャンルはこちらから追加", user_genres_path(user_id: current_user.id) %></td>
+        </tr>
+        <tr>
+          <td><p>タイトル</p></td>
+          <td><%= f.text_field :title %></td>
+        </tr>
+        <tr>
+          <td><p>内容</p></td>
+          <td><%= f.text_field :content %></td>
+        </tr>
+        <tr>
+          <td><p>リンク（任意）</p></td>
+          <td><%= f.text_field :link %></td>      
+        </tr>
+        <tr>
+          <td><%= f.submit "更新" %></td>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
