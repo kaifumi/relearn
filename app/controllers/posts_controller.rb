@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  # ログインユーザーのみ実行可能
+  # ログインユーザーのみ実行可能にする
   before_action :authenticate_user!
   # 投稿の新規登録
   def new
@@ -13,7 +13,11 @@ class PostsController < ApplicationController
   end
 
   # ジャンルごとの投稿一覧
-  def genre_index; end
+  def genre_posts_index
+    @genre = Genre.find(params[:id])
+    @posts = Post.where(user_id: current_user.id, genre_id: @genre.id).page(params[:page]).per(20)
+    @genres = Genre.where(user_id: current_user.id)
+  end
 
   # 投稿詳細画面の表示
   def show
@@ -35,13 +39,34 @@ class PostsController < ApplicationController
   end
 
   # 投稿の編集
-  def edit; end
+  def edit
+    @post = Post.find(params[:id])
+  end
 
   # 編集内容の更新
-  def update; end
+  def update
+    @post = Post.find(params[:id])
+    @post.user_id = current_user.id
+    if @post.update(post_params)
+      flash[:success] = '更新完了しました。'
+      redirect_to post_path(@post)
+    else
+      flash[:alert] = '更新失敗しました。'
+      render :edit
+    end
+  end
 
   # 投稿の削除
-  def destroy; end
+  def destroy
+    @post = Post.find(params[:id])
+    if @post.destroy
+      flash[:success] = '投稿削除しました。'
+      redirect_to posts_path
+    else
+      flash[:alert] = '更新失敗しました。'
+      render :show
+    end
+  end
 
   private
 
