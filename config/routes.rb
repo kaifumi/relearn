@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'homes#top'
   get '/about' => 'homes#about'
   # ジャンルごとの投稿一覧
-  get '/posts/genre_index' => 'posts#genre_index', as: 'genre_index'
+  get '/posts/genre/:id' => 'posts#genre_posts_index', as: 'genre_posts_index'
   # 復習完了した投稿一覧
   get '/posts/completes' => 'completes#index', as: 'complete_posts'
   # 全体ポイントランキング表示
@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   get '/rhythm_rank' => 'ranks#rhythm_rank'
   # 友達の復習リズムランキング
   get '/friend_rhythm_rank' => 'ranks#friend_rhythm_rank'
-  # devise_for :users
   resources :users, only: [:edit, :update, :destroy, :destroy_confirm] do
     resources :genres, only: [:index, :create, :update, :detroy]
     resources :notifications, only: [:index, :update]
