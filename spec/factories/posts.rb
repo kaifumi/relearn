@@ -1,6 +1,7 @@
 # テストデータの準備
 FactoryBot.define do
   factory :post do
+    id { 1 }
     user_id  { 1 }
     genre_id { 1 }
     title { '英単語50個' }
@@ -9,7 +10,5 @@ FactoryBot.define do
     relearn_count { '0' }
     relearn_complete { 'false' }
     total_point { '0' }
-    # created_at  { "TEST01" }
-    # updated_at  { "TEST01" }
   end
 end
