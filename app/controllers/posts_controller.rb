@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
   # ログインユーザーのみ実行可能
   before_action :authenticate_user!
-  before_action :header_action, only: [:new, :index, :show, :edit]
   # 投稿の新規登録
   def new
     @post = Post.new
