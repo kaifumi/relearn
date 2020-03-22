@@ -4,12 +4,13 @@
   <%= @genre.type%>
 </div>
 <div class="content_head">
-  <p>内容　　<%= link_to "投稿内容の編集", edit_post_path(@post) %></p>
+  <p>内容　　<%= link_to "投稿内容の編集", edit_post_path(@post), data: {"turbolinks" => false} %></p>
 </div>
 <div class="content">
   <%= @post.content %>
 </div>
-<p>link : <%= @post.link%></p>
+
+<p>link : <%= @post.link %></p>
 
 <table>
   <thead>
