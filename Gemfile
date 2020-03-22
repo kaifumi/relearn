@@ -20,6 +20,14 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # binding.pryを挿入して、処理の経緯を把握できる
   gem 'pry-rails'
+  # Railsで用いられることが多いテストツールを使うためのgem
+  gem 'rspec-rails'
+  # テスト用のデータを作成してくれるツール
+  gem 'factory_bot_rails'
+  # テスト自動化のためのgem
+  gem 'guard-rspec'
+  # springを使ってrspecを高速化するためのgem
+  gem 'spring-commands-rspec'
 end
 
 group :development do
@@ -39,9 +47,19 @@ group :development do
 end
 
 group :test do
+  # フィーチャーテストをRubyでおこなうためのフレームワーク
   gem 'capybara', '>= 2.15'
+  # プログラミングを介して、ブラウザを操作するライブラリ
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
+  # 様々なダミーデータを生成してくれるツール。
+  gem 'faker'
+  # exampleで行ったDBへの更新、削除を行うためのツール
+  gem 'database_cleaner'
+  # Rubyで外部アプリケーション（ブラウザの起動)ができるgem
+  gem 'launchy'
+  # 簡潔かつ直感的にテストをかくためのツール
+  gem 'shoulda-matchers'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
