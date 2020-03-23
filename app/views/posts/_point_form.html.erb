@@ -3,10 +3,11 @@
 <table>
   <thead>
     <tr>
-      <td>Relean CHECK!</td>
-      <td>ポイント</td>
-      <td>実施時間</td>
-      <td>通知時間</td>
+      <td width="10%">CHECK!</td>
+      <td width="5%%"></td>
+      <td width="25%">ポイント</td>
+      <td width="25%">実施時間</td>
+      <td width="25%">通知時間</td>
     </tr>
   </thead>
   <tbody>
@@ -14,25 +15,29 @@
     <%# 復習回数が0のとき %>
     <% if post.relearn_count == 0 %>
         <tr>
-          <td>first <%= f.check_box(:first_score, {checked: false}, checked_value = "true",unchecked_value = "false" ) %></td>
+          <td>first</td>
+          <td><%= f.check_box(:first_score, {checked: false,class: "check_box"}, checked_value = "true",unchecked_value = "false" ) %></td>
           <td><%= relearn_point.first_score %> / 100 P</td>
           <td>実施時間</td>
           <td>つうちじかん</td>
         </tr>
         <tr>
-          <td>second </td>
+          <td>second</td>
+          <td></td>
           <td><%= relearn_point.second_score %> / 200 P</td>
           <td></td>
           <td></td>
         </tr>
         <tr>
-          <td>third </td>
+          <td>third</td>
+          <td></td>
           <td><%= relearn_point.third_score %> / 300 P</td>
           <td></td>
           <td></td>
         </tr>
         <tr>
-          <td>forth </td>
+          <td>forth</td>
+          <td></td>
           <td><%= relearn_point.forth_score %> / 400 P</td>
           <td></td>
           <td></td>
@@ -40,25 +45,29 @@
     <%# 復習回数が1のとき %>
     <% elsif post.relearn_count == 1 %>
       <tr>
-        <td>first <%= f.check_box(fisrst_score, {checked: true}, checked_value = "true",unchecked_value = "false" ) %></td>
+        <td>first</td>
+        <td></td>
         <td><%= relearn_point.first_score %> / 100 P</td>
         <td>実施時間</td>
         <td>つうちじかん</td>
       </tr>
       <tr>
-        <td>second <%= f.check_box(second_score, {checked: false}, checked_value = "true",unchecked_value = "false" ) %></td>
+        <td>second</td>
+        <td><%= f.check_box(second_score, {checked: false}, checked_value = "true",unchecked_value = "false" ) %></td>
         <td><%= relearn_point.second_score %> / 200 P</td>
         <td></td>
         <td></td>
       </tr>
       <tr>
-        <td>third </td>
+        <td>third</td>
+        <td></td>
         <td><%= relearn_point.third_score %> / 300 P</td>
         <td></td>
         <td></td>
       </tr>
       <tr>
-        <td>forth </td>
+        <td>forth</td>
+        <td></td>
         <td><%= relearn_point.forth_score %> / 400 P</td>
         <td></td>
         <td></td>
@@ -66,25 +75,29 @@
     <%# 復習回数が2のとき %>
     <% elsif post.relearn_count == 2 %>
       <tr>
-        <td>first <%= f.check_box(fisrst_score, {checked: true}, checked_value = "true",unchecked_value = "false" ) %></td>
+        <td>first</td>
+        <td></td>
         <td><%= relearn_point.first_score %> / 100 P</td>
         <td>実施時間</td>
         <td>つうちじかん</td>
       </tr>
       <tr>
-        <td>second <%= f.check_box(second_score, {checked: true}, checked_value = "true",unchecked_value = "false" ) %></td>
+        <td>second</td>
+        <td></td>
         <td><%= relearn_point.second_score %> / 200 P</td>
         <td></td>
         <td></td>
       </tr>
       <tr>
-        <td>third <%= f.check_box(third_score, {checked: false}, checked_value = "true",unchecked_value = "false" ) %></td>
+        <td>third</td>
+        <td><%= f.check_box(third_score, {checked: false}, checked_value = "true",unchecked_value = "false" ) %></td>
         <td><%= relearn_point.third_score %> / 300 P</td>
         <td></td>
         <td></td>
       </tr>
       <tr>
-        <td>forth </td>
+        <td>forth</td>
+        <td></td>
         <td><%= relearn_point.forth_score %> / 400 P</td>
         <td></td>
         <td></td>
@@ -92,25 +105,29 @@
     <%# 復習回数が3以上のとき %>
     <% elsif post.relearn_count >= 3 %>
       <tr>
-        <td>first <%= f.check_box(fisrst_score, {checked: true}, checked_value = "true",unchecked_value = "false" ) %></td>
+        <td>first</td>
+        <td></td>
         <td><%= relearn_point.first_score %> / 100 P</td>
         <td>実施時間</td>
         <td>つうちじかん</td>
       </tr>
       <tr>
-        <td>second <%= f.check_box(second_score, {checked: true}, checked_value = "true",unchecked_value = "false" ) %></td>
+        <td>second</td>
+        <td></td>
         <td><%= relearn_point.second_score %> / 200 P</td>
         <td></td>
         <td></td>
       </tr>
       <tr>
-        <td>third <%= f.check_box(third_score, {checked: true}, checked_value = "true",unchecked_value = "false" ) %></td>
+        <td>third</td>
+        <td></td>
         <td><%= relearn_point.third_score %> / 300 P</td>
         <td></td>
         <td></td>
       </tr>
       <tr>
-        <td>forth <%= f.check_box(forth_score, {checked: false}, checked_value = "true",unchecked_value = "false" ) %></td>
+        <td>forth</td>
+        <td><%= f.check_box(forth_score, {checked: false}, checked_value = "true",unchecked_value = "false" ) %></td>
         <td><%= relearn_point.forth_score %> / 400 P</td>
         <td></td>
         <td></td>
@@ -122,6 +139,7 @@
   <tfoot>
     <tr>
       <td><%= f.submit "送信" %></td>
+      <td></td>
       <td>合計ポイント</td>
       <td></td>
       <td><%= link_to "通知時間の編集", edit_post_plan_timing_path(post), class: "btn btn-default" %></td>

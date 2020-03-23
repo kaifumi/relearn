@@ -6,3 +6,10 @@
 // -- bootstrap import
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.point_form {
+  display: flex;
+}
+.check_box {
+  text-align: right;
+}
