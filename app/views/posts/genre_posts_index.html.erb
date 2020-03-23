@@ -18,7 +18,7 @@
         <% @posts.each do |post| %>
         <tr>
           <td><%= post.id %></td>
-          <td><%= link_to post.title, post_path(post) %></td>
+          <td><%= link_to post.title, post_path(post), data: {"turbolinks" => false} %></td>
           <td><%= post.genre.type %></td>
           <td><%= post.content %></td>
           <td><%= post.relearn_count %></td>
