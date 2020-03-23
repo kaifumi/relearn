@@ -23,6 +23,12 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @genre = Genre.find_by(id: @post.genre_id)
+    # _point_formで使用するrelearn_pointのデータの入れ方条件分岐
+    if RelearnPoint.find_by(post_id: params[:id]).nil?
+      # もしrelearn_pointのレコードがなければ作らせる
+      @relearn_point = RelearnPoint.create(post_id: params[:id])
+    end
+    @relearn_point = RelearnPoint.find_by(post_id: params[:id])
   end
 
   # 新規投稿の保存
@@ -30,6 +36,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
+      RelearnPoint.create(post_id: params[:id])
       flash[:success] = '投稿完了しました。'
       redirect_to post_path(@post)
     else
