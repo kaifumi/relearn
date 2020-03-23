@@ -4,7 +4,7 @@
   <%= @genre.type%>
 </div>
 <div class="content_head">
-  <p>内容　　<%= link_to "投稿内容の編集", edit_post_path(@post), data: {"turbolinks" => false} %></p>
+  <p>内容　　<%= link_to "投稿内容の編集", edit_post_path(@post), data: { "turbolinks" => false } %></p>
 </div>
 <div class="content">
   <%= @post.content %>
@@ -12,32 +12,7 @@
 
 <p>link : <%= @post.link %></p>
 
-<table>
-  <thead>
-    <tr>
-      <td>Relean CHECK!</td>
-      <td>ポイント</td>
-      <td>実施時間</td>
-      <td>通知時間</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>復習</td>
-      <td>実施ポイント</td>
-      <td>じっしじかん</td>
-      <td>つうちじかん</td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td>送信</td>
-      <td>合計ポイント</td>
-      <td></td>
-      <td><%= link_to "通知時間の編集", edit_post_plan_timing_path(@post), class: "btn btn-default" %></td>
-    </tr>
-  </tfoot>
-</table>
+<%= render partial: 'point_form', locals: { post: @post, relearn_point: @relearn_point } %>
 
 <div class="btn group">
   <%= link_to "復習完了にする", post_complete_path(@post), method: :patch, class:"btn btn-default" %>

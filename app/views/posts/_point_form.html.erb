@@ -1,0 +1,132 @@
+<%# 復習したらチェックして送信するフォーム %>
+<%= form_with(model: relearn_point, url: post_relearn_point_path(post_id: post.id), method: :patch, local: true) do |f| %>
+<table>
+  <thead>
+    <tr>
+      <td>Relean CHECK!</td>
+      <td>ポイント</td>
+      <td>実施時間</td>
+      <td>通知時間</td>
+    </tr>
+  </thead>
+  <tbody>
+    <%# postテーブルのrelearn_countの値に応じて表示するフォームを変える %>
+    <%# 復習回数が0のとき %>
+    <% if post.relearn_count == 0 %>
+        <tr>
+          <td>first <%= f.check_box(:first_score, {checked: false}, checked_value = "true",unchecked_value = "false" ) %></td>
+          <td><%= relearn_point.first_score %> / 100 P</td>
+          <td>実施時間</td>
+          <td>つうちじかん</td>
+        </tr>
+        <tr>
+          <td>second </td>
+          <td><%= relearn_point.second_score %> / 200 P</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>third </td>
+          <td><%= relearn_point.third_score %> / 300 P</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>forth </td>
+          <td><%= relearn_point.forth_score %> / 400 P</td>
+          <td></td>
+          <td></td>
+        </tr>
+    <%# 復習回数が1のとき %>
+    <% elsif post.relearn_count == 1 %>
+      <tr>
+        <td>first <%= f.check_box(fisrst_score, {checked: true}, checked_value = "true",unchecked_value = "false" ) %></td>
+        <td><%= relearn_point.first_score %> / 100 P</td>
+        <td>実施時間</td>
+        <td>つうちじかん</td>
+      </tr>
+      <tr>
+        <td>second <%= f.check_box(second_score, {checked: false}, checked_value = "true",unchecked_value = "false" ) %></td>
+        <td><%= relearn_point.second_score %> / 200 P</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>third </td>
+        <td><%= relearn_point.third_score %> / 300 P</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>forth </td>
+        <td><%= relearn_point.forth_score %> / 400 P</td>
+        <td></td>
+        <td></td>
+      </tr>
+    <%# 復習回数が2のとき %>
+    <% elsif post.relearn_count == 2 %>
+      <tr>
+        <td>first <%= f.check_box(fisrst_score, {checked: true}, checked_value = "true",unchecked_value = "false" ) %></td>
+        <td><%= relearn_point.first_score %> / 100 P</td>
+        <td>実施時間</td>
+        <td>つうちじかん</td>
+      </tr>
+      <tr>
+        <td>second <%= f.check_box(second_score, {checked: true}, checked_value = "true",unchecked_value = "false" ) %></td>
+        <td><%= relearn_point.second_score %> / 200 P</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>third <%= f.check_box(third_score, {checked: false}, checked_value = "true",unchecked_value = "false" ) %></td>
+        <td><%= relearn_point.third_score %> / 300 P</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>forth </td>
+        <td><%= relearn_point.forth_score %> / 400 P</td>
+        <td></td>
+        <td></td>
+      </tr>
+    <%# 復習回数が3以上のとき %>
+    <% elsif post.relearn_count >= 3 %>
+      <tr>
+        <td>first <%= f.check_box(fisrst_score, {checked: true}, checked_value = "true",unchecked_value = "false" ) %></td>
+        <td><%= relearn_point.first_score %> / 100 P</td>
+        <td>実施時間</td>
+        <td>つうちじかん</td>
+      </tr>
+      <tr>
+        <td>second <%= f.check_box(second_score, {checked: true}, checked_value = "true",unchecked_value = "false" ) %></td>
+        <td><%= relearn_point.second_score %> / 200 P</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>third <%= f.check_box(third_score, {checked: true}, checked_value = "true",unchecked_value = "false" ) %></td>
+        <td><%= relearn_point.third_score %> / 300 P</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>forth <%= f.check_box(forth_score, {checked: false}, checked_value = "true",unchecked_value = "false" ) %></td>
+        <td><%= relearn_point.forth_score %> / 400 P</td>
+        <td></td>
+        <td></td>
+      </tr>
+    <% else %>
+      <p>データが異常です。管理者に問い合わせをお願いします。</p>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td><%= f.submit "送信" %></td>
+      <td>合計ポイント</td>
+      <td></td>
+      <td><%= link_to "通知時間の編集", edit_post_plan_timing_path(post), class: "btn btn-default" %></td>
+    </tr>
+  </tfoot>
+</table>
+<% end %>
+
