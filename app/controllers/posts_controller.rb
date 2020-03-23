@@ -26,9 +26,15 @@ class PostsController < ApplicationController
     # _point_formで使用するrelearn_pointのデータの入れ方条件分岐
     if RelearnPoint.find_by(post_id: params[:id]).nil?
       # もしrelearn_pointのレコードがなければ作らせる
-      @relearn_point = RelearnPoint.create(post_id: params[:id])
+      @relearn_point = RelearnPoint.create!(post_id: params[:id])
     end
     @relearn_point = RelearnPoint.find_by(post_id: params[:id])
+    if PlanTiming.find_by(post_id: params[:id]).nil?
+      # もしplan_timingのレコードがなければ作らせる
+      @plan_timing = PlanTiming.call(post_id: @post.id, first_term: 1.day.from_now,
+                                     second_term: 3.days.from_now, third_term: 10.days.from_now, forth_term: 1.month.from_now)
+    end
+    @plan_timing = PlanTiming.find_by(post_id: params[:id])
   end
 
   # 新規投稿の保存
@@ -36,7 +42,11 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      RelearnPoint.create(post_id: params[:id])
+      # 新規投稿時に復習ポイントのレコードと通知予定時間のレコードを作成する
+      RelearnPoint.create(post_id: @post.id)
+      # 予定している通知時間を1日後、3日後、10日後、1ヶ月後に設定
+      PlanTiming.create(post_id: @post.id, first_term: 1.day.from_now,
+                        second_term: 3.days.from_now, third_term: 10.days.from_now, forth_term: 1.month.from_now)
       flash[:success] = '投稿完了しました。'
       redirect_to post_path(@post)
     else
