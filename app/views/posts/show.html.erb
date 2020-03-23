@@ -1,20 +1,25 @@
-<h1>投稿詳細</h1>
-<div class="post_title">
-  <%= @post.title%>
-  <%= @genre.type%>
-</div>
-<div class="content_head">
-  <p>内容　　<%= link_to "投稿内容の編集", edit_post_path(@post), data: { "turbolinks" => false } %></p>
-</div>
-<div class="content">
-  <%= @post.content %>
-</div>
+<div class="row">
+  <div class="col-xs-9">
+    <h1>投稿詳細</h1>
+    <div class="post_title">
+      <%= @post.title%>
+      <%= @genre.type%>
+    </div>
+    <div class="content_head">
+      <p>内容　　<%= link_to "投稿内容の編集", edit_post_path(@post), data: { "turbolinks" => false } %></p>
+    </div>
+    <div class="content">
+      <%= @post.content %>
+    </div>
 
-<p>link : <%= @post.link %></p>
+    <p>link : <%= @post.link %></p>
 
-<%= render partial: 'point_form', locals: { post: @post, relearn_point: @relearn_point } %>
+    <%# ポイント入力フォーム %>
+    <%= render partial: 'point_form', locals: { post: @post, relearn_point: @relearn_point } %>
 
-<div class="btn group">
-  <%= link_to "復習完了にする", post_complete_path(@post), method: :patch, class:"btn btn-default" %>
-  <%= link_to "投稿を削除する", post_path(@post), method: :delete, class:"btn btn-default", data: { confirm: '削除しますか？' } %>
+    <div class="btn group">
+      <%= link_to "復習完了にする", post_complete_path(@post), method: :patch, class:"btn btn-default" %>
+      <%= link_to "投稿を削除する", post_path(@post), method: :delete, class:"btn btn-default", data: { confirm: '削除しますか？' } %>
+    </div>
+  </div>
 </div>
