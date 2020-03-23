@@ -1,12 +1,8 @@
 class RelearnPointsController < ApplicationController
-  def create
-    @relearn_point = ReleanPoint.new(relearn_point_params)
-    @relearn_point.save
-    redirect_back
-  end
-
   def update
-    @relearn_point = ReleanPoint.find(params[:id])
+    # byebug
+    @relearn_point = ReleanPoint.find_by(post_id: params[:post_id])
+    @relearn_point.first_score = 100 if first_score.true?
     @relearn_point.update(relearn_point_params)
     redirect_back
   end
