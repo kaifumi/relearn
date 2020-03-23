@@ -76,7 +76,7 @@ Layout/SpaceInsideArrayLiteralBrackets:
 
 # 最大行数の設定
 Layout/LineLength:
-  Max: 112
+  Max: 150
 
 # タブが過剰(ストロングパラメータ用)
 Layout/Tab:
@@ -101,7 +101,7 @@ Metrics/MethodLength:
 # デフォルトで15に設定されている
 Metrics/AbcSize:
   Enabled: true
-  Max: 20
+  Max: 40
 
 AllCops:
   Exclude:
