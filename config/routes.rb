@@ -25,6 +25,6 @@ Rails.application.routes.draw do
     resource :plan_timing, only: [:edit, :update]
     resource :complete, only: [:show, :update, :destroy]
     # 復習ポイントフォームでの入力値受け取り用
-    resource :relearn_point, only: [:create, :update]
+    resource :relearn_point, only: [:update]
   end
 end
