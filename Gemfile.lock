@@ -69,6 +69,8 @@ GEM
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
+    bootstrap3-datetimepicker-rails (4.17.47)
+      momentjs-rails (>= 2.8.1)
     builder (3.2.4)
     byebug (11.1.1)
     capybara (3.31.0)
@@ -438,6 +440,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap-sass (~> 3.4.1)
+  bootstrap3-datetimepicker-rails (~> 4.17.47)
   byebug
   capybara (>= 2.15)
   chromedriver-helper
@@ -457,7 +460,7 @@ DEPENDENCIES
   letter_opener
   letter_opener_web (~> 1.0)
   listen (>= 3.0.5, < 3.2)
-  momentjs-rails
+  momentjs-rails (>= 2.9.0)
   paranoia
   pre-commit
   pry-rails

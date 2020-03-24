@@ -77,6 +77,8 @@ Layout/SpaceInsideArrayLiteralBrackets:
 # 最大行数の設定
 Layout/LineLength:
   Max: 150
+  Exclude:
+    - "app/models/form/plan_timing.rb"
 
 # タブが過剰(ストロングパラメータ用)
 Layout/Tab:
@@ -95,13 +97,18 @@ Layout/EmptyLinesAroundClassBody:
 # def~endの間に入れることが可能な行数を設定
 Metrics/MethodLength:
   Max: 15
+  Exclude:
+    - "app/controllers/posts_controller.rb"
 
 # def~endの間に入れることが可能なAbcSizeを設定
 # AbcSizeとは「Assignment:変数への代入,Branch:メソッド呼び出し,Condition:条件文」左記3項目の合計ポイント
 # デフォルトで15に設定されている
 Metrics/AbcSize:
+  Exclude:
+    - "app/controllers/posts_controller.rb"
   Enabled: true
-  Max: 40
+  Max: 30
+  
 
 AllCops:
   Exclude:
@@ -109,4 +116,3 @@ AllCops:
     - "public/**/*"
     - "tmp/**/*"
     - "log/**/*"
-    - "db/schema.rb"
