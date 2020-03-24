@@ -31,10 +31,12 @@ class PostsController < ApplicationController
     @relearn_point = RelearnPoint.find_by(post_id: params[:id])
     if PlanTiming.find_by(post_id: params[:id]).nil?
       # もしplan_timingのレコードがなければ作らせる
-      @plan_timing = PlanTiming.call(post_id: @post.id, first_term: 1.day.from_now,
-                                     second_term: 3.days.from_now, third_term: 10.days.from_now, forth_term: 1.month.from_now)
+      @plan_timing = PlanTiming.create!(post_id: @post.id, first_term: 1.day.from_now.strftime('%Y-%m-%d %H:%M'),
+                                        second_term: 3.days.from_now.strftime('%Y-%m-%d %H:%M'),
+                                        third_term: 10.days.from_now.strftime('%Y-%m-%d %H:%M'),
+                                        forth_term: 1.month.from_now.strftime('%Y-%m-%d %H:%M'))
     end
-    @plan_timing = PlanTiming.find_by(post_id: params[:id])
+    @plan_timing = Form::PlanTiming.find_by(post_id: params[:id])
   end
 
   # 新規投稿の保存
@@ -45,8 +47,13 @@ class PostsController < ApplicationController
       # 新規投稿時に復習ポイントのレコードと通知予定時間のレコードを作成する
       RelearnPoint.create(post_id: @post.id)
       # 予定している通知時間を1日後、3日後、10日後、1ヶ月後に設定
-      PlanTiming.create(post_id: @post.id, first_term: 1.day.from_now,
-                        second_term: 3.days.from_now, third_term: 10.days.from_now, forth_term: 1.month.from_now)
+      PlanTiming.create(post_id: @post.id, first_term: 1.day.from_now.strftime('%Y-%m-%d %H:%M'),
+                        second_term: 3.days.from_now.strftime('%Y-%m-%d %H:%M'), third_term: 10.days.from_now.strftime('%Y-%m-%d %H:%M'),
+                        forth_term: 1.month.from_now.strftime('%Y-%m-%d %H:%M'),
+                        first_min: 1.hour.from_now.strftime('%Y-%m-%d %H:%M'), first_max: 2.days.from_now.strftime('%Y-%m-%d %H:%M'),
+                        second_min: 3.days.from_now.strftime('%Y-%m-%d %H:%M'), second_max: 7.days.from_now.strftime('%Y-%m-%d %H:%M'),
+                        third_min: 8.days.from_now.strftime('%Y-%m-%d %H:%M'), third_max: 14.days.from_now.strftime('%Y-%m-%d %H:%M'),
+                        forth_min: 15.days.from_now.strftime('%Y-%m-%d %H:%M'), forth_max: 1.month.from_now.strftime('%Y-%m-%d %H:%M'))
       flash[:success] = '投稿完了しました。'
       redirect_to post_path(@post)
     else

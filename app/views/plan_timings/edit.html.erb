@@ -1,2 +1,68 @@
-<h1>PlanTimings#edit</h1>
-<p>Find me in app/views/plan_timings/edit.html.erb</p>
+<h1>通知時間編集</h1>
+<%= form_with( url: post_plan_timing_path, model: @plan_timing, local: true ) do |f| %>
+  <%# 項目を横並びにするためにテーブル化 %>
+  <table class="plan_edit_table">
+    <thead>
+      <tr>
+        <td width="20%">予定通知タイミング</td>
+        <td width="40%">変更後の通知時間</td>
+        <td width="25%">変更可能範囲</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <%# 1回目の通知時間変更のフォーム %>
+        <td><%= @plan_timing.first_term.strftime("%m-%d %H:%M") %></td>
+        <td><div class="form-inline">
+                <%# カレンダーから選択して選べるようにdatepickerを導入 %>
+                <%# 他のフォームでも使用するため、id→classで指定してjqueryを使用 %>
+                <%# 第2引数でvalueに値を入れるとデフォルト値を設定できる %>
+                <%= f.text_field :first_term_date, { value: "#{ @plan_timing.first_term.strftime("%m-%d") }", class: 'form-control date-picker' } %>
+                <%# 第3引数のオプションにselectedを使うとデフォルト値を選択できる %>
+                <%= f.select :first_term_hour, (0..23).to_a.map { |v| "%02d" % v }, { selected: "#{ @plan_timing.first_term.strftime("%H") }" }, class: 'form-control' %> :
+                <%= f.select :first_term_minute, (0..59).to_a.map { |v| "%02d" % v }, { selected: "#{ @plan_timing.first_term.strftime("%M") }" }, class: 'form-control' %>
+            </div></td>
+        <td><p class="changeable_range">1時間後~2日後</p>
+            <%= @plan_timing.first_min.strftime("%m-%d %H:%M") %>
+            ~ <%= @plan_timing.first_max.strftime("%m-%d %H:%M") %></td>
+      </tr>
+      <tr>
+        <%# 2回目の通知時間変更のフォーム %>
+        <td><%= @plan_timing.second_term.strftime("%m-%d %H:%M") %></td>
+        <td><div class="form-inline">
+                <%= f.text_field :second_term_date, { value: "#{ @plan_timing.second_term.strftime("%m-%d") }", class: 'form-control date-picker' } %>
+                <%= f.select :second_term_hour, (0..23).to_a.map { |v| "%02d" % v }, { selected: "#{ @plan_timing.second_term.strftime("%H") }" }, class: 'form-control' %> :
+                <%= f.select :second_term_minute, (0..59).to_a.map { |v| "%02d" % v }, { selected: "#{ @plan_timing.second_term.strftime("%M") }" }, class: 'form-control' %>
+            </div></td>
+        <td><p class="changeable_range">3日後~7日後</p>
+            <%= @plan_timing.second_min.strftime("%m-%d %H:%M") %>
+            ~ <%= @plan_timing.second_max.strftime("%m-%d %H:%M") %></td>
+      </tr>
+      <tr>
+        <%# 3回目の通知時間変更のフォーム %>
+        <td><%= @plan_timing.third_term.strftime("%m-%d %H:%M") %></td>
+        <td><div class="form-inline">
+                <%= f.text_field :third_term_date, { value: "#{ @plan_timing.third_term.strftime("%m-%d") }", class: 'form-control date-picker' } %>
+                <%= f.select :third_term_hour, (0..23).to_a.map { |v| "%02d" % v }, { selected: "#{ @plan_timing.third_term.strftime("%H") }" }, class: 'form-control' %> :
+                <%= f.select :third_term_minute, (0..59).to_a.map { |v| "%02d" % v }, { selected: "#{ @plan_timing.third_term.strftime("%M") }" }, class: 'form-control' %>
+            </div></td>
+        <td><p class="changeable_range">8日後~14日後</p>
+            <%= @plan_timing.third_min.strftime("%m-%d %H:%M") %>
+            ~ <%= @plan_timing.third_max.strftime("%m-%d %H:%M") %></td>
+      </tr>
+      <tr>
+        <%# 4回目の通知時間変更のフォーム %>
+        <td><%= @plan_timing.forth_term.strftime("%m-%d %H:%M") %></td>
+        <td><div class="form-inline">
+                <%= f.text_field :forth_term_date, { value: "#{ @plan_timing.forth_term.strftime("%m-%d") }", class: 'form-control date-picker' } %>
+                <%= f.select :forth_term_hour, (0..23).to_a.map { |v| "%02d" % v }, { selected: "#{ @plan_timing.forth_term.strftime("%H") }" }, class: 'form-control' %> :
+                <%= f.select :forth_term_minute, (0..59).to_a.map { |v| "%02d" % v }, { selected: "#{ @plan_timing.forth_term.strftime("%M") }" }, class: 'form-control' %>
+            </div></td>
+        <td><p class="changeable_range">15日後~1ヶ月後</p>
+            <%= @plan_timing.forth_min.strftime("%m-%d %H:%M") %>
+            ~ <%= @plan_timing.forth_max.strftime("%m-%d %H:%M") %></td>    
+      </tr>
+    </tbody>
+  </table>
+<%= f.submit "更新"%> 
+<% end %>

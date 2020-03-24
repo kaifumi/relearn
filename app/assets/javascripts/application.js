@@ -12,6 +12,17 @@
 //
 //= require rails-ujs
 //= require turbolinks
-//= require_tree .
-// Bootstrap
+//= require jquery
 //= require bootstrap-sprockets
+//= require moment
+//= require bootstrap-datetimepicker
+//= require_tree .
+
+$(function() {
+  $(".date-picker").datetimepicker({
+    format: "MM-DD",
+    useCurrent: false
+  });
+});
+
+// $(".date-picker").datetimepicker((pickTime: false));
