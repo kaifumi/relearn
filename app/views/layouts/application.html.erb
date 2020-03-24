@@ -32,6 +32,17 @@
       </div>
     </header>
     <div class="container">
+      <%# 成功・エラー文表示 %>
+      <% if flash[:notice] %>
+        <div class="notifications">
+          <div class="notice"><%= flash[:notice] %></div>
+        </div>
+      <% elsif flash.now[:alert] %>
+        <div class="notifications">
+          <div class="alert"><%= flash.now[:alert] %></div>
+        </div>
+      <% end %>
+      <%# 各ビューの読み込み %>
       <%= yield %>
     </div>
   </body>

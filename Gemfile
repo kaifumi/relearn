@@ -100,5 +100,8 @@ gem 'rails-i18n'
 # カレンダーをRailsで使うためのgem
 gem 'fullcalendar-rails'
 
+# フォームでカレンダーから選べるように導入
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
+
 # カレンダーに時間を入力するためのgem
-gem 'momentjs-rails'
+gem 'momentjs-rails', '>= 2.9.0'
