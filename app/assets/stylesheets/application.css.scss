@@ -1,0 +1,40 @@
+/*
+ *= require_tree .
+ *= require_self
+ */
+
+// -- bootstrap import
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "bootstrap-datetimepicker";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+p {
+  margin: 0;
+}
+
+// ポイント入力フォームの位置調整
+.point_form {
+  display: flex;
+}
+.check_box {
+  text-align: right;
+}
+
+// datepickerのカレンダーの配置の整地に必要
+.plan_edit_table {
+  position: relative;
+  tr,
+  th,
+  td {
+    height: 50px;
+    vertical-align: inherit;
+  }
+  .changeable_range {
+    color: red;
+  }
+}

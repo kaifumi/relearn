@@ -17,9 +17,14 @@ AllCops:
     - "config/**/*"
     - "script/**/*"
     - !ruby/regexp /old_and_unused\.rb$/
+    - "app/models/plan_timing.rb"
 
 # 日本語でのコメントを許可
 AsciiComments:
+  Enabled: false
+
+# 複数行での「lambda」で「->」による省略記法を許可
+Lambda:
   Enabled: false
 
 # クラスのコメント必須を無視
@@ -32,4 +37,12 @@ ClassAndModuleChildren:
 
 # 文字リテラルのイミュータブル宣言を無視（freezeになるのはRuby3以降）
 Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# メソッド名のprefixに「set_」「get_」を許可
+AccessorMethodName:
+  Enabled: false
+
+# 「and」「or」の使用を許可
+AndOr:
   Enabled: false

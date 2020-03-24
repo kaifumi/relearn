@@ -62,6 +62,14 @@ ActiveRecord::Schema.define(version: 2020_03_21_005236) do
     t.datetime "second_term", null: false
     t.datetime "third_term", null: false
     t.datetime "forth_term", null: false
+    t.datetime "first_min", null: false
+    t.datetime "first_max", null: false
+    t.datetime "second_min", null: false
+    t.datetime "second_max", null: false
+    t.datetime "third_min", null: false
+    t.datetime "third_max", null: false
+    t.datetime "forth_min", null: false
+    t.datetime "forth_max", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
