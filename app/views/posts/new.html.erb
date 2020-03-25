@@ -8,7 +8,7 @@
           <%# セレクトボックスでジャンル一覧を表示 %>
           <td>
 		        <%= f.select :genre_id, Genre.all.map{|g| [g.type, g.id]} %></td>
-          <td><%= link_to "+新規ジャンルはこちらから追加", user_genres_path(user_id: current_user.id) %></td>
+          <td><%= link_to "+新規ジャンルはこちらから追加", user_genres_path(user_id: current_user.id), data: {"turbolinks" => false} %></td>
         </tr>
         <tr>
           <td><p>タイトル</p></td>
