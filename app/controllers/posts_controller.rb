@@ -38,7 +38,9 @@ class PostsController < ApplicationController
     end
     # 通知時間の表示用
     @plan_timing = Form::PlanTiming.find_by(post_id: params[:id])
+    # 通知時間と現在時刻の差異でフォームの出すタイミングを設定
     @time_now = Time.zone.now
+    @real_timing = RealTiming.find_by(post_id: params[:id])
   end
 
   # 新規投稿の保存
@@ -56,6 +58,7 @@ class PostsController < ApplicationController
                         second_min: 3.days.from_now.strftime('%Y-%m-%d %H:%M'), second_max: 7.days.from_now.strftime('%Y-%m-%d %H:%M'),
                         third_min: 8.days.from_now.strftime('%Y-%m-%d %H:%M'), third_max: 14.days.from_now.strftime('%Y-%m-%d %H:%M'),
                         forth_min: 15.days.from_now.strftime('%Y-%m-%d %H:%M'), forth_max: 1.month.from_now.strftime('%Y-%m-%d %H:%M'))
+      RealTiming.create!(post_id: @post.id)
       flash[:notice] = '投稿完了しました。'
       redirect_to post_path(@post)
     else
