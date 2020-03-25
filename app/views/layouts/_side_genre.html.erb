@@ -1,0 +1,10 @@
+<h3>ジャンル一覧</h3>
+<div class="side_genre">
+  <ul>
+    <% genres.each do |genre|%>
+      <li><%= link_to genre.type, genre_posts_index_path(genre) %></li>
+    <% end %>
+  </ul>
+  <br>
+  <%= link_to "ジャンルの追加/編集",  user_genres_path(user_id: current_user.id), data: {"turbolinks" => false} %>
+</div>
