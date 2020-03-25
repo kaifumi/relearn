@@ -31,4 +31,5 @@
 /config/master.key
 
 /home/
-/.vscode/
+.vscode
+ubuntu-bionic-18.04-cloudimg-console.log
