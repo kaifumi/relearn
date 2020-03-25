@@ -36,7 +36,9 @@ class PostsController < ApplicationController
                                         third_term: 10.days.from_now.strftime('%Y-%m-%d %H:%M'),
                                         forth_term: 1.month.from_now.strftime('%Y-%m-%d %H:%M'))
     end
+    # 通知時間の表示用
     @plan_timing = Form::PlanTiming.find_by(post_id: params[:id])
+    @time_now = Time.zone.now
   end
 
   # 新規投稿の保存
@@ -54,7 +56,7 @@ class PostsController < ApplicationController
                         second_min: 3.days.from_now.strftime('%Y-%m-%d %H:%M'), second_max: 7.days.from_now.strftime('%Y-%m-%d %H:%M'),
                         third_min: 8.days.from_now.strftime('%Y-%m-%d %H:%M'), third_max: 14.days.from_now.strftime('%Y-%m-%d %H:%M'),
                         forth_min: 15.days.from_now.strftime('%Y-%m-%d %H:%M'), forth_max: 1.month.from_now.strftime('%Y-%m-%d %H:%M'))
-      flash[:success] = '投稿完了しました。'
+      flash[:notice] = '投稿完了しました。'
       redirect_to post_path(@post)
     else
       flash[:alert] = '投稿失敗しました。'
