@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   # 友達の復習リズムランキング
   get '/friend_rhythm_rank' => 'ranks#friend_rhythm_rank'
   resources :users, only: [:edit, :update, :destroy, :destroy_confirm] do
-    resources :genres, only: [:index, :create, :update, :detroy]
+    resources :genres, only: [:index, :create, :update, :destroy]
     resources :notifications, only: [:index, :update]
     resources :friends, only: [:search, :request, :index, :create, :update, :destroy]
   end

@@ -31,6 +31,6 @@
   </div>
   <div class="col-xs-3">
     <%# ジャンルの一覧表示 %>
-    <%= render @genres %>
+    <%= render partial: 'layouts/side_genre', locals: {genres: @genres} %>
   </div>
 </div>
