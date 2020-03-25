@@ -20,7 +20,7 @@
                 <%= f.check_box(:first_score, {checked: false,class: "check_box"}, checked_value = "true",unchecked_value = "false" ) %>
               <% end %></td>
           <td><%= relearn_point.first_score %> / 100 P</td>
-          <td>実施時間</td>
+          <td></td>
           <td><%= plan_timing.first_term.strftime("%Y-%m-%d %H:%M") %></td>
         </tr>
         <tr>
@@ -50,7 +50,7 @@
         <td>first</td>
         <td></td>
         <td><%= relearn_point.first_score %> / 100 P</td>
-        <td>実施時間</td>
+        <td><%= real_timing.first_term.strftime("%Y-%m-%d %H:%M") unless real_timing.first_term.nil? %></td>
         <td><%= plan_timing.first_term.strftime("%Y-%m-%d %H:%M") %></td>
       </tr>
       <tr>
@@ -74,7 +74,7 @@
         <td></td>
         <td><%= relearn_point.forth_score %> / 400 P</td>
         <td></td>
-        <td></td>
+        <td><%= plan_timing.forth_term.strftime("%Y-%m-%d %H:%M") %></td>
       </tr>
     <%# 復習回数が2のとき %>
     <% elsif post.relearn_count == 2 %>
@@ -82,14 +82,14 @@
         <td>first</td>
         <td></td>
         <td><%= relearn_point.first_score %> / 100 P</td>
-        <td>実施時間</td>
+        <td><%= real_timing.first_term.strftime("%Y-%m-%d %H:%M") unless real_timing.first_term.nil? %></td>
         <td><%= plan_timing.first_term.strftime("%Y-%m-%d %H:%M") %></td>
       </tr>
       <tr>
         <td>second</td>
         <td></td>
         <td><%= relearn_point.second_score %> / 200 P</td>
-        <td></td>
+        <td><%= real_timing.second_term.strftime("%Y-%m-%d %H:%M") unless real_timing.second_term.nil? %></td>
         <td><%= plan_timing.second_term.strftime("%Y-%m-%d %H:%M") %></td>
       </tr>
       <tr>
@@ -106,7 +106,7 @@
         <td></td>
         <td><%= relearn_point.forth_score %> / 400 P</td>
         <td></td>
-        <td></td>
+        <td><%= plan_timing.forth_term.strftime("%Y-%m-%d %H:%M") %></td>
       </tr>
     <%# 復習回数が3以上のとき %>
     <% elsif post.relearn_count >= 3 %>
@@ -114,21 +114,21 @@
         <td>first</td>
         <td></td>
         <td><%= relearn_point.first_score %> / 100 P</td>
-        <td>実施時間</td>
+        <td><%= real_timing.first_term.strftime("%Y-%m-%d %H:%M") unless real_timing.first_term.nil? %></td>
         <td><%= plan_timing.first_term.strftime("%Y-%m-%d %H:%M") %></td>
       </tr>
       <tr>
         <td>second</td>
         <td></td>
         <td><%= relearn_point.second_score %> / 200 P</td>
-        <td></td>
+        <td><%= real_timing.second_term.strftime("%Y-%m-%d %H:%M") unless real_timing.second_term.nil? %></td>
         <td><%= plan_timing.second_term.strftime("%Y-%m-%d %H:%M") %></td>
       </tr>
       <tr>
         <td>third</td>
         <td></td>
         <td><%= relearn_point.third_score %> / 300 P</td>
-        <td></td>
+        <td><%= real_timing.third_term.strftime("%Y-%m-%d %H:%M") unless real_timing.third_term.nil? %></td>
         <td><%= plan_timing.third_term.strftime("%Y-%m-%d %H:%M") %></td>
       </tr>
       <tr>
