@@ -1,10 +1,19 @@
 class RelearnPointsController < ApplicationController
   def update
     # byebug
-    @relearn_point = ReleanPoint.find_by(post_id: params[:post_id])
-    @relearn_point.first_score = 100 if first_score.true?
-    @relearn_point.update(relearn_point_params)
-    redirect_back
+    received_score = relearn_point_params
+    score = RelearnPoint.calculate(received_score, params[:post_id])
+    @relearn_point = RelearnPoint.find_by(post_id: params[:post_id])
+
+    if @relearn_point.update(score)
+      relearn_count = Post.find(params[:post_id])
+      relearn_count[:relearn_count] += 1 if relearn_count[:relearn_count] < 5
+      relearn_count.update(relearn_count: relearn_count[:relearn_count])
+      flash[:notice] = '復習登録に成功しました'
+    else
+      flash[:alert] = '復習登録に失敗しました'
+    end
+    redirect_to request.referer
   end
 
   private
