@@ -49,24 +49,26 @@ class PlanTiming < ApplicationRecord
     changed_data.store('second_term', connection2) if connection2 != term2
     changed_data.store('third_term', connection3) if connection3 != term3
     changed_data.store('forth_term', connection4) if connection4 != term4
-
     # 変更値が存在するかつ変更可能範囲に入っているならそのまま、違うならハッシュから値を取り除く
-    if changed_data['first_term'] && plan_timing.first_min <= changed_data['first_term'] && plan_timing.first_max >= changed_data['first_term']
+    # changed_data['first_term']などは"2020-03-25 07:00:00"のように表示されるが、
+    # plan_timing.first_minだけではWed, 25 Mar 2020 10:00:00 JST +09:00のように表示されるため、
+    # 不等号での比較に不具合が生じる場合がある。末尾に.strftime('%Y-%m-%d %H:%M:%S')が必要。
+    if changed_data['first_term'] && plan_timing.first_min.strftime('%Y-%m-%d %H:%M:%S') <= changed_data['first_term'] && plan_timing.first_max.strftime('%Y-%m-%d %H:%M:%S') >= changed_data['first_term']
     else
       changed_data.delete('first_term')
     end
     # 変更値が存在するかつ変更可能範囲に入っているならそのまま、違うならハッシュから値を取り除く
-    if changed_data['second_term'] && plan_timing.second_min <= changed_data['second_term'] && plan_timing.second_max >= changed_data['second_term']
+    if changed_data['second_term'] && plan_timing.second_min.strftime('%Y-%m-%d %H:%M:%S') <= changed_data['second_term'] && plan_timing.second_max.strftime('%Y-%m-%d %H:%M:%S') >= changed_data['second_term']
     else
       changed_data.delete('second_term')
     end
     # 変更値が存在するかつ変更可能範囲に入っているならそのまま、違うならハッシュから値を取り除く
-    if changed_data['third_term'] && plan_timing.third_min <= changed_data['third_term'] && plan_timing.third_max >= changed_data['third_term']
+    if changed_data['third_term'] && plan_timing.third_min.strftime('%Y-%m-%d %H:%M:%S') <= changed_data['third_term'] && plan_timing.third_max.strftime('%Y-%m-%d %H:%M:%S') >= changed_data['third_term']
     else
       changed_data.delete('third_term')
     end
     # 変更値が存在するかつ変更可能範囲に入っているならそのまま、違うならハッシュから値を取り除く
-    if changed_data['forth_term'] && plan_timing.forth_min <= changed_data['forth_term'] && plan_timing.forth_max >= changed_data['forth_term']
+    if changed_data['forth_term'] && plan_timing.forth_min.strftime('%Y-%m-%d %H:%M:%S') <= changed_data['forth_term'] && plan_timing.forth_max.strftime('%Y-%m-%d %H:%M:%S') >= changed_data['forth_term']
     else
       changed_data.delete('forth_term')
     end
