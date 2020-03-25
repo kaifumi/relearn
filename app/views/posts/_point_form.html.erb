@@ -16,7 +16,9 @@
     <% if post.relearn_count == 0 %>
         <tr>
           <td>first</td>
-          <td><%= f.check_box(:first_score, {checked: false,class: "check_box"}, checked_value = "true",unchecked_value = "false" ) %></td>
+          <td><% if plan_timing.first_term <= time_now %>
+                <%= f.check_box(:first_score, {checked: false,class: "check_box"}, checked_value = "true",unchecked_value = "false" ) %>
+              <% end %></td>
           <td><%= relearn_point.first_score %> / 100 P</td>
           <td>実施時間</td>
           <td><%= plan_timing.first_term.strftime("%Y-%m-%d %H:%M") %></td>
@@ -53,7 +55,9 @@
       </tr>
       <tr>
         <td>second</td>
-        <td><%= f.check_box(second_score, {checked: false}, checked_value = "true",unchecked_value = "false" ) %></td>
+        <td><% if plan_timing.second_term <= time_now %>
+              <%= f.check_box(:second_score, {checked: false}, checked_value = "true",unchecked_value = "false" ) %>
+            <% end %></td>
         <td><%= relearn_point.second_score %> / 200 P</td>
         <td></td>
         <td><%= plan_timing.second_term.strftime("%Y-%m-%d %H:%M") %></td>
@@ -68,7 +72,7 @@
       <tr>
         <td>forth</td>
         <td></td>
-        <td><%= relearn_point.forth_score.strftime("%Y-%m-%d %H:%M") %> / 400 P</td>
+        <td><%= relearn_point.forth_score %> / 400 P</td>
         <td></td>
         <td></td>
       </tr>
@@ -90,7 +94,9 @@
       </tr>
       <tr>
         <td>third</td>
-        <td><%= f.check_box(third_score, {checked: false}, checked_value = "true",unchecked_value = "false" ) %></td>
+        <td><% if plan_timing.third_term <= time_now %>
+              <%= f.check_box(:third_score, {checked: false}, checked_value = "true",unchecked_value = "false" ) %>
+            <% end %></td>
         <td><%= relearn_point.third_score %> / 300 P</td>
         <td></td>
         <td><%= plan_timing.third_term.strftime("%Y-%m-%d %H:%M") %></td>
@@ -127,7 +133,9 @@
       </tr>
       <tr>
         <td>forth</td>
-        <td><%= f.check_box(forth_score, {checked: false}, checked_value = "true",unchecked_value = "false" ) %></td>
+        <td><% if plan_timing.forth_term <= time_now %>
+              <%= f.check_box(:forth_score, {checked: false}, checked_value = "true",unchecked_value = "false" ) %>
+            <% end %></td>
         <td><%= relearn_point.forth_score %> / 400 P</td>
         <td></td>
         <td><%= plan_timing.forth_term.strftime("%Y-%m-%d %H:%M") %></td>

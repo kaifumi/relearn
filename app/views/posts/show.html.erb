@@ -15,8 +15,8 @@
     <p>link : <%= @post.link %></p>
 
     <%# ポイント入力フォーム %>
-    <%= render partial: 'point_form', locals: { post: @post, relearn_point: @relearn_point, plan_timing: @plan_timing } %>
-
+    <%= render partial: 'point_form', locals: { post: @post, relearn_point: @relearn_point, plan_timing: @plan_timing, time_now: @time_now } %>
+    <p>※通知時間になるまでは復習のチェックボックスは出ません</p>
       <%= link_to "復習完了にする", post_complete_path(@post), method: :patch, class:"btn btn-default" %>
       <%= link_to "投稿を削除する", post_path(@post), method: :delete, class:"btn btn-default", data: { confirm: '削除しますか？' } %>
   </div>
