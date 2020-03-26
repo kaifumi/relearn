@@ -2,6 +2,10 @@ Bundler/OrderedGems:
   Exclude:
     - "Gemfile"
 
+Rails/HasManyOrHasOneDependent:
+  Exclude:
+    - "app/models/post.rb"
+
 # 日本語でコメントを書いても良いようにする
 Style/AsciiComments:
   Exclude:
@@ -99,6 +103,8 @@ Metrics/MethodLength:
   Max: 15
   Exclude:
     - "app/controllers/posts_controller.rb"
+    - "app/controllers/relearn_points_controller.rb"
+    - "app/controllers/completes_controller.rb"
 
 # def~endの間に入れることが可能なAbcSizeを設定
 # AbcSizeとは「Assignment:変数への代入,Branch:メソッド呼び出し,Condition:条件文」左記3項目の合計ポイント
@@ -106,9 +112,16 @@ Metrics/MethodLength:
 Metrics/AbcSize:
   Exclude:
     - "app/controllers/posts_controller.rb"
+    - "app/controllers/relearn_points_controller.rb"
+    - "app/controllers/completes_controller.rb"
   Enabled: true
   Max: 30
-  
+
+Metrics/CyclomaticComplexity:
+  Max: 7
+
+Metrics/PerceivedComplexity:
+  Max: 8
 
 AllCops:
   Exclude:
