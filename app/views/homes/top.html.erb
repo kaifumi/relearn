@@ -1,5 +1,6 @@
 <h1>Homes#top</h1>
 Find me in app/views/homes/top.html.erb</p>
-
-<p>Relearnポイント：</p>
-<p><%= @total_point %>P</p>
+<% if user_signed_in? %>
+  <p>Relearnポイント：</p>
+  <p><%= @total_point %>P</p>
+<% end %>
