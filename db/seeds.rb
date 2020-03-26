@@ -189,7 +189,20 @@ RelearnPoint.create!(
 )
 TotalPoint.create!(
   [
-      {
+    {
+        user_id: 1
+    },
+    {
+      user_id: 2
+    },
+    {
+      user_id: 3
+    }
+  ]
+)
+Rate.create!(
+  [
+    {
         user_id: 1
     },
     {
