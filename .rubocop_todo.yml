@@ -74,6 +74,10 @@ Style/HashTransformKeys:
 Style/HashTransformValues:
   Enabled: true
 
+Style/GuardClause:
+  Exclude:
+    - "app/controllers/homes_controller.rb"
+
 Layout/SpaceInsideArrayLiteralBrackets:
   Exclude:
     - "config/environments/production.rb"
