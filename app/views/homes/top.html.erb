@@ -1,6 +1,11 @@
-<h1>Homes#top</h1>
-Find me in app/views/homes/top.html.erb</p>
+<h1>Next Relearn</h1>
+
 <% if user_signed_in? %>
   <p>Relearnポイント：</p>
   <p><%= @total_point %>P</p>
+  <% if @user_rate.count >= 4 %>
+    <p>Relearn率：</p>
+    <%# sprintf(or format)を使うと整数でも小数点表示ができる %>
+    <p><%= sprintf("%.2f", @average_rate) %>/1.00</p>
+  <% end %>
 <% end %>
