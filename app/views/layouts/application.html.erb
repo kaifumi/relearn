@@ -21,7 +21,7 @@
         </ul>
       </nav>
       <div class="right_header">
-        <% if current_user %>
+        <% if user_signed_in? %>
           <%= link_to edit_user_path(current_user) do %>
             <%= current_user.name %>
             イメージ画像
@@ -29,6 +29,7 @@
         <% end %>
         <p>通知マーク</p>
         <p>メニュー</p>
+        <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
       </div>
     </header>
     <div class="container">
