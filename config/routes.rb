@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/about' => 'homes#about'
   # ジャンルごとの投稿一覧
   get '/posts/genre/:id' => 'posts#genre_posts_index', as: 'genre_posts_index'
-  # 復習完了した投稿一覧
+  # 復習完了した投稿一覧、ヘッダーから飛べるようにid無しの設定
   get '/posts/completes' => 'completes#index', as: 'complete_posts'
   # 全体ポイントランキング表示
   get '/point_rank' => 'ranks#point_rank'

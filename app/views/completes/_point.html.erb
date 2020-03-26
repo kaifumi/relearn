@@ -1,5 +1,4 @@
-<%# 復習したらチェックして送信するフォーム %>
-<%= form_with(model: relearn_point, url: post_relearn_point_path(post_id: post.id), method: :patch, local: true) do |f| %>
+<%# ポイント一覧テーブル %>
 <table>
   <thead>
     <tr>
@@ -16,9 +15,7 @@
     <% if post.relearn_count == 0 %>
         <tr>
           <td>first</td>
-          <td><% if plan_timing.first_term <= time_now %>
-                <%= f.check_box(:first_score, {checked: false,class: "check_box"}, checked_value = "true",unchecked_value = "false" ) %>
-              <% end %></td>
+          <td></td>
           <td><%= relearn_point.first_score %> / 100 P</td>
           <td></td>
           <td><%= plan_timing.first_term.strftime("%Y-%m-%d %H:%M") %></td>
@@ -55,9 +52,7 @@
       </tr>
       <tr>
         <td>second</td>
-        <td><% if plan_timing.second_term <= time_now %>
-              <%= f.check_box(:second_score, {checked: false}, checked_value = "true",unchecked_value = "false" ) %>
-            <% end %></td>
+        <td></td>
         <td><%= relearn_point.second_score %> / 200 P</td>
         <td></td>
         <td><%= plan_timing.second_term.strftime("%Y-%m-%d %H:%M") %></td>
@@ -94,9 +89,7 @@
       </tr>
       <tr>
         <td>third</td>
-        <td><% if plan_timing.third_term <= time_now %>
-              <%= f.check_box(:third_score, {checked: false}, checked_value = "true",unchecked_value = "false" ) %>
-            <% end %></td>
+        <td></td>
         <td><%= relearn_point.third_score %> / 300 P</td>
         <td></td>
         <td><%= plan_timing.third_term.strftime("%Y-%m-%d %H:%M") %></td>
@@ -108,13 +101,13 @@
         <td></td>
         <td><%= plan_timing.forth_term.strftime("%Y-%m-%d %H:%M") %></td>
       </tr>
-    <%# 復習回数が3以上のとき %>
-    <% elsif post.relearn_count >= 3 %>
+    <%# 復習回数が3のとき %>
+    <% elsif post.relearn_count == 3 %>
       <tr>
         <td>first</td>
         <td><i class="far fa-check-square"></i></td>
         <td><%= relearn_point.first_score %> / 100 P</td>
-        <td><%= real_timing.first_term.strftime("%Y-%m-%d %H:%M") unless real_timing.first_term.nil? %></td>
+        <td><%= real_timing.first_term.strftime("%Y-%m-%d %H:%M") unless real_timing.first_term.nil?%></td>
         <td><%= plan_timing.first_term.strftime("%Y-%m-%d %H:%M") %></td>
       </tr>
       <tr>
@@ -133,9 +126,37 @@
       </tr>
       <tr>
         <td>forth</td>
-        <td><% if plan_timing.forth_term <= time_now && post.relearn_count == 3 %>
-              <%= f.check_box(:forth_score, {checked: false}, checked_value = "true",unchecked_value = "false" ) %>
-            <% end %></td>
+        <td></td>
+        <td><%= relearn_point.forth_score %> / 400 P</td>
+        <td></td>
+        <td><%= plan_timing.forth_term.strftime("%Y-%m-%d %H:%M") %></td>
+      </tr>
+    <%# 復習回数が4のとき %>
+    <% elsif post.relearn_count == 4 %>
+      <tr>
+        <td>first</td>
+        <td><i class="far fa-check-square"></i></td>
+        <td><%= relearn_point.first_score %> / 100 P</td>
+        <td><%= real_timing.first_term.strftime("%Y-%m-%d %H:%M") unless real_timing.first_term.nil?%></td>
+        <td><%= plan_timing.first_term.strftime("%Y-%m-%d %H:%M") %></td>
+      </tr>
+      <tr>
+        <td>second</td>
+        <td><i class="far fa-check-square"></i></td>
+        <td><%= relearn_point.second_score %> / 200 P</td>
+        <td><%= real_timing.second_term.strftime("%Y-%m-%d %H:%M") unless real_timing.second_term.nil? %></td>
+        <td><%= plan_timing.second_term.strftime("%Y-%m-%d %H:%M") %></td>
+      </tr>
+      <tr>
+        <td>third</td>
+        <td><i class="far fa-check-square"></i></td>
+        <td><%= relearn_point.third_score %> / 300 P</td>
+        <td><%= real_timing.third_term.strftime("%Y-%m-%d %H:%M") unless real_timing.third_term.nil? %></td>
+        <td><%= plan_timing.third_term.strftime("%Y-%m-%d %H:%M") %></td>
+      </tr>
+      <tr>
+        <td>forth</td>
+        <td><i class="far fa-check-square"></i></td>
         <td><%= relearn_point.forth_score %> / 400 P</td>
         <td><%= real_timing.forth_term.strftime("%Y-%m-%d %H:%M") unless real_timing.forth_term.nil? %></td>
         <td><%= plan_timing.forth_term.strftime("%Y-%m-%d %H:%M") %></td>
@@ -147,12 +168,12 @@
   <tfoot>
     <tr>
       <td></td>
-      <td><%= f.submit "送信" %></td>
+      <td></td>
       <td><%= @relearn_point.first_score + relearn_point.second_score + relearn_point.third_score+ relearn_point.forth_score %> / 1000P</td>
       <td></td>
-      <td><%= link_to "通知時間の編集", edit_post_plan_timing_path(post), class: "btn btn-default", data: {"turbolinks" => false} %></td>
+      <td></td>
     </tr>
   </tfoot>
 </table>
-<% end %>
+
 
