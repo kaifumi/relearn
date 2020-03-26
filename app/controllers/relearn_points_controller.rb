@@ -30,9 +30,10 @@ class RelearnPointsController < ApplicationController
 
     if post[:relearn_count] >= 4
       post.update(relearn_complete: true)
+      # and return を使って明示的に早期終了させる
       redirect_to complete_posts_path and return
     end
-    redirect_to request.referer and return
+    redirect_to request.referer
   end
 
   private
