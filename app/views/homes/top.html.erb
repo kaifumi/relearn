@@ -1,11 +1,17 @@
-<h1>Next Relearn</h1>
-
-<% if user_signed_in? %>
-  <p>Relearnポイント：</p>
-  <p><%= @total_point %>P</p>
-  <% if @user_rate.count >= 4 %>
-    <p>Relearn率：</p>
-    <%# sprintf(or format)を使うと整数でも小数点表示ができる %>
-    <p><%= sprintf("%.2f", @average_rate) %>/1.00</p>
-  <% end %>
-<% end %>
+<div class="row">
+  <div class="col-xs-9 top_title">
+    <h1>Next Relearn</h1>
+    <p class="quote">きょうの言葉　：　<%= @quote %></p>
+  </div>
+  <div class="col-xs-3">
+    <% if user_signed_in? %>
+      <p>Relearnポイント：</p>
+      <p><%= @total_point %>P</p>
+      <% if @user_rate.count >= 4 %>
+        <p>Relearn率：</p>
+        <%# sprintf(or format)を使うと整数でも小数点表示ができる %>
+        <p><%= sprintf("%.2f", @average_rate) %>/1.00</p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

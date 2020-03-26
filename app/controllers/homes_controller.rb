@@ -9,6 +9,8 @@ class HomesController < ApplicationController
       @user_rate.total_rate = 1 if @user_rate.total_rate > 1
       @average_rate = @user_rate.total_rate / @user_rate.count if @user_rate.count >= 4
     end
+    # pluckメソッドで単一のランダムレコードをもってくる
+    @quote = Quote.find(Quote.pluck(:id).sample).word
   end
 
   # アバウトページの表示
