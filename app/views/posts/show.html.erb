@@ -11,8 +11,8 @@
     <div class="content">
       <%= @post.content %>
     </div>
-
-    <p>link : <%= @post.link %></p>
+    
+    <p>link : <a href="<%= @post.link %>"><%= @post.link.truncate(70) %></a></p>
 
     <%# ポイント入力フォーム %>
     <%= render partial: 'point_form', locals: { post: @post,relearn_point: @relearn_point,

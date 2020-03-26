@@ -14,6 +14,7 @@ class RelearnPoint < ApplicationRecord
         # 更新される値の計算式
         # floorで小数点以下切り捨て、1日遅れるごとに10%マイナスさせる
         update_score = (100 * i) - score_rate.floor * 100 * i * 0.1
+        update_score = 0 if update_score <= 0
         # 配列化
         array_score = [score[0], update_score]
         # ハッシュ化
