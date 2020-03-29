@@ -10,7 +10,6 @@ gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
-gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 # railsの起動時の処理を最適化するgem
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -105,3 +104,6 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 
 # カレンダーに時間を入力するためのgem
 gem 'momentjs-rails', '>= 2.9.0'
+
+# トップページでスライドを作るためのgem
+gem 'owlcarousel-rails'
