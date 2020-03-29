@@ -14,53 +14,6 @@ gem 'jbuilder', '~> 2.5'
 # railsの起動時の処理を最適化するgem
 gem 'bootsnap', '>= 1.1.0', require: false
 
-group :development, :test do
-  # デバッグツール
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  # binding.pryを挿入して、処理の経緯を把握できる
-  gem 'pry-rails'
-  # Railsで用いられることが多いテストツールを使うためのgem
-  gem 'rspec-rails'
-  # テスト用のデータを作成してくれるツール
-  gem 'factory_bot_rails'
-  # テスト自動化のためのgem
-  gem 'guard-rspec'
-  # springを使ってrspecを高速化するためのgem
-  gem 'spring-commands-rspec'
-end
-
-group :development do
-  gem 'web-console', '>= 3.3.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-  # コーディングスタイルをチェックするための静的解析ツール
-  gem 'rubocop', require: false
-  # Railsでrubocopを使うためのgem
-  gem 'rubocop-rails'
-  # コミット時に自動でrubocopを動作してくれる
-  gem 'pre-commit', require: false
-  # メールをWEB上で管理
-  gem 'letter_opener'
-  gem 'letter_opener_web', '~> 1.0 '
-end
-
-group :test do
-  # フィーチャーテストをRubyでおこなうためのフレームワーク
-  gem 'capybara', '>= 2.15'
-  # プログラミングを介して、ブラウザを操作するライブラリ
-  gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
-  # 様々なダミーデータを生成してくれるツール。
-  gem 'faker'
-  # exampleで行ったDBへの更新、削除を行うためのツール
-  gem 'database_cleaner'
-  # Rubyで外部アプリケーション（ブラウザの起動)ができるgem
-  gem 'launchy'
-  # 簡潔かつ直感的にテストをかくためのツール
-  gem 'shoulda-matchers'
-end
-
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # ログイン機能
@@ -107,3 +60,55 @@ gem 'momentjs-rails', '>= 2.9.0'
 
 # トップページでスライドを作るためのgem
 gem 'owlcarousel-rails'
+
+group :production do
+  # 開発環境では、DBにはSQLiteを利用していたが、AWSで動作させる際にはMySQLを利用
+  gem 'mysql2'
+end
+
+group :development, :test do
+  # デバッグツール
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # binding.pryを挿入して、処理の経緯を把握できる
+  gem 'pry-rails'
+  # Railsで用いられることが多いテストツールを使うためのgem
+  gem 'rspec-rails'
+  # テスト用のデータを作成してくれるツール
+  gem 'factory_bot_rails'
+  # テスト自動化のためのgem
+  gem 'guard-rspec'
+  # springを使ってrspecを高速化するためのgem
+  gem 'spring-commands-rspec'
+end
+
+group :development do
+  gem 'web-console', '>= 3.3.0'
+  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+  # コーディングスタイルをチェックするための静的解析ツール
+  gem 'rubocop', require: false
+  # Railsでrubocopを使うためのgem
+  gem 'rubocop-rails'
+  # コミット時に自動でrubocopを動作してくれる
+  gem 'pre-commit', require: false
+  # メールをWEB上で管理
+  gem 'letter_opener'
+  gem 'letter_opener_web', '~> 1.0 '
+end
+
+group :test do
+  # フィーチャーテストをRubyでおこなうためのフレームワーク
+  gem 'capybara', '>= 2.15'
+  # プログラミングを介して、ブラウザを操作するライブラリ
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
+  # 様々なダミーデータを生成してくれるツール。
+  gem 'faker'
+  # exampleで行ったDBへの更新、削除を行うためのツール
+  gem 'database_cleaner'
+  # Rubyで外部アプリケーション（ブラウザの起動)ができるgem
+  gem 'launchy'
+  # 簡潔かつ直感的にテストをかくためのツール
+  gem 'shoulda-matchers'
+end
