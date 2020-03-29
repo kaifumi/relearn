@@ -30,6 +30,7 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-/home/
+/home
 /.vscode
-ubuntu-bionic-18.04-cloudimg-console.log
+/.env
+/ubuntu-bionic-18.04-cloudimg-console.log
