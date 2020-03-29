@@ -6,45 +6,50 @@
     <%= csp_meta_tag %>
     <script src="https://kit.fontawesome.com/9ec8e86bb6.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %> 
   </head>
   <body>
     <header>
-      <div class="logo">
-        <a>#ロゴ</a>
-      </div>
-      <nav>
-        <ul>
-          <li><%= link_to "+新規投稿", new_post_path, class:"btn btn-default", data: {"turbolinks" => false} %></li>
-          <li><%= link_to "Relearn一覧", posts_path, class:"btn btn-default" %></li>
-          <li><%= link_to "Relearn履歴", complete_posts_path, class:"btn btn-default"  %></li>
+      <%# ロゴをリンク化 %>
+      <%= link_to root_path, class:"logo" do %>
+        <%= image_tag "ReLearn-logo-orange.png", class: "logo_img" %>
+      <% end %>
+      <nav class="header_nav">
+        <ul class="nav-list_center">
+          <li class="nav-list-item"><%= link_to "+新規投稿", new_post_path, class:"btn btn-info btn-lg", data: {"turbolinks" => false} %></li>
+          <li class="nav-list-item"><%= link_to "Relearn一覧", posts_path, class:"btn btn-info btn-lg" %></li>
+          <li class="nav-list-item"><%= link_to "Relearn履歴", complete_posts_path, class:"btn btn-info btn-lg"  %></li>
         </ul>
       </nav>
-      <div class="right_header">
+      <div class="header_right">
         <% if user_signed_in? %>
+        <ul class="nav-list">
           <%= link_to edit_user_path(current_user) do %>
-            <%= current_user.name %>
-            イメージ画像
+            <li class="nav-list-item"><p>イメージ画像<p></li>
+            <li class="nav-list-item"><p><%= current_user.name %><p></li>
           <% end %>
-          <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
+            <li class="nav-list-item"><p>通知マーク</p></li>
+            <li class="nav-list-item"><p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p></li>
+            <li class="nav-list-item"><p>メニュー</p></li>
         <% end %>
-        <p>通知マーク</p>
-        <p>メニュー</p>
+        </ul>
       </div>
     </header>
-    <div class="container">
-      <%# 成功・エラー文表示 %>
-      <% if flash[:notice] %>
-        <div class="notifications">
-          <div class="notice"><%= flash[:notice] %></div>
-        </div>
-      <% elsif flash.now[:alert] %>
-        <div class="notifications">
-          <div class="alert"><%= flash.now[:alert] %></div>
-        </div>
-      <% end %>
-      <%# 各ビューの読み込み %>
-      <%= yield %>
-    </div>
+    <main>
+      <div class="container">
+        <%# 成功・エラー文表示 %>
+        <% if flash[:notice] %>
+          <div class="notifications">
+            <div class="notice"><%= flash[:notice] %></div>
+          </div>
+        <% elsif flash.now[:alert] %>
+          <div class="notifications">
+            <div class="alert"><%= flash.now[:alert] %></div>
+          </div>
+        <% end %>
+        <%# 各ビューの読み込み %>
+        <%= yield %>
+      </div>
+    </main>
   </body>
 </html>

@@ -1,0 +1,15 @@
+.owl-carousel {
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+@media screen and (min-width: 1068px) {
+  .owl-carousel {
+    height: 250px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1068px) {
+  .owl-carousel {
+    height: 300px;
+  }
+}
