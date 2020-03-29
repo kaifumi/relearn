@@ -1,0 +1,28 @@
+<div class="row">
+  <%# 復習完了投稿の詳細 %>
+  <h1>Relearn履歴 詳細</h1>
+  <div class="col-xs-9">
+    <div class="post_title">
+      <%= @post.title%>
+      <%= @genre.type%>
+    </div>
+    <div class="content_head">
+      <p>内容</p>
+    </div>
+    <div class="content">
+      <%= @post.content %>
+    </div>
+    
+    <p>link : <a href="<%= @post.link %>"><%= @post.link.truncate(70) %></a></p>
+
+    <%# ポイント入力フォーム %>
+    <%= render partial: 'point', locals: { post: @post,relearn_point: @relearn_point,
+          plan_timing: @plan_timing, real_timing: @real_timing } %>
+    <p></p>
+      <%= link_to "もう一度復習する", post_complete_path(@post), method: :patch, class:"btn btn-default" %>
+      <%= link_to "投稿を削除する", post_path(@post), method: :delete, class:"btn btn-default", data: { confirm: '削除しますか？' } %>
+  </div>
+</div>
+Time.now:<%= Time.now %><br>
+Time.current:<%= Time.current %><br>
+Time.zone:<%= Time.zone %><br>
