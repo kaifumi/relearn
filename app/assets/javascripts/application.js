@@ -11,11 +11,11 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require turbolinks
 //= require jquery
 //= require bootstrap-sprockets
 //= require moment
 //= require bootstrap-datetimepicker
+//= require owl.carousel
 //= require_tree .
 
 $(function() {
@@ -26,3 +26,9 @@ $(function() {
 });
 
 // $(".date-picker").datetimepicker((pickTime: false));
+
+$(function() {
+  $(".slide-banner.owl-carousel").owlCarousel({
+    items: 4
+  });
+});

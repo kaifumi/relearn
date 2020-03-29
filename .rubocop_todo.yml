@@ -109,6 +109,7 @@ Metrics/MethodLength:
     - "app/controllers/posts_controller.rb"
     - "app/controllers/relearn_points_controller.rb"
     - "app/controllers/completes_controller.rb"
+    - "app/models/post.rb"
 
 # def~endの間に入れることが可能なAbcSizeを設定
 # AbcSizeとは「Assignment:変数への代入,Branch:メソッド呼び出し,Condition:条件文」左記3項目の合計ポイント
@@ -118,6 +119,7 @@ Metrics/AbcSize:
     - "app/controllers/posts_controller.rb"
     - "app/controllers/relearn_points_controller.rb"
     - "app/controllers/completes_controller.rb"
+    - "app/models/post.rb"
   Enabled: true
   Max: 30
 
