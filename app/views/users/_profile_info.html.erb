@@ -1,13 +1,31 @@
-<%= attachment_image_tag(user, :image, :fill, 100, 100, fallback: "default.png") %>
+<%= attachment_image_tag(user, :image, :fill, 150, 150, fallback: "default.png", class: "edit_user_image") %>
 <%= form_with(url: user_path(user.id), model: user) do |f| %>
   <%= f.attachment_field :image %>
   <div class="edit_name">
     <p>ユーザー名</p>
-    <p><%= f.text_field :name ,placeholder: current_user.name, class: "edit_name_form" %></p>
+    <p><%= f.text_field :name ,placeholder: user.name, class: "edit_name_form" %></p>
   </div>
   <div class="edit_email">
     <p>メールアドレス</p>
-    <p><%= f.text_field :email ,placeholder: current_user.email, class: "edit_email_form" %></p>
+    <p><%= f.text_field :email ,placeholder: user.email, class: "edit_email_form" %></p>
   </div>
-  <%= f.submit "更新",id:"user_edit", class: "btn btn-default profile_edit_btn" %>
+  <div class="edit_email_status_box">
+    <p>メール配信設定</p>
+    <div class="edit_email_status">
+      <%= f.check_box( :email_status , {checked: user.email_status, class: "check_email_status"}, checked_value = "true",unchecked_value = "false" ) %>
+      <p>復習タイミングの通知を受け取る</p>
+    </div>
+  </div>
+  <div class="edit_privacy">
+    <p>プライバシー設定</p>
+    <div class="edit_rank_status"> 
+      <%= f.check_box( :rank_status , {checked: user.rank_status, class: "chech_rank_status"}, checked_value = "true",unchecked_value = "false" ) %>
+      <p>自分のランキングを公開する</p>
+    </div>
+    <div class="edit_search_status">
+      <%= f.check_box( :search_status , {checked: user.search_status, class: "check_email_status"}, checked_value = "true",unchecked_value = "false" ) %>
+      <p>友達検索に自分を表示する</p>
+    </div>
+  </div>
+  <%= f.submit "更新",id:"user_edit", class: "profile_edit_btn" %>
 <% end %>
