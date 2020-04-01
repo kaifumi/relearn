@@ -1,2 +1,10 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<h1>アカウント設定</h1>
+<div class="account_custom">
+  <div class="account_custom_bar">
+    <%= link_to "プロフィール", edit_user_path(current_user.id), class:"account_edit" %>
+    <%= link_to "退会", sign_out_confirm_path, class:"account_item" %>
+  </div>
+  <div id="user_account_info">
+    <%= render partial: "profile_info", locals:{ user: @user } %>
+  </div>
+</div>

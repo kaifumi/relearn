@@ -1,0 +1,13 @@
+<%= attachment_image_tag(user, :image, :fill, 100, 100, fallback: "default.png") %>
+<%= form_with(url: user_path(user.id), model: user) do |f| %>
+  <%= f.attachment_field :image %>
+  <div class="edit_name">
+    <p>ユーザー名</p>
+    <p><%= f.text_field :name ,placeholder: current_user.name, class: "edit_name_form" %></p>
+  </div>
+  <div class="edit_email">
+    <p>メールアドレス</p>
+    <p><%= f.text_field :email ,placeholder: current_user.email, class: "edit_email_form" %></p>
+  </div>
+  <%= f.submit "更新",id:"user_edit", class: "btn btn-default profile_edit_btn" %>
+<% end %>

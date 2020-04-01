@@ -15,7 +15,7 @@ class RelearnPointsController < ApplicationController
       # カウントが４未満なら1足す
       post[:relearn_count] += 1 if post[:relearn_count] < 4
       post.update(relearn_count: post[:relearn_count])
-      flash[:notice] = '復習登録に成功しました'
+      flash[:warning] = '復習登録に成功しました'
       # 実際に復習したタイミングを保存するために作成済みのレコードを探す
       realtiming = RealTiming.find_by(post_id: params[:post_id])
       # どのタームの復習か判断するメソッドを使ってハッシュで呼び出す
@@ -32,7 +32,7 @@ class RelearnPointsController < ApplicationController
       rate = Rate.find_by(user_id: current_user)
       rate.update(total_rate: rate[:total_rate] + array_rate[0], count: array_rate[1])
     else
-      flash[:alert] = '復習登録に失敗しました'
+      flash[:danger] = '復習登録に失敗しました'
     end
 
     if post[:relearn_count] >= 4

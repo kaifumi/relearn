@@ -1,2 +1,7 @@
-<h1>Users#sign_out_confirmation</h1>
-<p>Find me in app/views/users/sign_out_confirmation.html.erb</p>
+<h1>アカウントの削除</h1>
+<div class="account_custom">
+  <div class="account_custom_bar">
+    <%= link_to "プロフィール", edit_user_path(current_user.id) %>
+    <%= link_to "退会", sign_out_confirm_path, class:"account_sign_out_confirm" %>
+  </div>
+</div>

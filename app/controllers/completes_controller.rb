@@ -37,11 +37,11 @@ class CompletesController < ApplicationController
       @real_timing.update(post_id: @post.id, first_term: '', second_term: '', third_term: '', forth_term: '')
       @relearn_point = RelearnPoint.find_by(post_id: params[:post_id])
       @relearn_point.update(first_score: 0, second_score: 0, third_score: 0, forth_score: 0)
-      flash[:notice] = '復習ステータスを更新しました'
+      flash[:warning] = '復習ステータスを更新しました'
       # もう一度復習するので投稿詳細へとばす
       redirect_to post_path(@post.id)
     else
-      flash[:alert] = '復習ステータスの更新に失敗しました'
+      flash[:danger] = '復習ステータスの更新に失敗しました'
       redirect_to request.referer
     end
   end
@@ -50,9 +50,9 @@ class CompletesController < ApplicationController
   def destroy
     @post = Post.find(params[:post_id])
     if @post.destroy
-      flash[:notice] = '投稿の削除に成功しました'
+      flash[:warning] = '投稿の削除に成功しました'
     else
-      flash[:alert] = '投稿の削除に失敗しました'
+      flash[:danger] = '投稿の削除に失敗しました'
     end
     redirect_to request.referer
   end

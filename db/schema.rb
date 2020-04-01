@@ -58,18 +58,18 @@ ActiveRecord::Schema.define(version: 2020_03_21_005236) do
 
   create_table "plan_timings", force: :cascade do |t|
     t.integer "post_id", null: false
-    t.datetime "first_term", null: false
-    t.datetime "second_term", null: false
-    t.datetime "third_term", null: false
-    t.datetime "forth_term", null: false
-    t.datetime "first_min", null: false
-    t.datetime "first_max", null: false
-    t.datetime "second_min", null: false
-    t.datetime "second_max", null: false
-    t.datetime "third_min", null: false
-    t.datetime "third_max", null: false
-    t.datetime "forth_min", null: false
-    t.datetime "forth_max", null: false
+    t.datetime "first_term"
+    t.datetime "second_term"
+    t.datetime "third_term"
+    t.datetime "forth_term"
+    t.datetime "first_min"
+    t.datetime "first_max"
+    t.datetime "second_min"
+    t.datetime "second_max"
+    t.datetime "third_min"
+    t.datetime "third_max"
+    t.datetime "forth_min"
+    t.datetime "forth_max"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -132,6 +132,7 @@ ActiveRecord::Schema.define(version: 2020_03_21_005236) do
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", default: "", null: false
+    t.string "image_id"
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
