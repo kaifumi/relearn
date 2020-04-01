@@ -18,8 +18,14 @@
     "Yu Gothic", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", "メイリオ",
     Meiryo, "ＭＳ ゴシック", sans-serif;
 }
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
 main {
-  height: 700px;
+  min-height: 800px;
+  height: auto;
   background-color: #d5eeff;
   color: #1b435d;
   font-weight: bold;
@@ -60,6 +66,7 @@ header {
   float: right;
   height: 80px;
   position: sticky;
+  width: 500px;
   li {
     display: inline-block;
   }
@@ -67,9 +74,9 @@ header {
 
 .nav-list_center {
   float: left;
-  margin: 20px 0px 4px 150px;
+  margin: 20px 0px 4px 100px;
   height: 80px;
-  position: sticky;
+  width: 660px;
 }
 .nav-list {
   float: right;
@@ -79,17 +86,33 @@ header {
 .nav-list-item {
   list-style: none;
   display: inline-block;
-  margin-left: 20px;
   font-size: 14px;
   line-height: 40px;
   color: white;
+  width: auto;
+  margin-left: 20px;
+}
+.nav-list-item-center {
+  list-style: none;
+  display: inline-block;
+  line-height: 50px;
+  margin-left: 20px;
+  // height: 50px;
+  // width: 110px;
+  // border-radius: 5px;
+  // background-color: #78bbe6;
+}
+.nav_user_image {
+  width: 50px;
+  border-radius: 25px;
 }
 // ボタン設定
-.btn {
-  // width: 100px;
-  margin-top: 10px;
-  text-align: center;
-}
+// .new_post_btn,
+// .relearn_posts_btn,
+// .relearn_completes_btn {
+//   color: white;
+//   font-size: 16px;
+// }
 
 //トップページ
 //
@@ -297,31 +320,61 @@ header {
   display: inline-block;
 }
 #user_account_info {
-  margin: 30px auto 0;
-  width: 300px;
+  margin: 20px auto 0;
+  width: 400px;
 }
 .edit_name {
-  margin-top: 50px;
+  margin-top: 30px;
   text-align: left;
 }
 .edit_name_form {
-  width: 300px;
-  height: 50px;
-  font-size: 30px;
+  width: 400px;
+  height: 30px;
+  font-size: 20px;
   border: none;
   border-bottom: 2px solid greenyellow;
 }
 .edit_email {
-  margin-top: 50px;
+  margin-top: 30px;
   text-align: left;
 }
 .edit_email_form {
-  width: 300px;
-  height: 50px;
-  font-size: 30px;
+  width: 400px;
+  height: 30px;
+  font-size: 20px;
   border: none;
   border-bottom: 2px solid greenyellow;
 }
 .profile_edit_btn {
+  margin-top: 20px;
+}
+.edit_user_image {
+  width: 150px;
+  border-radius: 75px;
+}
+.edit_email_status_box {
   margin-top: 30px;
+  text-align: left;
+}
+.edit_privacy {
+  margin-top: 30px;
+  text-align: left;
+}
+.edit_email_status,
+.edit_rank_status,
+.edit_search_status {
+  width: 400px;
+  text-align: left;
+  display: flex;
+  font-size: 20px;
+}
+.profile_edit_btn {
+  height: 40px;
+  line-height: 40px;
+  width: 100%;
+  border-radius: 5px;
+  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  background-color: #78bbe6;
+  color: white;
+  text-align: center;
 }

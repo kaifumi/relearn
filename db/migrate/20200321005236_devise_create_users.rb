@@ -6,6 +6,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :name, null: false
       t.string :email, null: false, default: ""
       t.string :image_id
+      t.boolean :email_status,null:false, default:true
+      t.boolean :rank_status,null:false, default:false
+      t.boolean :search_status,null:false, default:false
       t.string :encrypted_password, null: false, default: ""
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
