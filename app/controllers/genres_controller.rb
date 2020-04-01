@@ -7,9 +7,9 @@ class GenresController < ApplicationController
     @genre = Genre.new(genre_params)
     @genre.user_id = current_user.id
     if @genre.save
-      flash[:notice] = 'ジャンルの追加に成功しました'
+      flash[:warning] = 'ジャンルの追加に成功しました'
     else
-      flash[:alert] = 'ジャンルの追加に失敗しました'
+      flash[:danger] = 'ジャンルの追加に失敗しました'
     end
     redirect_to request.referer
   end
@@ -24,9 +24,9 @@ class GenresController < ApplicationController
   def update
     @genre = Genre.find(params[:id])
     if @genre.update(genre_params)
-      flash[:notice] = 'ジャンルの更新に成功しました'
+      flash[:warning] = 'ジャンルの更新に成功しました'
     else
-      flash[:alert] = 'ジャンルの更新に失敗しました'
+      flash[:danger] = 'ジャンルの更新に失敗しました'
     end
     redirect_to request.referer
   end
@@ -35,9 +35,9 @@ class GenresController < ApplicationController
   def destroy
     @genre = Genre.find(params[:id])
     if @genre.destroy
-      flash[:notice] = 'ジャンルの削除に成功しました'
+      flash[:warning] = 'ジャンルの削除に成功しました'
     else
-      flash[:alert] = 'ジャンルの削除に失敗しました'
+      flash[:danger] = 'ジャンルの削除に失敗しました'
     end
     redirect_to request.referer
   end
