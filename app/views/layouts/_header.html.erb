@@ -15,7 +15,9 @@
       <ul class="nav-list">
         <%# イメージ画像かユーザーの名前を押すとユーザー編集画面にとぶ %>
         <%= link_to edit_user_path(current_user) do %>
-          <li class="nav-list-item"><p>イメージ画像<p></li>
+          <span id=nav_user_image>
+            <%= render partial: "layouts/user_image", locals: { user: current_user} %>
+          </span>
           <li class="nav-list-item"><p><%= current_user.name %><p></li>
         <% end %>
           <li class="nav-list-item"><p>通知マーク</p></li>

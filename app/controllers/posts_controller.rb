@@ -60,10 +60,10 @@ class PostsController < ApplicationController
                         third_min: 8.days.from_now.strftime('%Y-%m-%d %H:%M'), third_max: 14.days.from_now.strftime('%Y-%m-%d %H:%M'),
                         forth_min: 15.days.from_now.strftime('%Y-%m-%d %H:%M'), forth_max: 1.month.from_now.strftime('%Y-%m-%d %H:%M'))
       RealTiming.create!(post_id: @post.id)
-      flash[:notice] = '投稿完了しました。'
+      flash[:warning] = '投稿完了しました。'
       redirect_to post_path(@post)
     else
-      flash[:alert] = '投稿失敗しました。'
+      flash[:danger] = '投稿失敗しました。'
       render :new
     end
   end
@@ -78,10 +78,10 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.user_id = current_user.id
     if @post.update(post_params)
-      flash[:success] = '更新完了しました。'
+      flash[:warning] = '更新完了しました。'
       redirect_to post_path(@post)
     else
-      flash[:alert] = '更新失敗しました。'
+      flash[:danger] = '更新失敗しました。'
       render :edit
     end
   end
@@ -90,10 +90,10 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     if @post.destroy
-      flash[:success] = '投稿削除しました。'
+      flash[:warning] = '投稿削除しました。'
       redirect_to posts_path
     else
-      flash[:alert] = '更新失敗しました。'
+      flash[:danger] = '更新失敗しました。'
       render :show
     end
   end

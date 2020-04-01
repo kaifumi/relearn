@@ -18,7 +18,9 @@ Rails.application.routes.draw do
   get '/rhythm_rank' => 'ranks#rhythm_rank'
   # 友達の復習リズムランキング
   get '/friend_rhythm_rank' => 'ranks#friend_rhythm_rank'
-  resources :users, only: [:edit, :update, :destroy, :destroy_confirm] do
+  # 退会確認画面
+  get '/sign_out_confirm' => 'users#sign_out_confirmation'
+  resources :users, only: [:edit, :update, :destroy] do
     resources :genres, only: [:index, :create, :update, :destroy]
     resources :notifications, only: [:index, :update]
     resources :friends, only: [:search, :request, :index, :create, :update, :destroy]
