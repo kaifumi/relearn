@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   # ログインユーザーのみ実行可能にする
   before_action :authenticate_user!
+
   # 投稿の新規登録
   def new
     @post = Post.new
@@ -8,15 +9,15 @@ class PostsController < ApplicationController
 
   # 投稿一覧画面の表示
   def index
-    @posts = Post.where(user_id: current_user.id, relearn_complete: false)
-    @genres = Genre.where(user_id: current_user.id)
+    @posts = Post.where(user_id: current_user.id, relearn_complete: false).page(params[:page])
+    @genres = Genre.where(user_id: current_user.id).limit(20)
   end
 
   # ジャンルごとの投稿一覧
   def genre_posts_index
     @genre = Genre.find(params[:id])
-    @posts = Post.where(user_id: current_user.id, genre_id: @genre.id)
-    @genres = Genre.where(user_id: current_user.id)
+    @posts = Post.where(user_id: current_user.id, genre_id: @genre.id).page(params[:page])
+    @genres = Genre.where(user_id: current_user.id).limit(20)
   end
 
   # 投稿詳細画面の表示
