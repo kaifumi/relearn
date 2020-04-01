@@ -17,7 +17,7 @@ class GenresController < ApplicationController
   # ジャンル追加編集画面の表示
   def index
     @genre = Genre.new
-    @genres = Genre.where(user_id: current_user.id)
+    @genres = Genre.where(user_id: current_user.id).page(params[:page])
   end
 
   # 編集内容の更新

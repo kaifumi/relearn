@@ -8,7 +8,7 @@ class HomesController < ApplicationController
       # 平均復習率を計算して表示
       @user_rate.total_rate = 1 if @user_rate.total_rate > 1
       @average_rate = @user_rate.total_rate / @user_rate.count if @user_rate.count >= 4
-      @posts = Post.where(user_id: current_user.id, relearn_complete: false)
+      @posts = Post.where(user_id: current_user.id, relearn_complete: false).limit(100)
       # 投稿の中で未復習でかつ最短の通知時間の投稿を振り分けるメソッド
       order_array = Post.latest_relearn(@posts, current_user.id)
       # idと何ターム目かとターム、ジャンル名、タイトル、内容の配列
