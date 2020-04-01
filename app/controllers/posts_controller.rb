@@ -8,14 +8,14 @@ class PostsController < ApplicationController
 
   # 投稿一覧画面の表示
   def index
-    @posts = Post.where(user_id: current_user.id, relearn_complete: false).page(params[:page]).per(20)
+    @posts = Post.where(user_id: current_user.id, relearn_complete: false)
     @genres = Genre.where(user_id: current_user.id)
   end
 
   # ジャンルごとの投稿一覧
   def genre_posts_index
     @genre = Genre.find(params[:id])
-    @posts = Post.where(user_id: current_user.id, genre_id: @genre.id).page(params[:page]).per(20)
+    @posts = Post.where(user_id: current_user.id, genre_id: @genre.id)
     @genres = Genre.where(user_id: current_user.id)
   end
 

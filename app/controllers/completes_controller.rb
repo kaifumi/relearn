@@ -1,7 +1,10 @@
 class CompletesController < ApplicationController
+  # ログインユーザーのみ実行可能にする
+  before_action :authenticate_user!
+
   # 復習完了した投稿の一覧
   def index
-    @posts = Post.where(user_id: current_user.id, relearn_complete: true).page(params[:page]).per(20)
+    @posts = Post.where(user_id: current_user.id, relearn_complete: true)
     @genres = Genre.where(user_id: current_user.id)
     @plan_timing = Form::PlanTiming.find_by(post_id: params[:id])
     @real_timing = RealTiming.find_by(post_id: params[:id])

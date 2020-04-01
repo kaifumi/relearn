@@ -1,4 +1,7 @@
 class GenresController < ApplicationController
+  # ログインユーザーのみ実行可能にする
+  before_action :authenticate_user!
+
   # 新規登録ジャンルの保存
   def create
     @genre = Genre.new(genre_params)
@@ -14,7 +17,7 @@ class GenresController < ApplicationController
   # ジャンル追加編集画面の表示
   def index
     @genre = Genre.new
-    @genres = Genre.where(user_id: current_user.id).page(params[:page]).per(20)
+    @genres = Genre.where(user_id: current_user.id)
   end
 
   # 編集内容の更新
