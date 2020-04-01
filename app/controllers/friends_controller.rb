@@ -1,4 +1,6 @@
 class FriendsController < ApplicationController
+  # ログインユーザーのみ実行可能にする
+  before_action :authenticate_user!
   # 友達検索
   def search; end
 
