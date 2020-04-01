@@ -21,7 +21,7 @@
   font-weight: bold;
 }
 main {
-  height: 1000px;
+  height: 900px;
   background-color: #d5eeff;
 }
 p {
@@ -169,6 +169,7 @@ header {
 .ealry_relearn {
   color: #f99f48;
 }
+// トップページ右側のポイント表示
 .side_point {
   width: 100%;
   text-align: left;
@@ -180,6 +181,12 @@ header {
   border: solid 3px white;
   border-radius: 10px;
 }
+// サインインしてないユーザーへの表示
+.signend_false {
+  margin: 100px;
+  font-size: 40px;
+}
+
 // ポイント入力フォームの位置調整
 .point_form {
   display: flex;

@@ -1,40 +1,10 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Relearn</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <script src="https://kit.fontawesome.com/9ec8e86bb6.js" crossorigin="anonymous"></script>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %> 
-  </head>
+  <%# ヘッドをレンダリング %>
+  <%= render 'layouts/head' %>
   <body>
-    <header>
-      <%# ロゴをリンク化 %>
-      <%= link_to root_path, class:"logo" do %>
-        <%= image_tag "ReLearn-logo-orange.png", class: "logo_img" %>
-      <% end %>
-      <nav class="header_nav">
-        <ul class="nav-list_center">
-          <li class="nav-list-item"><%= link_to "+新規投稿", new_post_path, class:"btn btn-info btn-lg", data: {"turbolinks" => false} %></li>
-          <li class="nav-list-item"><%= link_to "Relearn一覧", posts_path, class:"btn btn-info btn-lg" %></li>
-          <li class="nav-list-item"><%= link_to "Relearn履歴", complete_posts_path, class:"btn btn-info btn-lg"  %></li>
-        </ul>
-      </nav>
-      <div class="header_right">
-        <% if user_signed_in? %>
-        <ul class="nav-list">
-          <%= link_to edit_user_path(current_user) do %>
-            <li class="nav-list-item"><p>イメージ画像<p></li>
-            <li class="nav-list-item"><p><%= current_user.name %><p></li>
-          <% end %>
-            <li class="nav-list-item"><p>通知マーク</p></li>
-            <li class="nav-list-item"><p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p></li>
-            <li class="nav-list-item"><p>メニュー</p></li>
-        <% end %>
-        </ul>
-      </div>
-    </header>
+    <%# ヘッダーをレンダリング %>
+    <%= render 'layouts/header' %>
     <main>
       <div class="container">
         <%# 成功・エラー文表示 %>
