@@ -7,16 +7,10 @@
     <%= render 'layouts/header' %>
     <main>
       <div class="container">
-        <%# 成功・エラー文表示 %>
-        <% if flash[:notice] %>
-          <div class="notifications">
-            <div class="notice"><%= flash[:notice] %></div>
-          </div>
-        <% elsif flash.now[:alert] %>
-          <div class="notifications">
-            <div class="alert"><%= flash.now[:alert] %></div>
-          </div>
-        <% end %>
+        <div id="flash_messages">
+          <%# 成功・エラー文があれば表示するレンダリング %>
+          <%= render "layouts/flash_messages" %>
+        </div>
         <%# 各ビューの読み込み %>
         <%= yield %>
       </div>
