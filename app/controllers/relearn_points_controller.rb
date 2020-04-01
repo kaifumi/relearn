@@ -1,4 +1,7 @@
 class RelearnPointsController < ApplicationController
+  # ログインユーザーのみ実行可能にする
+  before_action :authenticate_user!
+
   def update
     # モデルメソッドに送るようのparamsの値を持った引数を用意
     received_score = relearn_point_params

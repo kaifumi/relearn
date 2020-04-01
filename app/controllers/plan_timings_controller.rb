@@ -1,4 +1,7 @@
 class PlanTimingsController < ApplicationController
+  # ログインユーザーのみ実行可能にする
+  before_action :authenticate_user!
+
   # 予定通知時間を編集画面
   def edit
     @plan_timing = Form::PlanTiming.find_by(post_id: params[:post_id])
