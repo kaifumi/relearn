@@ -4,19 +4,22 @@ User.create!(
       name:"貝野史弥",
       email:"aaa@aaa",
       password:"aaaaaa"
-    },
-    {
-      name:"板谷優里",
-      email:"bbb@bbb",
-      password:"bbbbbb"
-    },
-    {
-      name:"藤野貴明",
-      email:"ccc@ccc",
-      password:"cccccc"
     }
   ]
 )
+10.times do |n|
+  User.create!(
+  [
+    {
+      name: "a#{n + 1}",
+      email: "test#{n + 1}@test.com",
+      password: "aaaaa#{n + 1}",
+      rank_status: true,
+      search_status: true
+   }
+  ]
+)
+end
 Genre.create!(
   [
     {
@@ -76,6 +79,7 @@ Post.create!(
 
   ]
 )
+
 PlanTiming.create!(
   [
     {
@@ -219,28 +223,37 @@ TotalPoint.create!(
   [
     {
         user_id: 1
-    },
-    {
-      user_id: 2
-    },
-    {
-      user_id: 3
     }
   ]
 )
+10.times do |n|
+  TotalPoint.create!(
+  [
+    {
+      user_id: n+1,
+      score: 1000+n 
+   }
+  ]
+)
+end
 Rate.create!(
   [
     {
         user_id: 1
-    },
-    {
-      user_id: 2
-    },
-    {
-      user_id: 3
     }
   ]
 )
+10.times do |n|
+  Rate.create!(
+  [
+    {
+      user_id: n+1
+      total_rate: 0.1+n,
+      count: n+1
+   }
+  ]
+)
+end
 Quote.create!(
   [
     {

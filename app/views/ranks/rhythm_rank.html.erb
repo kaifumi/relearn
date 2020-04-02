@@ -1,2 +1,19 @@
-<h1>Ranks#rhythm_rank</h1>
-<p>Find me in app/views/ranks/rhythm_rank.html.erb</p>
+<h1>ランキング</h1>
+<div class="rank_custom">
+  <%# 全体か友達（自分含む）かを選べるタブ %>
+  <div class="rank_custom_bar">
+    <%= link_to "全体", rhythm_rank_path, class:"all_rank_tab" %>
+    <%= link_to "友達", friend_rhythm_rank_path, class:"rank_item" %>
+  </div>
+  <%# ポイントかリズムのランキングを選べるリンク %>
+  <div class="rank_custom_bar">
+    <%= link_to "Relarenポイント", point_rank_path, class:"rank_item" %>
+    <%= link_to "復習リズム", rhythm_rank_path, class:"rhythm_rank_tab" %>
+  </div>
+
+  <%# 全体の獲得ポイントランキング %>
+  <div class="all_rhythm_rank_box">
+    <%# テーブルでランキング表示 %>
+    <%= render partial: "ranks/rank", locals: { models: @rhythm_ranks} %>
+  </div>
+</div>
