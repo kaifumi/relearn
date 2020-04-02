@@ -1,0 +1,57 @@
+<%# 4枚のランキングに使う部分テンプレートをこちらの1枚にまとめた %>
+<%# ポイントランキングなら@point_ranksにtotal_pointレコードの配列が入っている %>
+<%# リズムランキングなら@rhythm_ranksにrateレコードの配列が入っている %>
+
+<%# ポイント配列にはなくて、リズム配列にはあるカラムで条件分岐 %>
+<% if models[0][:average_rate].nil? %> 
+  <%# 合計ポイントのランキング %>
+  <table class="rank_table">
+    <thead class="rank_thead">
+      <tr>
+        <td><p>順位</p></td>
+        <td></td>
+        <td><p>ユーザー名</p></td>
+        <td><p>Relearnポイント</p></td>
+      </tr>
+    </thead>
+    <tbody class="rank_tbody">
+      <% i=1 %>
+      <%# modelsはレンダリング元から渡している各モデルを参照している %>
+      <% models.each do |model| %>
+        <tr>
+          <td><p><%= i %>位</p></td>
+          <td><p><%= attachment_image_tag(model.user, :image, :fill, 50, 50, fallback: "default.png", class: "rank_user_image") %></p></td>
+          <td><p><%= model.user[:name] %></p></td>
+          <td><p><%= model[:score] %>P</p></td>
+        </tr>
+        <% i += 1 %>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <%# 復習リズムランキングのテーブル %>
+  <table class="rank_table">
+    <thead class="rank_thead">
+      <tr>
+        <td><p>順位</p></td>
+        <td></td>
+        <td><p>ユーザー名</p></td>
+        <td><p>復習リズム</p></td>
+      </tr>
+    </thead>
+    <tbody class="rank_tbody">
+      <% i=1 %>
+      <%# modelsはレンダリング元から渡している各モデルを参照している %>
+      <% models.each do |model| %>
+        <% user=User.find(model[:user_id]) %>
+        <tr>
+          <td><p><%= i %>位</p></td>
+          <td><p><%= attachment_image_tag(user, :image, :fill, 50, 50, fallback: "default.png", class: "rank_user_image") %></p></td>
+          <td><p><%= user[:name] %></p></td>
+          <td><p><%= model[:average_rate] %></p></td>
+        </tr>
+        <% i += 1 %>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
