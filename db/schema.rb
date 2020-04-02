@@ -30,12 +30,15 @@ ActiveRecord::Schema.define(version: 2020_03_21_005236) do
   end
 
   create_table "friends", force: :cascade do |t|
-    t.integer "sender_id", null: false
-    t.integer "recipient_id", null: false
+    t.integer "sender_id"
+    t.integer "recipient_id"
     t.boolean "active_status", null: false
     t.boolean "send_request", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["recipient_id"], name: "index_friends_on_recipient_id"
+    t.index ["sender_id", "recipient_id"], name: "index_friends_on_sender_id_and_recipient_id", unique: true
+    t.index ["sender_id"], name: "index_friends_on_sender_id"
   end
 
   create_table "genres", force: :cascade do |t|
@@ -46,14 +49,17 @@ ActiveRecord::Schema.define(version: 2020_03_21_005236) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer "visitor_id", null: false
-    t.integer "visited_id", null: false
+    t.integer "visiter_id"
+    t.integer "receiver_id"
     t.integer "post_id"
     t.integer "plan_timing_id"
     t.string "action", default: "", null: false
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["receiver_id"], name: "index_notifications_on_receiver_id"
+    t.index ["visiter_id", "receiver_id"], name: "index_notifications_on_visiter_id_and_receiver_id", unique: true
+    t.index ["visiter_id"], name: "index_notifications_on_visiter_id"
   end
 
   create_table "plan_timings", force: :cascade do |t|
@@ -140,6 +146,7 @@ ActiveRecord::Schema.define(version: 2020_03_21_005236) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
