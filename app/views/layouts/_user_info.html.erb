@@ -2,4 +2,5 @@
 <%# users_controller以外では未定義userの部分は、renderの呼び出し側でcurrent_userを使用してエラー回避 %>
 <% if user %>
   <li class="nav-list-item"><p><%= attachment_image_tag(user, :image, :fill, 50, 50, fallback: "default.png", class: "nav_user_image") %><p></li>
+  <li class="nav-list-item"><p><%= user.name %><p></li>
 <% end %>
