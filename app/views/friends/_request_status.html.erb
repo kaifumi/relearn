@@ -1,0 +1,7 @@
+<%# リクエスト送信前か後かのパーシャル %>
+<%# リクエスト送信済みか判断するメソッド %>
+<% if send_request(user_id) %>
+  <%= link_to "取り消し",cancel_request_path(id: current_user.id, user_id: user_id),method: :delete, class: "btn btn-danger", remote: true %>
+<% else %>
+  <%= link_to "友達リクエスト",send_request_path(id: current_user.id, user_id: user_id),method: :post, class: "btn btn-primary", remote: true %>
+<% end %>  
