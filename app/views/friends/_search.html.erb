@@ -7,7 +7,7 @@
           <td><p><%= attachment_image_tag(model, :image, :fill, 50, 50, fallback: "default.png", class: "rank_user_image") %></p></td>
           <td><p><%= model.name %></p></td>
           <td><p></p></td>
-          <td><p><div id="request_render">
+          <td><p><div id="request_render_<%= model.id %>">
                     <%= render partial: "friends/request_status", locals: { user_id: model.id} %>
                   </div></p></td>
         </tr>

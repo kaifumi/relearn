@@ -34,7 +34,7 @@ class FriendsController < ApplicationController
   # 受け取った友達リクエスト一覧表示
   # リクエストを使うと'has_content_type?'とエラーが出る
   def receive
-    @senders = Friend.where(recipient_id: current_user.id, send_request: true)
+    @senders = Friend.where(recipient_id: current_user.id, send_request: true, active_status: false)
   end
 
   # 友達一覧
