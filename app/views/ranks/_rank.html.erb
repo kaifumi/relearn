@@ -48,7 +48,7 @@
           <td><p><%= i %>位</p></td>
           <td><p><%= attachment_image_tag(user, :image, :fill, 50, 50, fallback: "default.png", class: "rank_user_image") %></p></td>
           <td><p><%= user[:name] %></p></td>
-          <td><p><%= model[:average_rate] %></p></td>
+          <td><p><%= sprintf("%.2f", model[:average_rate]) %></p></td>
         </tr>
         <% i += 1 %>
       <% end %>

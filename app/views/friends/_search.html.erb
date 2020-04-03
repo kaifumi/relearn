@@ -1,0 +1,19 @@
+<table class="search_table">
+  <tbody class="search_tbody">
+    <% unless models.nil? %>
+      <%# modelsはレンダリング元から渡している各モデルを参照している %>
+      <% models.each do |model| %>
+        <tr>
+          <td><p><%= attachment_image_tag(model, :image, :fill, 50, 50, fallback: "default.png", class: "rank_user_image") %></p></td>
+          <td><p><%= model.name %></p></td>
+          <td><p></p></td>
+          <td><p>友達リクエストリンク</p></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
