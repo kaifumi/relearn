@@ -26,6 +26,10 @@ Rails.application.routes.draw do
   get 'user/:id/friend_search' => 'friends#search', as: "friend_search"
   # 友達リクエスト一覧表示
   get 'user/:id/friend_receive' => 'friends#receive', as: "friend_receive"
+  # リクエスト送ったときに使う
+  post 'user/:id/send_request' => 'friends#send_request', as: "send_request"
+  # リクエスト取り消し
+  delete 'user/:id/cancel_request' => 'friends#cancel_request', as: "cancel_request"
   resources :users, only: [:edit, :update, :destroy] do
     resources :genres, only: [:index, :create, :update, :destroy]
     resources :notifications, only: [:index, :update]
