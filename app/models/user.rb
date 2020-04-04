@@ -45,11 +45,11 @@ class User < ApplicationRecord
   has_many :receivers, through: :passive_notifications, source: :receiver
 
   # 友達検索メソッド
-  def self.search(word)
+  def self.search(word, user_id)
     # 空検索の場合何も返さない
     return nil if word.blank?
 
     # 名前が一致するものをすべて返す
-    User.where(['name LIKE ?', "%#{word}%"]).where(search_status: true)
+    User.where(['name LIKE ?', "%#{word}%"]).where(search_status: true).where.not(id: user_id)
   end
 end

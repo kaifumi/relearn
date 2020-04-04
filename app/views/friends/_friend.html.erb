@@ -1,0 +1,19 @@
+<table class="friend_table">
+  <tbody class="friend_tbody">
+    <% unless models.nil? %>
+      <%# modelsはレンダリング元から渡している各モデルを参照している %>
+      <% models.each do |model| %>
+        <tr>
+          <td><p><%= attachment_image_tag(model.sender, :image, :fill, 50, 50, fallback: "default.png", class: "friend_image") %></p></td>
+          <td><p><%= model.sender.name %></p></td>
+          <td></td>
+          <td><p><%= link_to "友達解除",user_friend_path(user_id: current_user.id, id: model.sender_id),method: :delete, class: "reject_btn" %></p></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+

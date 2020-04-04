@@ -535,6 +535,90 @@ header {
   width: 40%;
   text-align: center;
 }
+.friend_image {
+  width: 50px;
+  border-radius: 25px;
+}
+
+// 友達リクエスト一覧ページ
+.receive_table {
+  width: 400px;
+  margin-top: 70px;
+}
+.receive_tbody td:nth-child(1) {
+  width: 25%;
+  height: 60px;
+}
+.receive_tbody td:nth-child(2) {
+  width: 35%;
+  text-align: left;
+}
+.receive_tbody td:nth-child(3) {
+  width: 20%;
+  text-align: center;
+}
+.receive_tbody td:nth-child(4) {
+  width: 20%;
+  text-align: center;
+}
+// 承認ボタン
+.approve_btn {
+  position: relative;
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #fff;
+  background: #34a0e4; /*色*/
+  border: solid 1px #98deff; /*線色*/
+  border-radius: 4px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+.approve_btn:active {
+  /*押したとき*/
+  border: solid 1px #34a0e4;
+  box-shadow: none;
+  text-shadow: none;
+}
+.reject_btn {
+  position: relative;
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #fff;
+  background: #eb0cba; /*色*/
+  border: solid 1px #f7a5f0; /*線色*/
+  border-radius: 4px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+.reject_btn:active {
+  /*押したとき*/
+  border: solid 1px #eb0cba;
+  box-shadow: none;
+  text-shadow: none;
+}
+// 友達一覧ページ
+.friend_table {
+  width: 400px;
+  margin: 70px auto 0;
+}
+.friend_tbody td:nth-child(1) {
+  width: 25%;
+  height: 60px;
+}
+.friend_tbody td:nth-child(2) {
+  width: 40%;
+  text-align: left;
+}
+.friend_tbody td:nth-child(3) {
+  width: 5%;
+  text-align: center;
+}
+.friend_tbody td:nth-child(4) {
+  width: 30%;
+  text-align: center;
+}
 
 // メニュー
 //

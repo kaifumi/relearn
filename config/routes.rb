@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   resources :users, only: [:edit, :update, :destroy] do
     resources :genres, only: [:index, :create, :update, :destroy]
     resources :notifications, only: [:index, :update]
-    resources :friends, only: [:index, :create, :update, :destroy]
+    resources :friends, only: [:index, :update, :destroy]
   end
   resources :posts do
     # 通知時間はpost_idが必要
