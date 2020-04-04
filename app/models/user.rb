@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :genres, dependent: :destroy
   has_many :rates, dependent: :destroy
   has_many :total_points, dependent: :destroy
-  has_many :delete_comments, dependent: :destroy
+  # has_many :delete_comments, dependent: :destroy
   # 能動関係に対して1対多の関連付け
   has_many :active_relationships, class_name: 'Friend',
                                   foreign_key: 'sender_id',
@@ -43,4 +43,13 @@ class User < ApplicationRecord
   # visitedという外部キーをもたせる。sourceは省略してもいける。
   # visitersでは被るのでreceiversにしました。
   has_many :receivers, through: :passive_notifications, source: :receiver
+
+  # 友達検索メソッド
+  def self.search(word, user_id)
+    # 空検索の場合何も返さない
+    return nil if word.blank?
+
+    # 名前が一致するものをすべて返す
+    User.where(['name LIKE ?', "%#{word}%"]).where(search_status: true).where.not(id: user_id)
+  end
 end

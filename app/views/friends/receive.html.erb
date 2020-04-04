@@ -1,0 +1,15 @@
+<%# 友達検索ビュー %>
+<h1>友達を探そう</h1>
+<div class="friend_custom">
+  <%# 全体か友達（自分含む）かを選べるタブ %>
+  <div class="friend_custom_bar">
+    <%= link_to "友達検索", friend_search_before_path(current_user.id), class:"friend_tab" %>
+    <%= link_to "リクエスト承認待ち", friend_receive_path(current_user.id), class:"friend_receive_tab" %>
+    <%= link_to "友達一覧", user_friends_path(current_user.id), class:"friend_tab" %>
+  </div>
+  <%# 友達の一覧、検索結果も含めて %>
+  <div class="friend_main_box">
+    <%# リクエスト一覧を表示 %>
+    <%= render partial: "friends/receive", locals: { models: @senders } %>
+  </div>
+</div>

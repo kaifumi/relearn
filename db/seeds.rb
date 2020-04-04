@@ -247,7 +247,7 @@ Rate.create!(
   Rate.create!(
   [
     {
-      user_id: n+1
+      user_id: n+1,
       total_rate: 0.1+n,
       count: n+1
    }
