@@ -52,6 +52,40 @@ class Rate < ApplicationRecord
       rate_average_array.push(user_id: rate[:user_id], average_rate: average_rate.floor(2))
     end
     # 平均値の高い順で並び替え
-    rate_average_array.sort_by { |b| b[:average_rate] }.reverse
+    rate_average_array.sort_by { |x| x[:average_rate] }.reverse
+  end
+
+  # 友達と自分の合計ポイントが高い順の配列を作るメソッド
+  def self.sorting(friends, current_user_id)
+    # 復習率の配列を用意
+    rate_array = []
+    friends.each do |friend|
+      # リクエスト送信者が自分の場合、その友達はリクエスト受信者
+      if friend.sender_id == current_user_id
+        rate_array.push(Rate.find_by(user_id: friend.recipient_id))
+      # リクエスト受信者が自分の場合、その友達はリクエスト送信者
+      elsif friend.recipient_id == current_user_id
+        rate_array.push(Rate.find_by(user_id: friend.sender_id))
+      end
+    end
+    # 最後に自分を入れる
+    rate_array.push(Rate.find_by(user_id: current_user_id))
+    # 平均化した復習率順の配列
+    rate_average_array = []
+    # 平均復習率を計算するeach文
+    rate_array.each do |rate|
+      # total_rateが0.0の場合はzero?メソッドで判断できる
+      if rate[:total_rate].zero?
+        # 復習回数0であれば平均値は0とする
+        rate_average_array.push(user_id: rate[:user_id], average_rate: 0.floor(2))
+      else
+        # 平均値を出す
+        average_rate = rate[:total_rate] / rate[:count]
+        # user_idと平均値の配列が入った配列をつくる。小数点が第2位まで。
+        rate_average_array.push(user_id: rate[:user_id], average_rate: average_rate.floor(2))
+      end
+    end
+    # 平均値の高い順で並び替え
+    rate_average_array.sort_by { |x| x[:average_rate] }.reverse
   end
 end
