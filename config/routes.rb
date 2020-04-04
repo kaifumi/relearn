@@ -20,10 +20,20 @@ Rails.application.routes.draw do
   get '/friend_rhythm_rank' => 'ranks#friend_rhythm_rank'
   # 退会確認画面
   get '/sign_out_confirm' => 'users#sign_out_confirmation'
+  # 友達検索前の画面
+  get 'user/:id/friend_search_before' => 'friends#search_before', as: "friend_search_before"
+  # 友達検索後の画面
+  get 'user/:id/friend_search' => 'friends#search', as: "friend_search"
+  # 友達リクエスト一覧表示
+  get 'user/:id/friend_receive' => 'friends#receive', as: "friend_receive"
+  # リクエスト送ったときに使う
+  post 'user/:id/send_request' => 'friends#send_request', as: "send_request"
+  # リクエスト取り消し
+  delete 'user/:id/cancel_request' => 'friends#cancel_request', as: "cancel_request"
   resources :users, only: [:edit, :update, :destroy] do
     resources :genres, only: [:index, :create, :update, :destroy]
     resources :notifications, only: [:index, :update]
-    resources :friends, only: [:search, :request, :index, :create, :update, :destroy]
+    resources :friends, only: [:index, :update, :destroy]
   end
   resources :posts do
     # 通知時間はpost_idが必要
