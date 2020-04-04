@@ -33,7 +33,7 @@ class RanksController < ApplicationController
     # 友達になったらランキング掲載不可関係なく表示する
     # 自分が送信か受信したリクエストが承認されていれば友達の集合ができる
     @friends = Friend.where(active_status: true).where('sender_id=? or recipient_id=?', current_user.id, current_user.id)
-    # 友達のidを使ってスコアの高い順番に分けるメソッド
-    @friend_point_ranks = TotalPoint.sorting(@friends, current_user.id)
+    # 友達のidを使って平均復習率の高い順番に分けるメソッド
+    @friend_rhythm_ranks = Rate.sorting(@friends, current_user.id)
   end
 end
