@@ -43,7 +43,6 @@ class Post < ApplicationRecord
       end
     end
     # 投稿の未復習の通知タイミング順にソートした配列
-    # {{genre_id:[投稿の集合]},{genre_id:[投稿の集合],・・・}のようになっている
     order_terms = yet_relearn.sort_by! { |a| a[:term] }
     post_array = []
     # post_idを持った配列を作成
@@ -52,6 +51,7 @@ class Post < ApplicationRecord
                        order_term[:genre_type], order_term[:title], order_term[:content]])
     end
     # order_termsの配列をジャンルごとに並べて変数化
+    # {{genre_id:[投稿の集合]},{genre_id:[投稿の集合],・・・}のようになっている
     genre_group = order_terms.group_by { |x| x[:genre_type] }
     # ここでまとめて最短の投稿を持つジャンルごとにソートした配列も用意する
     genre_array = []
