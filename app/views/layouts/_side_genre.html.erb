@@ -2,7 +2,7 @@
 <div class="side_genre">
   <ul>
     <% genres.each do |genre|%>
-      <li><%= link_to genre.type, genre_posts_index_path(genre) %></li>
+      <li><%= link_to genre.type.truncate(18), genre_posts_index_path(genre) %></li>
     <% end %>
   </ul>
   <br>
