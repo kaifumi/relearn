@@ -75,4 +75,61 @@ class PlanTiming < ApplicationRecord
     # 最後に値を返す
     changed_data
   end
+
+  # 現時点で計画していた復習タイミングの時間がきてるかを判断するメソッド
+  # 1回目の復習タイミング
+  def self.first_term_check(term)
+    user_array = []
+    # 過去10前~現在の間に該当タームの時間が入ってれば送る
+    # where("term BETWEEN ? AND ?",from,to)の書き方で範囲抽出できる
+    plan_range=PlanTiming.where("first_term BETWEEN ? AND ?",Time.now-600,Time.now )
+    unless plan_range.empty? then
+      plan_range.each do |plan| 
+        user_array.push(plan.post.user) if plan.post.user.email_status
+      end
+    end
+    user_array
+  end
+
+  # 2回目の復習タイミング
+  def self.second_term_check(term)
+    user_array = []
+    # 過去10前~現在の間に該当タームの時間が入ってれば送る
+    # where("term BETWEEN ? AND ?",from,to)の書き方で範囲抽出できる
+    plan_range=PlanTiming.where("second_term BETWEEN ? AND ?",Time.now-600,Time.now )
+    unless plan_range.empty? then
+      plan_range.each do |plan| 
+        user_array.push(plan.post.user) if plan.post.user.email_status
+      end
+    end
+    user_array
+  end
+
+  # 3回目の復習タイミング
+  def self.third_term_check(term)
+    user_array = []
+    # 過去10前~現在の間に該当タームの時間が入ってれば送る
+    # where("term BETWEEN ? AND ?",from,to)の書き方で範囲抽出できる
+    plan_range=PlanTiming.where("third_term BETWEEN ? AND ?",Time.now-600,Time.now )
+    unless plan_range.empty? then
+      plan_range.each do |plan| 
+        user_array.push(plan.post.user) if plan.post.user.email_status
+      end
+    end
+    user_array
+  end
+
+  # 4回目の復習タイミング
+  def self.forth_term_check(term)
+    user_array = []
+    # 過去10前~現在の間に該当タームの時間が入ってれば送る
+    # where("term BETWEEN ? AND ?",from,to)の書き方で範囲抽出できる
+    plan_range=PlanTiming.where("forth_term BETWEEN ? AND ?",Time.now-600,Time.now )
+    unless plan_range.empty? then
+      plan_range.each do |plan| 
+        user_array.push(plan.post.user) if plan.post.user.email_status
+      end
+    end
+    user_array
+  end
 end
