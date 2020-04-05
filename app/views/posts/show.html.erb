@@ -1,27 +1,32 @@
+<h1>投稿詳細</h1>
 <div class="row">
-  <div class="col-xs-9">
-    <h1>投稿詳細</h1>
-    <div class="post_title">
-      <%= @post.title%>
-      <%= @genre.type%>
+  <div class="post_show_box">
+    <div class="post_show_main_box col-xs-5">
+      <div class="post_title_box">
+        <p class="post_show_title"><%= @post.title.truncate(20)%></p>
+        <p class="post_show_genre"><%= @genre.type.truncate(20)%></p>
+      </div>
+      <div class="content_head">
+        <p class="post_show_content_title">内容</p>
+        <p class="post_show_content_edit"><%= link_to "投稿内容の編集", edit_post_path(@post), data: { "turbolinks" => false } %></p>
+      </div>
+      <div class="post_show_content">
+        <%= simple_format(@post.content) %>
+      </div>
+      <p class="post_show_link">link : <a href="<%= @post.link %>"><%= @post.link.truncate(70) %></a></p>
     </div>
-    <div class="content_head">
-      <p>内容　　<%= link_to "投稿内容の編集", edit_post_path(@post), data: { "turbolinks" => false } %></p>
-    </div>
-    <div class="content">
-      <%= @post.content %>
-    </div>
-    
-    <p>link : <a href="<%= @post.link %>"><%= @post.link.truncate(70) %></a></p>
+    <div class="post_show_graph_box col-xs-7">
 
+    </div>
+  </div>
+  <div class="post_show_bottom_box col-xs-12">
     <%# ポイント入力フォーム %>
     <%= render partial: 'point_form', locals: { post: @post,relearn_point: @relearn_point,
           plan_timing: @plan_timing, time_now: @time_now, real_timing: @real_timing } %>
-    <p>※通知時間になるまでは復習のチェックボックスは出ません</p>
-      <%= link_to "復習完了にする", post_complete_path(@post), method: :patch, class:"btn btn-default" %>
-      <%= link_to "投稿を削除する", post_path(@post), method: :delete, class:"btn btn-default", data: { confirm: '削除しますか？' } %>
+      <p class="post_show_bottom_message">※通知時間になるまでは復習のチェックは出来ません</p>
+      <div class="post_show_bottom_btn">
+        <p class="post_show_complete_btn"><%= link_to "復習完了にする", post_complete_path(@post), method: :patch %></p>
+        <p class="post_show_delete_btn"><%= link_to "投稿を削除する", post_path(@post), method: :delete, data: { confirm: '削除しますか？' } %></p>
+      </div>
   </div>
 </div>
-Time.now:<%= Time.now %><br>
-Time.current:<%= Time.current %><br>
-Time.zone:<%= Time.zone %><br>
