@@ -2,14 +2,14 @@
 <%= form_with( url: post_plan_timing_path, model: @plan_timing, local: true ) do |f| %>
   <%# 項目を横並びにするためにテーブル化 %>
   <table class="plan_edit_table">
-    <thead>
+    <thead class="plan_edit_thead">
       <tr>
-        <td width="20%">予定通知タイミング</td>
-        <td width="40%">変更後の通知時間</td>
-        <td width="25%">変更可能範囲</td>
+        <td>予定通知タイミング</td>
+        <td>変更後の通知時間</td>
+        <td>変更可能範囲</td>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="plan_edit_tbody">
       <tr>
         <%# 1回目の通知時間変更のフォーム %>
         <td><%= @plan_timing.first_term.strftime("%m-%d %H:%M") %></td>
@@ -62,7 +62,11 @@
             <%= @plan_timing.forth_min.strftime("%m-%d %H:%M") %>
             ~ <%= @plan_timing.forth_max.strftime("%m-%d %H:%M") %></td>    
       </tr>
+      <tr>
+        <td></td>
+        <td><%= f.submit "更新", class: "plan_edit_btn" %> </td>
+        <td></td>
+      </tr>
     </tbody>
   </table>
-<%= f.submit "更新"%> 
 <% end %>

@@ -53,11 +53,11 @@
     <div class="col-xs-3">
       <div class="side_point">
         <p>Relearnポイント：</p>
-        <p><%= @total_point %>P</p>
+        <p class="top_side_total_point"><%= @total_point %>P</p>
         <% if @user_rate.count >= 4 %>
           <p>Relearn率：</p>
           <%# sprintf(or format)を使うと整数でも小数点表示ができる %>
-          <p><%= sprintf("%.2f", @average_rate) %>/1.00</p>
+          <p class="top_side_average_rate"><%= sprintf("%.2f", @average_rate) %>/1.00</p>
         </div>
       <% end %>
     </div>
