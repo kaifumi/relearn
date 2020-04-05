@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/posts/genre/:id' => 'posts#genre_posts_index', as: 'genre_posts_index'
   # 復習完了した投稿一覧、ヘッダーから飛べるようにid無しの設定
   get '/posts/completes' => 'completes#index', as: 'complete_posts'
+  patch 'posts/:id/relearn_complete' => 'completes#relearn_complete', as: 'relearn_complete'
   # 全体ポイントランキング表示
   get '/point_rank' => 'ranks#point_rank'
   # 友達ポイントランキング表示
