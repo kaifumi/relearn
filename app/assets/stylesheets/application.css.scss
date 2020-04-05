@@ -144,7 +144,8 @@ header {
     margin-top: 0;
     background: #78bbe6;
     font-weight: bold;
-    color: #d5eeff;
+    color: #1b435d;
+    font-weight: bold;
     border: solid 3px white;
     border-radius: 10px;
   }
@@ -218,9 +219,17 @@ header {
   margin-top: 0;
   background: #78bbe6;
   font-weight: bold;
-  color: #d5eeff;
+  color: #1b435d;
   border: solid 3px white;
   border-radius: 10px;
+}
+.top_side_total_point {
+  color: white;
+  font-size: 18px;
+}
+.top_side_average_rate {
+  color: white;
+  font-size: 18px;
 }
 // サインインしてないユーザーへの表示
 .signend_false {
@@ -239,6 +248,7 @@ header {
 
 // datepickerのカレンダーの配置の整地に必要
 .plan_edit_table {
+  font-size: 20px;
   position: relative;
   tr,
   th,
@@ -247,8 +257,39 @@ header {
     vertical-align: inherit;
   }
   .changeable_range {
+    font-size: 15px;
     color: red;
   }
+}
+.plan_edit_thead {
+  line-height: 30px;
+}
+.plan_edit_thead td:nth-child(1) {
+  width: 12%;
+}
+.plan_edit_thead td:nth-child(2) {
+  width: 20%;
+}
+.plan_edit_thead td:nth-child(3) {
+  width: 30%;
+}
+.plan_edit_tbody td:nth-child(1) {
+  line-height: 60px;
+}
+.plan_edit_tbody td:nth-child(2) {
+  line-height: 60px;
+}
+.plan_edit_btn {
+  margin-top: 10px;
+  height: 50px;
+  line-height: 50px;
+  width: 80%;
+  border-radius: 5px;
+  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  background-color: greenyellow;
+  color: white;
+  text-align: center;
+  font-size: 25px;
 }
 // 親近投稿ページ
 //
@@ -260,7 +301,7 @@ header {
   width: 100%;
 }
 .new_post_tbody td:nth-child(1) {
-  width: 15%;
+  width: 10%;
   height: 50px;
   text-align: left;
 }
