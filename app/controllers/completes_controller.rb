@@ -19,6 +19,18 @@ class CompletesController < ApplicationController
     @relearn_point = RelearnPoint.find_by(post_id: params[:post_id])
   end
 
+  # 復習回数が4回未満で復習完了する場合
+  def relearn_complete
+    post = Post.find(params[:id])
+    if post.update(relearn_complete: true)
+      flash[:warning] = '復習ステータスを更新しました'
+      redirect_to post_complete_path(post_id: params[:id])
+    else
+      flash[:danger] = '復習ステータスの更新に失敗しました'
+      redirect_to request.referer
+    end
+  end
+
   # もう一度復習にする
   def update
     @post = Post.find(params[:post_id])

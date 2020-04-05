@@ -25,7 +25,7 @@
           plan_timing: @plan_timing, time_now: @time_now, real_timing: @real_timing } %>
       <p class="post_show_bottom_message">※通知時間になるまでは復習のチェックは出来ません</p>
       <div class="post_show_bottom_btn">
-        <p class="post_show_complete_btn"><%= link_to "復習完了にする", post_complete_path(@post), method: :patch %></p>
+        <p class="post_show_complete_btn"><%= link_to "復習完了にする", relearn_complete_path(@post), method: :patch %></p>
         <p class="post_show_delete_btn"><%= link_to "投稿を削除する", post_path(@post), method: :delete, data: { confirm: '削除しますか？' } %></p>
       </div>
   </div>
