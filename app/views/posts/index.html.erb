@@ -1,37 +1,37 @@
-<div class="row">
-  <%# ユーザーが投稿したものすべてを表示 %>
-  <h1>Relearn 一覧</h1>
-  <div class="col-xs-9">
-    <div class="col-xs-offset-1 col-xs-11 post_index">
-    <table>
-      <thead>
-        <tr>
-          <td></td>
-          <td>タイトル</td>
-          <td>学習ジャンル</td>
-          <td>内容</td>
-          <td>復習進捗</td>
-        </tr>
-      </thead>
-      <tbody>
-        <% i = 1%>
-        <%# 投稿の数だけeach文を回す %>
-        <% @posts.each do |post| %>
-        <tr>
-          <td><%= i %></td>
-          <td><%= link_to post.title.truncate(15), post_path(post), data: {"turbolinks" => false} %></td>
-          <td><%= post.genre.type.truncate(15) %></td>
-          <td><%= post.content.truncate(20) %></td>
-          <td><%= post.relearn_count %>/4</td>
-        </tr>
-        <% i += 1 %>
-        <% end %>
-      </tbody>
-    </table>
-    <%= paginate @posts %>
+<%# ユーザーが投稿したものすべてを表示 %>
+<h1>Relearn 一覧</h1>
+<div class="post_index_box row">
+  <div class="post_index_main_box col-xs-9">
+    <div class="post_index_list">
+      <table class="post_index_table">
+        <thead class="post_index_thead">
+          <tr>
+            <td></td>
+            <td>タイトル</td>
+            <td>学習ジャンル</td>
+            <td>内容</td>
+            <td>進捗</td>
+          </tr>
+        </thead>
+        <tbody class="post_index_tbody">
+          <% i = 1%>
+          <%# 投稿の数だけeach文を回す %>
+          <% @posts.each do |post| %>
+          <tr>
+            <td><%= i %></td>
+            <td><%= link_to post.title.truncate(15), post_path(post), data: {"turbolinks" => false} %></td>
+            <td><%= post.genre.type.truncate(15) %></td>
+            <td><%= post.content.truncate(20) %></td>
+            <td><%= post.relearn_count %>/4</td>
+          </tr>
+          <% i += 1 %>
+          <% end %>
+        </tbody>
+      </table>
+      <%= paginate @posts %>
     </div>
   </div>
-  <div class="col-xs-3">
+  <div class="post_index_side_box col-xs-3">
     <%# ジャンルの一覧をサイドバーで表示 %>
     <%= render partial: 'layouts/side_genre', locals: {genres: @genres} %>
   </div>

@@ -22,12 +22,12 @@
                     <%# タームの時間を表示 %>
                     <div class="latest_term">
                       <% if ((order_post[2] - Time.now)/86400) < 0 %>
-                        <p class="delay_relearn"><%= ((order_post[2] - Time.now)/86400).floor.abs %>日の遅れです</p>
+                        <p class="delay_relearn"><%= ((order_post[2] - Time.now)/86400).floor.abs %>日の遅れ</p>
                       <% elsif ((order_post[2] - Time.now)/86400) > 1 %>
-                        <p class="future_relearn">あと<%= ((order_post[2] - Time.now)/86400).floor %>日と<%= divide( ((order_post[2] - Time.now)/86400*24).round(1) ) %>時間です</p>
+                        <p class="future_relearn">あと<%= ((order_post[2] - Time.now)/86400).floor %>日と<%= divide( ((order_post[2] - Time.now)/86400*24).round(1) ) %>時間</p>
                       <% elsif ((order_post[2] - Time.now)/86400) >= 0 %>
                         <%# ヘルパーに定義したdivideメソッドで小数点だけを返す %>
-                        <p class="ealry_relearn">あと<%= divide( ((order_post[2] - Time.now)/86400*24).round(1) ) %>時間です</p>
+                        <p class="ealry_relearn">あと<%= ((order_post[2] - Time.now)/86400*24).floor %>時間と<%= divide_minute(((order_post[2] - Time.now)/86400*24).round(1)) %>分</p>
                       <% end %>
                     </div>
                     <div class="post_box">
