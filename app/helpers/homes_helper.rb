@@ -6,6 +6,13 @@ module HomesHelper
     b
   end
 
+  # 少数点を分計算して返す
+  def divide_minute(float_term)
+    _a, b = float_term.to_s.split('.')
+    # 小数点のみを返す
+    b.to_i * 60 / 10
+  end
+
   # # 該当するジャンルの投稿が何件あるかチェックするメソッド
   # # [ジャンル1,投稿3件],[ジャンル2,投稿5件]みたいな感じでほしい
   # def item_counts(posts, genres)
