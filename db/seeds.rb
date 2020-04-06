@@ -11,8 +11,8 @@ User.create!(
   User.create!(
   [
     {
-      name: "a#{n + 1}",
-      email: "test#{n + 1}@test.com",
+      name: "aa#{n + 1}",
+      email: "aa#{n + 1}@aa.aa",
       password: "aaaaa#{n + 1}",
       rank_status: true,
       search_status: true
@@ -29,9 +29,19 @@ Genre.create!(
     {
       user_id:2,
       type:"フロントエンド"
-  }
+    }
   ]
 )
+10.times do |n|
+  Genre.create!(
+  [
+    {
+      user_id: n + 1,
+      type: "test#{n + 1}"
+    }
+  ]
+)
+end
 Post.create!(
   [
     {
@@ -79,7 +89,19 @@ Post.create!(
 
   ]
 )
-
+10.times do |n|
+  Post.create!(
+  [
+    {
+      user_id: n + 1,
+      genre_id: n + 1,
+      title:"test#{n + 1}",
+      content:"test#{n + 1}test#{n + 1}test#{n + 1}",
+      link:"http://localhost:3000/posts"
+    }
+  ]
+)
+end
 PlanTiming.create!(
   [
     {
@@ -160,7 +182,7 @@ PlanTiming.create!(
     {
       post_id: 6,
       first_term: "2020-02-26 06:00:00",
-      second_term: "2020-02-28 0:00:00",
+      second_term: "2020-02-28 06:00:00",
       third_term: "2020-03-04 06:00:00",
       forth_term: "2020-03-25 06:00:00",
       first_min: "2020-02-25 07:00:00",
@@ -174,6 +196,27 @@ PlanTiming.create!(
     }
   ]
 )
+10.times do |n|
+  PlanTiming.create!(
+  [
+    {
+      post_id: "#{n + 6}",
+      first_term: (Time.now.yesterday+n).since(1.day),
+      second_term: (Time.now.yesterday+n).since(3.day),
+      third_term: (Time.now.yesterday+n).since(10.day),
+      forth_term: (Time.now.yesterday+n).since(30.day),
+      first_min: (Time.now.yesterday+n).since(1.hour),
+      first_max: (Time.now.yesterday+n).since(2.day),
+      second_min: (Time.now.yesterday+n).since(3.day),
+      second_max: (Time.now.yesterday+n).since(7.day),
+      third_min: (Time.now.yesterday+n).since(8.day),
+      third_max: (Time.now.yesterday+n).since(14.day),
+      forth_min: (Time.now.yesterday+n).since(15.day),
+      forth_max: (Time.now.yesterday+n).since(30.day)
+    }
+  ]
+)
+end
 RealTiming.create!(
   [
     {
@@ -197,6 +240,15 @@ RealTiming.create!(
   ]
 )
 
+10.times do |n|
+  RealTiming.create!(
+  [
+    {
+      post_id: n + 1
+    }
+  ]
+)
+end
 RelearnPoint.create!(
   [
     {
@@ -219,6 +271,15 @@ RelearnPoint.create!(
   }
   ]
 )
+10.times do |n|
+  RelearnPoint.create!(
+  [
+    {
+      post_id: n + 1
+    }
+  ]
+)
+end
 TotalPoint.create!(
   [
     {
@@ -230,7 +291,7 @@ TotalPoint.create!(
   TotalPoint.create!(
   [
     {
-      user_id: n+1,
+      user_id: n + 1,
       score: 1000+n 
    }
   ]
@@ -254,6 +315,43 @@ Rate.create!(
   ]
 )
 end
+10.times do |n|
+  Friend.create!(
+  [
+    {
+      sender_id: 1,
+      recipient_id: n+1,
+      active_status: true,
+      send_request: true
+   }
+  ]
+)
+end
+10.times do |n|
+  Friend.create!(
+  [
+    {
+      sender_id: 2,
+      recipient_id: n+2,
+      active_status: true,
+      send_request: false
+   }
+  ]
+)
+end
+5.times do |n|
+  Friend.create!(
+  [
+    {
+      sender_id: 3,
+      recipient_id: n+3,
+      active_status: false,
+      send_request: true
+   }
+  ]
+)
+end
+
 Quote.create!(
   [
     {
