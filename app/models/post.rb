@@ -7,6 +7,9 @@ class Post < ApplicationRecord
   has_many :plan_timings, dependent: :destroy
   has_many :real_timings, dependent: :destroy
 
+  validates :title, presence: true
+  validates :content, presence: true
+
   # 投稿の中で未復習でかつ最短の通知時間の投稿を振り分けるメソッド
   def self.latest_relearn(posts, _user_id)
     # 直近の未復習が何ターム目を判断し配列に入れる
