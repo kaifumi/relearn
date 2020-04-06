@@ -237,6 +237,10 @@ header {
   font-size: 40px;
   height: 700px;
 }
+.signend_false a:link,
+.signend_false a:visited {
+  color: #1b435d;
+}
 
 // ポイント入力フォームの位置調整
 .point_form {
