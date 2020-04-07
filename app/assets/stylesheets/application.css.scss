@@ -429,7 +429,7 @@ header {
   color: white;
   border: solid 3px #78bbe6;
   border-radius: 10px;
-  width: 80%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }
@@ -443,7 +443,7 @@ header {
 .content_head {
   display: flex;
   justify-content: space-between;
-  width: 80%;
+  width: 100%;
   margin-top: 20px;
   font-size: 18px;
 }
@@ -460,7 +460,7 @@ header {
   font-weight: bold;
 }
 .post_show_content {
-  width: 80%;
+  width: 100%;
   min-height: 250px;
   height: auto;
   font-size: 20px;
