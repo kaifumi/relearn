@@ -200,19 +200,19 @@ PlanTiming.create!(
   PlanTiming.create!(
   [
     {
-      post_id: "#{n + 6}",
-      first_term: (Time.now.yesterday+n).since(1.day),
-      second_term: (Time.now.yesterday+n).since(3.day),
-      third_term: (Time.now.yesterday+n).since(10.day),
-      forth_term: (Time.now.yesterday+n).since(30.day),
-      first_min: (Time.now.yesterday+n).since(1.hour),
-      first_max: (Time.now.yesterday+n).since(2.day),
-      second_min: (Time.now.yesterday+n).since(3.day),
-      second_max: (Time.now.yesterday+n).since(7.day),
-      third_min: (Time.now.yesterday+n).since(8.day),
-      third_max: (Time.now.yesterday+n).since(14.day),
-      forth_min: (Time.now.yesterday+n).since(15.day),
-      forth_max: (Time.now.yesterday+n).since(30.day)
+      post_id: "#{n + 7}",
+      first_term: (Time.now.yesterday+n+1).since(1.day),
+      second_term: (Time.now.yesterday+n+1).since(3.day),
+      third_term: (Time.now.yesterday+n+1).since(10.day),
+      forth_term: (Time.now.yesterday+n+1).since(30.day),
+      first_min: (Time.now.yesterday+n+1).since(1.hour),
+      first_max: (Time.now.yesterday+n+1).since(2.day),
+      second_min: (Time.now.yesterday+n+1).since(3.day),
+      second_max: (Time.now.yesterday+n+1).since(7.day),
+      third_min: (Time.now.yesterday+n+1).since(8.day),
+      third_max: (Time.now.yesterday+n+1).since(14.day),
+      forth_min: (Time.now.yesterday+n+1).since(15.day),
+      forth_max: (Time.now.yesterday+n+1).since(30.day)
     }
   ]
 )
@@ -244,7 +244,7 @@ RealTiming.create!(
   RealTiming.create!(
   [
     {
-      post_id: n + 1
+      post_id: n + 7
     }
   ]
 )
@@ -275,7 +275,7 @@ RelearnPoint.create!(
   RelearnPoint.create!(
   [
     {
-      post_id: n + 1
+      post_id: n + 7
     }
   ]
 )
@@ -291,8 +291,8 @@ TotalPoint.create!(
   TotalPoint.create!(
   [
     {
-      user_id: n + 1,
-      score: 1000+n 
+      user_id: n + 2,
+      score: 1000+n
    }
   ]
 )
@@ -308,7 +308,7 @@ Rate.create!(
   Rate.create!(
   [
     {
-      user_id: n+1,
+      user_id: n+2,
       total_rate: 0.1+n,
       count: n+1
    }
@@ -320,7 +320,7 @@ end
   [
     {
       sender_id: 1,
-      recipient_id: n+1,
+      recipient_id: n+2,
       active_status: true,
       send_request: true
    }
@@ -332,7 +332,7 @@ end
   [
     {
       sender_id: 2,
-      recipient_id: n+2,
+      recipient_id: n+3,
       active_status: true,
       send_request: false
    }
@@ -344,7 +344,7 @@ end
   [
     {
       sender_id: 3,
-      recipient_id: n+3,
+      recipient_id: n+4,
       active_status: false,
       send_request: true
    }

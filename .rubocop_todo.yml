@@ -111,6 +111,7 @@ Metrics/MethodLength:
     - "app/controllers/completes_controller.rb"
     - "app/models/post.rb"
     - "app/models/rate.rb"
+    - "app/helpers/posts_helper.rb"
 
 Metrics/BlockLength:
   Max: 25
