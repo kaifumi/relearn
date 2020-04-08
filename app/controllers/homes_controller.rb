@@ -2,7 +2,7 @@ class HomesController < ApplicationController
   # トップページの表示
   def top
     # もしログインしていたら合計得点と平均復習率を取得
-    if user_signed_in?
+    if user_signed_in? && Post.find_by(user_id: current_user.id)
       @total_point = TotalPoint.find_by(user_id: current_user).score
       @user_rate = Rate.find_by(user_id: current_user)
       # 平均復習率を計算して表示

@@ -1,0 +1,43 @@
+<% i=1 %>
+<%# ジャンルごとに表示 %>
+<% genres.each do |genre| %>
+  <h3 class="genre_type"><%= genre %></h3>
+  <div class="order_post">
+    <div class="slide-banner owl-carousel"> 
+    <%# 投稿を未復習順に表示 %>
+    <% order_posts.each do |order_post| %>
+      <%# genre_idが一致したら表示 %>
+      <% if order_post[3] == genre %>
+        <%= link_to post_path(order_post[0]) do%>
+          <div class="latest_posts item"> 
+            <%# タームの時間を表示 %>
+            <div class="latest_term">
+              <% if ((order_post[2] - Time.now)/86400) < -1 %>
+                <p class="delay_relearn"><%= ((order_post[2] - Time.now)/86400).floor.abs %>日の遅れ</p>
+              <% elsif ((order_post[2] - Time.now)/86400) >= -1 && ((order_post[2] - Time.now)/86400) < 0 %>
+                <p class="ealry_relearn">ベストタイミング！</p>
+              <% elsif ((order_post[2] - Time.now)/86400) > 1 %>
+                <p class="future_relearn">あと<%= ((order_post[2] - Time.now)/86400).floor %>日と<%= divide(order_post[2] - Time.now) %>時間</p>
+              <% elsif ((order_post[2] - Time.now)/86400) >= 0 %>
+                <%# ヘルパーに定義したdivideメソッドで小数点だけを返す %>
+                <p class="ealry_relearn">あと<%= ((order_post[2] - Time.now)/86400*24).floor %>時間と<%= divide_minute(order_post[2] - Time.now) %>分</p>
+              <% end %>
+            </div>
+            <div class="post_box">
+              <%# タイトル %>
+              <p class="post_title"><%= order_post[4].truncate(20) %></p>
+              <%# 内容 %>
+              <p><%= order_post[5].truncate(40) %></p>
+              <%# 復習進捗 %>
+              <p><%= order_post[1] %></p>
+            </div>
+            <div class="post_image">
+            </div>
+          </div> 
+        <% end %>
+      <% end %>
+    <% end %>
+    </div><!-- slide-banner-class end -->
+  </div>
+  <% i+=1 %>
+<% end %>
