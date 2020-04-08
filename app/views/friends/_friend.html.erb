@@ -8,14 +8,14 @@
             <td><p><%= attachment_image_tag(model.recipient, :image, :fill, 50, 50, fallback: "default.png", class: "friend_image") %></p></td>
             <td><p><%= model.recipient.name %></p></td>
             <td></td>
-            <td><p><%= link_to "友達解除",user_friend_path(user_id: current_user.id, id: model.recipient_id),method: :delete, class: "reject_btn" %></p></td>
+            <td><p class="friend_request_reject_btn"><%= link_to "友達解除",user_friend_path(user_id: current_user.id, id: model.recipient_id),method: :delete %></p></td>
           </tr>
         <% else %>
           <tr>
             <td><p><%= attachment_image_tag(model.sender, :image, :fill, 50, 50, fallback: "default.png", class: "friend_image") %></p></td>
             <td><p><%= model.sender.name %></p></td>
             <td></td>
-            <td><p><%= link_to "友達解除",user_friend_path(user_id: current_user.id, id: model.sender_id),method: :delete, class: "reject_btn" %></p></td>
+            <td><p class="friend_request_reject_btn"><%= link_to "友達解除",user_friend_path(user_id: current_user.id, id: model.sender_id),method: :delete %></p></td>
           </tr>
         <% end %>
       <% end %>

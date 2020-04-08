@@ -129,6 +129,7 @@ Metrics/AbcSize:
     - "app/controllers/completes_controller.rb"
     - "app/models/post.rb"
     - "app/helpers/posts_helper.rb"
+    - "app/controllers/homes_controller.rb"
 
   Enabled: true
   Max: 30
