@@ -36,7 +36,7 @@ class CompletesController < ApplicationController
     @post = Post.find(params[:post_id])
     # 復習完了状態をfalseにする
     @post[:relearn_complete] = false
-    if @post.update(relearn_complete: false, relearn_count: 0)
+    if @post.update(relearn_complete: false, relearn_count: 0, created_at: Time.zone.now)
       @plan_timing = PlanTiming.find_by(post_id: params[:post_id])
       @plan_timing.update(post_id: @post.id, first_term: 1.day.from_now.strftime('%Y-%m-%d %H:%M'),
                           second_term: 3.days.from_now.strftime('%Y-%m-%d %H:%M'), third_term: 10.days.from_now.strftime('%Y-%m-%d %H:%M'),

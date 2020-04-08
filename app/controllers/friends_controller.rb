@@ -67,8 +67,9 @@ class FriendsController < ApplicationController
 
   # 友達解除
   def destroy
-    friend = Friend.find_by(sender_id: params[:id], recipient_id: current_user.id, active_status: true)
-    if friend.destroy
+    friend = Friend.where(active_status: true).where('(sender_id=?) or (recipient_id=?)',
+                                                     current_user.id, current_user.id).where('(sender_id=?) or (recipient_id=?)', params[:id], params[:id])
+    if friend[0].destroy
       flash[:warning] = '友達解除しました'
     else
       flash[:danger] = '友達解除に失敗しました'

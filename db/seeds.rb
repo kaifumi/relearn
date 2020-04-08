@@ -49,21 +49,25 @@ Post.create!(
       genre_id:1,
       title:"rubyの勉強です",
       content:"rails面白いです",
-      link:"http://localhost:3000/posts"
+      link:"http://localhost:3000/posts",
+      created_at:"2020-03-26 00:00:00"
     },
     {
       user_id:1,
       genre_id:1,
       title:"rubyの勉強です",
       content:"rails面白いです",
-      link:"http://localhost:3000/posts"
+      link:"http://localhost:3000/posts",
+      relearn_count: 3,
+      created_at:"2020-02-26 02:00:00"
     },
     {
       user_id:1,
       genre_id:1,
       title:"rubyの勉強です",
       content:"rails面白いです",
-      link:"http://localhost:3000/posts"
+      link:"http://localhost:3000/posts",
+      created_at:"2020-02-26 03:00:00"
     },
     {
       user_id:1,
@@ -200,19 +204,19 @@ PlanTiming.create!(
   PlanTiming.create!(
   [
     {
-      post_id: "#{n + 6}",
-      first_term: (Time.now.yesterday+n).since(1.day),
-      second_term: (Time.now.yesterday+n).since(3.day),
-      third_term: (Time.now.yesterday+n).since(10.day),
-      forth_term: (Time.now.yesterday+n).since(30.day),
-      first_min: (Time.now.yesterday+n).since(1.hour),
-      first_max: (Time.now.yesterday+n).since(2.day),
-      second_min: (Time.now.yesterday+n).since(3.day),
-      second_max: (Time.now.yesterday+n).since(7.day),
-      third_min: (Time.now.yesterday+n).since(8.day),
-      third_max: (Time.now.yesterday+n).since(14.day),
-      forth_min: (Time.now.yesterday+n).since(15.day),
-      forth_max: (Time.now.yesterday+n).since(30.day)
+      post_id: "#{n + 7}",
+      first_term: (Time.now.yesterday+n+1).since(1.day),
+      second_term: (Time.now.yesterday+n+1).since(3.day),
+      third_term: (Time.now.yesterday+n+1).since(10.day),
+      forth_term: (Time.now.yesterday+n+1).since(30.day),
+      first_min: (Time.now.yesterday+n+1).since(1.hour),
+      first_max: (Time.now.yesterday+n+1).since(2.day),
+      second_min: (Time.now.yesterday+n+1).since(3.day),
+      second_max: (Time.now.yesterday+n+1).since(7.day),
+      third_min: (Time.now.yesterday+n+1).since(8.day),
+      third_max: (Time.now.yesterday+n+1).since(14.day),
+      forth_min: (Time.now.yesterday+n+1).since(15.day),
+      forth_max: (Time.now.yesterday+n+1).since(30.day)
     }
   ]
 )
@@ -223,7 +227,10 @@ RealTiming.create!(
       post_id: 1
     },
     {
-      post_id: 2
+      post_id: 2,
+      first_term: "2020-02-27 02:00:00",
+      second_term: "2020-02-29 02:00:00",
+      third_term: "2020-03-06 02:00:00"
     },
     {
       post_id: 3
@@ -244,7 +251,7 @@ RealTiming.create!(
   RealTiming.create!(
   [
     {
-      post_id: n + 1
+      post_id: n + 7
     }
   ]
 )
@@ -275,7 +282,7 @@ RelearnPoint.create!(
   RelearnPoint.create!(
   [
     {
-      post_id: n + 1
+      post_id: n + 7
     }
   ]
 )
@@ -291,8 +298,8 @@ TotalPoint.create!(
   TotalPoint.create!(
   [
     {
-      user_id: n + 1,
-      score: 1000+n 
+      user_id: n + 2,
+      score: 1000+n
    }
   ]
 )
@@ -308,7 +315,7 @@ Rate.create!(
   Rate.create!(
   [
     {
-      user_id: n+1,
+      user_id: n+2,
       total_rate: 0.1+n,
       count: n+1
    }
@@ -320,19 +327,19 @@ end
   [
     {
       sender_id: 1,
-      recipient_id: n+1,
+      recipient_id: n+2,
       active_status: true,
       send_request: true
    }
   ]
 )
 end
-10.times do |n|
+5.times do |n|
   Friend.create!(
   [
     {
       sender_id: 2,
-      recipient_id: n+2,
+      recipient_id: n+3,
       active_status: true,
       send_request: false
    }
@@ -344,7 +351,7 @@ end
   [
     {
       sender_id: 3,
-      recipient_id: n+3,
+      recipient_id: n+4,
       active_status: false,
       send_request: true
    }

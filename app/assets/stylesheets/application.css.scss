@@ -212,6 +212,9 @@ header {
   color: #f99f48;
 }
 // トップページ右側のポイント表示
+.top_side_box {
+  margin-top: 100px;
+}
 .side_point {
   width: 100%;
   text-align: left;
@@ -222,14 +225,23 @@ header {
   color: #1b435d;
   border: solid 3px white;
   border-radius: 10px;
+  font-size: 20px;
 }
 .top_side_total_point {
   color: white;
-  font-size: 18px;
+  font-size: 20px;
 }
 .top_side_average_rate {
   color: white;
-  font-size: 18px;
+  font-size: 20px;
+}
+.top_page_graph_box {
+  margin-top: 50px;
+}
+.top_page_graph_title {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 20px;
 }
 // サインインしてないユーザーへの表示
 .signend_false {
@@ -429,7 +441,7 @@ header {
   color: white;
   border: solid 3px #78bbe6;
   border-radius: 10px;
-  width: 80%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }
@@ -443,7 +455,7 @@ header {
 .content_head {
   display: flex;
   justify-content: space-between;
-  width: 80%;
+  width: 100%;
   margin-top: 20px;
   font-size: 18px;
 }
@@ -460,7 +472,7 @@ header {
   font-weight: bold;
 }
 .post_show_content {
-  width: 80%;
+  width: 100%;
   min-height: 250px;
   height: auto;
   font-size: 20px;
@@ -582,6 +594,14 @@ header {
 .post_show_bottom_btn {
   display: flex;
   margin-top: 40px;
+}
+.post_show_graph_box {
+  margin-top: 20px;
+}
+.post_show_graph_title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 10px;
 }
 // 投稿一覧
 //
