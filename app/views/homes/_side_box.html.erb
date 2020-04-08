@@ -1,0 +1,26 @@
+<div class="side_point">
+  <p>Relearnポイント：</p>
+  <p class="top_side_total_point"><%= total_point %>P</p>
+  <% if user_rate.count >= 1 %>
+    <p>Relearn率：</p>
+    <%# sprintf(or format)を使うと整数でも小数点表示ができる %>
+    <p class="top_side_average_rate"><%= sprintf("%.2f", average_rate) %>/1.00</p>
+  <% end %>
+</div>
+<div class="top_page_graph_box">
+  <%# 記憶節約率を表現したグラフ %>
+  <p class="top_page_graph_title"><次の復習の忘却推移></p>
+  <%= area_chart memory_point_array(post),
+            id: 'total-attendance-chart',
+            width: '100%',
+            height: '250px',
+            colors: ['#F99F48'],
+            xtitle: "時間経過", ytitle: "節約率",
+            xmin:  post.created_at.yesterday.strftime('%m/%d'),
+            xmax: post.created_at.since(10.days).strftime('%m/%d'),
+            min: 0, max: 100,
+            points: false, curve: false,
+            messages: {empty: "グラフデータがありません"},
+            discrete: true
+            %>
+</div>
