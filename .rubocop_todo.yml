@@ -87,6 +87,7 @@ Layout/LineLength:
   Max: 150
   Exclude:
     - "app/models/form/plan_timing.rb"
+    - "app/controllers/friends_controller.rb"
 
 # タブが過剰(ストロングパラメータ用)
 Layout/Tab:
@@ -140,6 +141,9 @@ Metrics/PerceivedComplexity:
 
 Metrics/ParameterLists:
   Max: 6
+
+Metrics/ModuleLength:
+  Max: 105
 
 Style/GuardClause:
   Exclude:
