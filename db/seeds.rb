@@ -49,21 +49,25 @@ Post.create!(
       genre_id:1,
       title:"rubyの勉強です",
       content:"rails面白いです",
-      link:"http://localhost:3000/posts"
+      link:"http://localhost:3000/posts",
+      created_at:"2020-03-26 00:00:00"
     },
     {
       user_id:1,
       genre_id:1,
       title:"rubyの勉強です",
       content:"rails面白いです",
-      link:"http://localhost:3000/posts"
+      link:"http://localhost:3000/posts",
+      relearn_count: 3,
+      created_at:"2020-02-26 02:00:00"
     },
     {
       user_id:1,
       genre_id:1,
       title:"rubyの勉強です",
       content:"rails面白いです",
-      link:"http://localhost:3000/posts"
+      link:"http://localhost:3000/posts",
+      created_at:"2020-02-26 03:00:00"
     },
     {
       user_id:1,
@@ -223,7 +227,10 @@ RealTiming.create!(
       post_id: 1
     },
     {
-      post_id: 2
+      post_id: 2,
+      first_term: "2020-02-27 02:00:00",
+      second_term: "2020-02-29 02:00:00",
+      third_term: "2020-03-06 02:00:00"
     },
     {
       post_id: 3
@@ -327,7 +334,7 @@ end
   ]
 )
 end
-10.times do |n|
+5.times do |n|
   Friend.create!(
   [
     {

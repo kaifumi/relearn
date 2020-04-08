@@ -15,6 +15,8 @@ class HomesController < ApplicationController
       @order_posts = order_array[0]
       # ジャンル名の配列
       @genres = order_array[1]
+      # グラフ表示用。復習タームの最も近い投稿
+      @post = Post.find(@order_posts[0][0])
     end
     # pluckメソッドで単一のランダムレコードをもってくる
     @quote = Quote.find(Quote.pluck(:id).sample).word

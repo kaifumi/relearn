@@ -1,4 +1,5 @@
 module HomesHelper
+  include PostsHelper
   # 小数点部分を時間計算してを返すメソッド
   # %1することで小数点部分のみに24かけて時間を出す
   def divide(float_term)
