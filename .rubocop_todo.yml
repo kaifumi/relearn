@@ -127,6 +127,8 @@ Metrics/AbcSize:
     - "app/controllers/relearn_points_controller.rb"
     - "app/controllers/completes_controller.rb"
     - "app/models/post.rb"
+    - "app/helpers/posts_helper.rb"
+
   Enabled: true
   Max: 30
 
@@ -135,6 +137,9 @@ Metrics/CyclomaticComplexity:
 
 Metrics/PerceivedComplexity:
   Max: 10
+
+Metrics/ParameterLists:
+  Max: 6
 
 Style/GuardClause:
   Exclude:
