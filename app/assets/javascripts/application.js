@@ -16,21 +16,21 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require owl.carousel
+//= require chartkick
+//= require Chart.bundle
 //= require_tree .
 
-$(function() {
+$(function () {
   $(".date-picker").datetimepicker({
     format: "MM-DD",
-    useCurrent: false
+    useCurrent: false,
   });
 });
 
 // $(".date-picker").datetimepicker((pickTime: false));
 
-$(function() {
+$(function () {
   $(".slide-banner.owl-carousel").owlCarousel({
-    items: 4
+    items: 4,
   });
 });
-
-

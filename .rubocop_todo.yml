@@ -87,6 +87,7 @@ Layout/LineLength:
   Max: 150
   Exclude:
     - "app/models/form/plan_timing.rb"
+    - "app/controllers/friends_controller.rb"
 
 # タブが過剰(ストロングパラメータ用)
 Layout/Tab:
@@ -111,6 +112,7 @@ Metrics/MethodLength:
     - "app/controllers/completes_controller.rb"
     - "app/models/post.rb"
     - "app/models/rate.rb"
+    - "app/helpers/posts_helper.rb"
 
 Metrics/BlockLength:
   Max: 25
@@ -126,6 +128,8 @@ Metrics/AbcSize:
     - "app/controllers/relearn_points_controller.rb"
     - "app/controllers/completes_controller.rb"
     - "app/models/post.rb"
+    - "app/helpers/posts_helper.rb"
+
   Enabled: true
   Max: 30
 
@@ -134,6 +138,12 @@ Metrics/CyclomaticComplexity:
 
 Metrics/PerceivedComplexity:
   Max: 10
+
+Metrics/ParameterLists:
+  Max: 6
+
+Metrics/ModuleLength:
+  Max: 105
 
 Style/GuardClause:
   Exclude:

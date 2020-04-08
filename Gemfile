@@ -61,6 +61,9 @@ gem 'momentjs-rails', '>= 2.9.0'
 # トップページでスライドを作るためのgem
 gem 'owlcarousel-rails'
 
+# グラフ機能 rubyだけで記述が可能
+gem 'chartkick'
+
 group :production do
   # 開発環境では、DBにはSQLiteを利用していたが、AWSで動作させる際にはMySQLを利用
   gem 'mysql2'
