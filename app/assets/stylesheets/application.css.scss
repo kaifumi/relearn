@@ -14,9 +14,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Courier", "Helvetica Neue", "Helvetica", "Arial", YuGothic,
-    "Yu Gothic", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", "メイリオ",
-    Meiryo, "ＭＳ ゴシック", sans-serif;
+  font-family: "ヒラギノ丸ゴ ProN", "Hiragino Maru Gothic ProN", "メイリオ",
+    "Osaka", "Courier", "Helvetica Neue", "Helvetica", "Arial", "Yu Gothic",
+    "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", "ＭＳ ゴシック",
+    sans-serif;
 }
 .clearfix::after {
   content: "";
@@ -130,7 +131,82 @@ header {
   color: white;
   text-align: center;
 }
-
+//サインアップ
+//
+.sign_up_box {
+  margin: 50px auto;
+  width: 400px;
+  font-size: 22px;
+  h1 {
+    font-size: 60px;
+  }
+}
+.sign_up_main_box {
+  margin: 40px 0 0 30px;
+}
+.sign_up_form {
+  width: 80%;
+  height: 35px;
+  font-size: 20px;
+  border: none;
+  border-bottom: 2px solid greenyellow;
+  margin-bottom: 15px;
+}
+.sign_up_btn {
+  height: 50px;
+  line-height: 50px;
+  width: 80%;
+  border-radius: 5px;
+  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  background-color: #78bbe6;
+  color: white;
+  text-align: center;
+  font-size: 25px;
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+.log_in_link a:link,
+.log_in_link a:visited {
+  color: #78bbe6;
+}
+// ログインページ
+//
+.log_in_box {
+  margin: 50px auto;
+  width: 400px;
+  font-size: 22px;
+  h1 {
+    font-size: 60px;
+  }
+}
+.log_in_main_box {
+  margin: 40px 0 0 30px;
+}
+.log_in_form {
+  width: 80%;
+  height: 35px;
+  font-size: 20px;
+  border: none;
+  border-bottom: 2px solid greenyellow;
+  margin-bottom: 15px;
+}
+.log_in_btn {
+  height: 50px;
+  line-height: 50px;
+  width: 80%;
+  border-radius: 5px;
+  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  background-color: #78bbe6;
+  color: white;
+  text-align: center;
+  font-size: 25px;
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+.sign_up_link a:link,
+.sign_up_link a:visited {
+  color: #78bbe6;
+}
 //トップページ
 //
 .top_title {
