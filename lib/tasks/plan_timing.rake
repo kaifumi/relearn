@@ -6,7 +6,10 @@ namespace :plan_timing do
     user_plan_array = PlanTiming.first_term_check
     unless user_plan_array.empty?
       user_plan_array.each do |user, plan|
+        # メール送信メソッド
         RelearnMailer.first_term_mail(user, plan).deliver_now
+        # 通知レコード作成メソッド
+        plan.create_notification_plan(user, plan, 1)
       end
     end
   end
@@ -18,6 +21,7 @@ namespace :plan_timing do
     unless user_plan_array.empty?
       user_plan_array.each do |user, plan|
         RelearnMailer.second_term_mail(user, plan).deliver_now
+        plan.create_notification_plan(user, plan, 2)
       end
     end
   end
@@ -29,6 +33,7 @@ namespace :plan_timing do
     unless user_plan_array.empty?
       user_plan_array.each do |user, plan|
         RelearnMailer.third_term_mail(user, plan).deliver_now
+        plan.create_notification_plan(user, plan, 3)
       end
     end
   end
@@ -40,6 +45,7 @@ namespace :plan_timing do
     unless user_plan_array.empty?
       user_plan_array.each do |user, plan|
         RelearnMailer.forth_term_mail(user, plan).deliver_now
+        plan.create_notification_plan(user, plan, 4)
       end
     end
   end

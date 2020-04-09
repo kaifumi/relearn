@@ -30,26 +30,45 @@ class User < ApplicationRecord
   # 通知も友達関係と似たように作る
   # ユーザーが友達リクエスト通知を送ったときの関係
   has_many :active_notifications, class_name: 'Notification',
-                                  foreign_key: 'visiter_id',
+                                  foreign_key: 'visitor_id',
                                   dependent: :destroy,
                                   inverse_of: :receiver
   # ユーザーから友達リクエスト通知が送られたときの関係
   has_many :passive_notifications, class_name: 'Notification',
                                    foreign_key: 'receiver_id',
                                    dependent: :destroy,
-                                   inverse_of: :visiter
-  # visitersという外部キーをactive_notificationsという中間テーブルを通して1対多で関連付ける。sourceは省略してもいける。
-  has_many :visiters, through: :active_notifications, source: :visiter
+                                   inverse_of: :visitor
+  # visitorsという外部キーをactive_notificationsという中間テーブルを通して1対多で関連付ける。sourceは省略してもいける。
+  has_many :visitors, through: :active_notifications, source: :visitor
   # visitedという外部キーをもたせる。sourceは省略してもいける。
-  # visitersでは被るのでreceiversにしました。
+  # visitorsでは被るのでreceiversにしました。
   has_many :receivers, through: :passive_notifications, source: :receiver
 
   # 友達検索メソッド
-  def self.search(word, user_id)
+  def self.search(word, current_user_id)
     # 空検索の場合何も返さない
     return nil if word.blank?
 
     # 名前が一致するものをすべて返す
-    User.where(['name LIKE ?', "%#{word}%"]).where(search_status: true).where.not(id: user_id)
+    User.where(['name LIKE ?', "%#{word}%"]).where(search_status: true).where.not(id: current_user_id)
+  end
+
+  # リクエスト通知が送ったときの通知レコードを作成するメソッド
+  def self.create_notification_request!(current_user, user_id)
+    temp = Notification.where(['visitor_id = ? and receiver_id = ? and action = ? ', current_user.id, user_id, 'request'])
+    return if temp.present?
+
+    notification = Notification.new(visitor_id: current_user.id, receiver_id: user_id, action: 'request')
+    notification.save if notification.valid?
+  end
+
+  # 送ったリクエストが承認されたときの通知レコードを作成するメソッド
+  # 承認時はvisitorが他者でreceicerが利用ユーザーとなる
+  def self.create_notification_approve!(current_user, user_id)
+    temp = Notification.where(['visitor_id = ? and receiver_id = ? and action = ? ', user_id, current_user.id, 'approve'])
+    return if temp.present?
+
+    notification = Notification.new(visitor_id: user.id, receiver_id: current_user.id, action: 'approve')
+    notification.save if notification.valid?
   end
 end

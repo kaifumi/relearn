@@ -80,7 +80,7 @@ class PlanTiming < ApplicationRecord
   # 1回目の復習タイミング
   def self.first_term_check
     user_plan_array = []
-    # 過去10前~現在の間に該当タームの時間が入ってれば送る
+    # 過去10分前~現在の間に該当タームの時間が入ってれば送る
     # where("term BETWEEN ? AND ?",from,to)の書き方で範囲抽出できる
     plan_range=PlanTiming.where("first_term BETWEEN ? AND ?",Time.now-600,Time.now )
     unless plan_range.empty? then
@@ -95,7 +95,7 @@ class PlanTiming < ApplicationRecord
   # 2回目の復習タイミング
   def self.second_term_check
     user_plan_array = []
-    # 過去10前~現在の間に該当タームの時間が入ってれば送る
+    # 過去10分前~現在の間に該当タームの時間が入ってれば送る
     # where("term BETWEEN ? AND ?",from,to)の書き方で範囲抽出できる
     plan_range=PlanTiming.where("second_term BETWEEN ? AND ?",Time.now-600,Time.now )
     unless plan_range.empty? then
@@ -110,7 +110,7 @@ class PlanTiming < ApplicationRecord
   # 3回目の復習タイミング
   def self.third_term_check
     user_plan_array = []
-    # 過去10前~現在の間に該当タームの時間が入ってれば送る
+    # 過去10分前~現在の間に該当タームの時間が入ってれば送る
     # where("term BETWEEN ? AND ?",from,to)の書き方で範囲抽出できる
     plan_range=PlanTiming.where("third_term BETWEEN ? AND ?",Time.now-600,Time.now )
     unless plan_range.empty? then
@@ -125,7 +125,7 @@ class PlanTiming < ApplicationRecord
   # 4回目の復習タイミング
   def self.forth_term_check
     user_plan_array = []
-    # 過去10前~現在の間に該当タームの時間が入ってれば送る
+    # 過去10分前~現在の間に該当タームの時間が入ってれば送る
     # where("term BETWEEN ? AND ?",from,to)の書き方で範囲抽出できる
     plan_range=PlanTiming.where("forth_term BETWEEN ? AND ?",Time.now-600,Time.now )
     unless plan_range.empty? then
@@ -136,4 +136,16 @@ class PlanTiming < ApplicationRecord
     # ユーザーモデルとプランモデルの配列
     user_plan_array
   end
+
+
+  # 復習予定時間がきたことの通知レコードを作成するメソッド
+  def create_notification_plan(user, plan, term_num)
+    # すでに通知されているか検索
+    temp = Notification.where(["receiver_id = ? and plan_timing_id = ? and action = ? ", user.id, plan.id, 'plan_timing'])
+    # 通知されていない場合のみ、通知レコードを作成
+    if temp.blank?
+      notification = Notification.new(plan_timing_id: plan.id,receiver_id: user.id,action: 'plan_timing',plan_num: term_num)
+      # バリデーションが通れえば保存
+      notification.save if notification.valid?
+    end
 end

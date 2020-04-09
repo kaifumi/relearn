@@ -8,5 +8,6 @@ class CreateRelearnPoints < ActiveRecord::Migration[5.2]
       t.integer :forth_score, default: 0, null: false
       t.timestamps
     end
+    add_index :relearn_points, :post_id
   end
 end
