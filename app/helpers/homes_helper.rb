@@ -1,9 +1,15 @@
 module HomesHelper
-  # 小数点のみを返すメソッド
+  include PostsHelper
+  # 小数点部分を時間計算してを返すメソッド
+  # %1することで小数点部分のみに24かけて時間を出す
   def divide(float_term)
-    _a, b = float_term.to_s.split('.')
-    # 小数点のみを返す
-    b
+    (float_term / 3600 % 1 * 24).round
+  end
+
+  # 少数点を分計算して返す
+  # %1することで小数点部分のみに60かけて分を出す
+  def divide_minute(float_term)
+    (float_term / 3600 * 24 % 1 * 60).round
   end
 
   # # 該当するジャンルの投稿が何件あるかチェックするメソッド

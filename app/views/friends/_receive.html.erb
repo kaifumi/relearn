@@ -1,0 +1,19 @@
+<table class="receive_table">
+  <tbody class="receive_tbody">
+    <% unless models.nil? %>
+      <%# modelsはレンダリング元から渡している各モデルを参照している %>
+      <% models.each do |model| %>
+        <tr>
+          <td><p><%= attachment_image_tag(model.sender, :image, :fill, 50, 50, fallback: "default.png", class: "friend_image") %></p></td>
+          <td><p><%= model.sender.name %></p></td>
+          <td><%= link_to user_friend_path(user_id: current_user.id, id: model.sender_id, judge: true),method: :patch do %><p class="friend_request_approve_btn">承認</p><% end %></td>
+          <td><%= link_to user_friend_path(user_id: current_user.id, id: model.sender_id, judge: false),method: :patch do %><p class="friend_request_reject_btn">拒否</p><% end %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+

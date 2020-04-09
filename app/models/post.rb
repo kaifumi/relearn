@@ -1,11 +1,12 @@
 class Post < ApplicationRecord
   belongs_to :user
   belongs_to :genre
-  has_many :notifications, dependent: :destroy
-  has_many :checks, dependent: :destroy
   has_many :relearn_points, dependent: :destroy
   has_many :plan_timings, dependent: :destroy
   has_many :real_timings, dependent: :destroy
+
+  validates :title, presence: true
+  validates :content, presence: true
 
   # 投稿の中で未復習でかつ最短の通知時間の投稿を振り分けるメソッド
   def self.latest_relearn(posts, _user_id)
@@ -43,7 +44,6 @@ class Post < ApplicationRecord
       end
     end
     # 投稿の未復習の通知タイミング順にソートした配列
-    # {{genre_id:[投稿の集合]},{genre_id:[投稿の集合],・・・}のようになっている
     order_terms = yet_relearn.sort_by! { |a| a[:term] }
     post_array = []
     # post_idを持った配列を作成
@@ -52,6 +52,7 @@ class Post < ApplicationRecord
                        order_term[:genre_type], order_term[:title], order_term[:content]])
     end
     # order_termsの配列をジャンルごとに並べて変数化
+    # {{genre_id:[投稿の集合]},{genre_id:[投稿の集合],・・・}のようになっている
     genre_group = order_terms.group_by { |x| x[:genre_type] }
     # ここでまとめて最短の投稿を持つジャンルごとにソートした配列も用意する
     genre_array = []

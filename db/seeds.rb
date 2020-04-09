@@ -4,19 +4,22 @@ User.create!(
       name:"貝野史弥",
       email:"aaa@aaa",
       password:"aaaaaa"
-    },
-    {
-      name:"板谷優里",
-      email:"bbb@bbb",
-      password:"bbbbbb"
-    },
-    {
-      name:"藤野貴明",
-      email:"ccc@ccc",
-      password:"cccccc"
     }
   ]
 )
+10.times do |n|
+  User.create!(
+  [
+    {
+      name: "aa#{n + 1}",
+      email: "aa#{n + 1}@aa.aa",
+      password: "aaaaa#{n + 1}",
+      rank_status: true,
+      search_status: true
+   }
+  ]
+)
+end
 Genre.create!(
   [
     {
@@ -26,9 +29,19 @@ Genre.create!(
     {
       user_id:2,
       type:"フロントエンド"
-  }
+    }
   ]
 )
+10.times do |n|
+  Genre.create!(
+  [
+    {
+      user_id: n + 1,
+      type: "test#{n + 1}"
+    }
+  ]
+)
+end
 Post.create!(
   [
     {
@@ -36,21 +49,25 @@ Post.create!(
       genre_id:1,
       title:"rubyの勉強です",
       content:"rails面白いです",
-      link:"http://localhost:3000/posts"
+      link:"http://localhost:3000/posts",
+      created_at:"2020-03-26 00:00:00"
     },
     {
       user_id:1,
       genre_id:1,
       title:"rubyの勉強です",
       content:"rails面白いです",
-      link:"http://localhost:3000/posts"
+      link:"http://localhost:3000/posts",
+      relearn_count: 3,
+      created_at:"2020-02-26 02:00:00"
     },
     {
       user_id:1,
       genre_id:1,
       title:"rubyの勉強です",
       content:"rails面白いです",
-      link:"http://localhost:3000/posts"
+      link:"http://localhost:3000/posts",
+      created_at:"2020-02-26 03:00:00"
     },
     {
       user_id:1,
@@ -76,6 +93,19 @@ Post.create!(
 
   ]
 )
+10.times do |n|
+  Post.create!(
+  [
+    {
+      user_id: n + 1,
+      genre_id: n + 1,
+      title:"test#{n + 1}",
+      content:"test#{n + 1}test#{n + 1}test#{n + 1}",
+      link:"http://localhost:3000/posts"
+    }
+  ]
+)
+end
 PlanTiming.create!(
   [
     {
@@ -156,7 +186,7 @@ PlanTiming.create!(
     {
       post_id: 6,
       first_term: "2020-02-26 06:00:00",
-      second_term: "2020-02-28 0:00:00",
+      second_term: "2020-02-28 06:00:00",
       third_term: "2020-03-04 06:00:00",
       forth_term: "2020-03-25 06:00:00",
       first_min: "2020-02-25 07:00:00",
@@ -170,13 +200,37 @@ PlanTiming.create!(
     }
   ]
 )
+10.times do |n|
+  PlanTiming.create!(
+  [
+    {
+      post_id: "#{n + 7}",
+      first_term: (Time.now.yesterday+n+1).since(1.day),
+      second_term: (Time.now.yesterday+n+1).since(3.day),
+      third_term: (Time.now.yesterday+n+1).since(10.day),
+      forth_term: (Time.now.yesterday+n+1).since(30.day),
+      first_min: (Time.now.yesterday+n+1).since(1.hour),
+      first_max: (Time.now.yesterday+n+1).since(2.day),
+      second_min: (Time.now.yesterday+n+1).since(3.day),
+      second_max: (Time.now.yesterday+n+1).since(7.day),
+      third_min: (Time.now.yesterday+n+1).since(8.day),
+      third_max: (Time.now.yesterday+n+1).since(14.day),
+      forth_min: (Time.now.yesterday+n+1).since(15.day),
+      forth_max: (Time.now.yesterday+n+1).since(30.day)
+    }
+  ]
+)
+end
 RealTiming.create!(
   [
     {
       post_id: 1
     },
     {
-      post_id: 2
+      post_id: 2,
+      first_term: "2020-02-27 02:00:00",
+      second_term: "2020-02-29 02:00:00",
+      third_term: "2020-03-06 02:00:00"
     },
     {
       post_id: 3
@@ -193,6 +247,15 @@ RealTiming.create!(
   ]
 )
 
+10.times do |n|
+  RealTiming.create!(
+  [
+    {
+      post_id: n + 7
+    }
+  ]
+)
+end
 RelearnPoint.create!(
   [
     {
@@ -215,32 +278,87 @@ RelearnPoint.create!(
   }
   ]
 )
+10.times do |n|
+  RelearnPoint.create!(
+  [
+    {
+      post_id: n + 7
+    }
+  ]
+)
+end
 TotalPoint.create!(
   [
     {
         user_id: 1
-    },
-    {
-      user_id: 2
-    },
-    {
-      user_id: 3
     }
   ]
 )
+10.times do |n|
+  TotalPoint.create!(
+  [
+    {
+      user_id: n + 2,
+      score: 1000+n
+   }
+  ]
+)
+end
 Rate.create!(
   [
     {
         user_id: 1
-    },
-    {
-      user_id: 2
-    },
-    {
-      user_id: 3
     }
   ]
 )
+10.times do |n|
+  Rate.create!(
+  [
+    {
+      user_id: n+2,
+      total_rate: 0.1+n,
+      count: n+1
+   }
+  ]
+)
+end
+10.times do |n|
+  Friend.create!(
+  [
+    {
+      sender_id: 1,
+      recipient_id: n+2,
+      active_status: true,
+      send_request: true
+   }
+  ]
+)
+end
+5.times do |n|
+  Friend.create!(
+  [
+    {
+      sender_id: 2,
+      recipient_id: n+3,
+      active_status: true,
+      send_request: true
+   }
+  ]
+)
+end
+5.times do |n|
+  Friend.create!(
+  [
+    {
+      sender_id: 3,
+      recipient_id: n+4,
+      active_status: false,
+      send_request: true
+   }
+  ]
+)
+end
+
 Quote.create!(
   [
     {

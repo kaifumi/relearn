@@ -12,6 +12,9 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.timestamps
     end
     # 検索がよく行われる想定のため、indexを張る
+    add_index :posts, :title
+    add_index :posts, :content
+    add_index :posts, :relearn_count
     add_index :posts, :total_point
   end
 end
