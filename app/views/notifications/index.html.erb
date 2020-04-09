@@ -1,2 +1,17 @@
-<h1>Notifications#index</h1>
-<p>Find me in app/views/notifications/index.html.erb</p>
+<div class="notification_index_box">
+  <h1>通知一覧</h1>
+  <div class="notification_index_main_box">
+    <%= link_to destroy_all_notifications_path(current_user.id), method: :delete do %>
+      <i class="fas fa-trash" style="color: black; font-size: 1.5em;"></i>
+      <h7 style="color: black;">全削除</h7>
+    <% end %>
+    <hr>
+    <% if @notifications.exists? %>
+      <div class="users-index">
+        <%= render @notifications %>
+      </div>
+    <% else %>
+      <p>通知はありません</p>
+    <% end %>
+  </div>
+</div>

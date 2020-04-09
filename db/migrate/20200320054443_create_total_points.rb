@@ -5,5 +5,6 @@ class CreateTotalPoints < ActiveRecord::Migration[5.2]
       t.integer :score, default: 0, null: false
       t.timestamps
     end
+    add_index :total_points, :user_id
   end
 end
