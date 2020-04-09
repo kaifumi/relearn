@@ -148,4 +148,5 @@ class PlanTiming < ApplicationRecord
       # バリデーションが通れえば保存
       notification.save if notification.valid?
     end
+  end
 end
