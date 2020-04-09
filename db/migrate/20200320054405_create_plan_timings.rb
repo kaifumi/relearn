@@ -17,5 +17,6 @@ class CreatePlanTimings < ActiveRecord::Migration[5.2]
       t.datetime :forth_max
       t.timestamps
     end
+    add_index :plan_timings, :post_id
   end
 end

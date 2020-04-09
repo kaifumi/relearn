@@ -41,6 +41,9 @@ h1 {
 a {
   text-decoration: none;
 }
+a:hover {
+  text-decoration: none;
+}
 a:link {
   color: white;
 }
@@ -86,7 +89,7 @@ header {
 .menu_render {
   float: right;
   width: 40px;
-  margin: 35px;
+  margin: 34px;
 }
 .nav-list_center {
   float: left;
@@ -355,6 +358,35 @@ header {
 .signend_false a:link,
 .signend_false a:visited {
   color: #1b435d;
+}
+// 通知一覧
+.notification_index_box {
+  margin: 50px auto;
+  width: 400px;
+  font-size: 22px;
+  h1 {
+    font-size: 40px;
+  }
+  hr {
+    border-top: 1px solid #1b435d;
+  }
+}
+.notification_index_main_box {
+  margin: 40px 0 0 30px;
+}
+.n-circle {
+  position: absolute;
+  padding-left: 1.3rem;
+  color: #efa04c;
+  font-size: 1.2em;
+}
+.notification_user_image {
+  width: 50px;
+  border-radius: 25px;
+}
+.user-view a {
+  color: rgb(103, 214, 39);
+  font-weight: bold;
 }
 
 // ポイント入力フォームの位置調整

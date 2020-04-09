@@ -33,9 +33,11 @@ Rails.application.routes.draw do
   post 'user/:id/send_request' => 'friends#send_request', as: "send_request"
   # リクエスト取り消し
   delete 'user/:id/cancel_request' => 'friends#cancel_request', as: "cancel_request"
+  # 通知を全削除
+  delete 'user/:id/notification' => 'notifications#destroy_all', as: "destroy_all_notifications"
   resources :users, only: [:edit, :update, :destroy] do
     resources :genres, only: [:index, :create, :update, :destroy]
-    resources :notifications, only: [:index, :update]
+    resources :notifications, only: [:index]
     resources :friends, only: [:index, :update, :destroy]
   end
   resources :posts do

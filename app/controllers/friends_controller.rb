@@ -18,6 +18,8 @@ class FriendsController < ApplicationController
   def send_request
     # リクエストを送った時点でレコードを作成
     Friend.create(send_request: true, sender_id: current_user.id, recipient_id: params[:user_id], active_status: false)
+    # リクエスト送信時の通知レコード作成メソッド
+    User.create_notification_request!(current_user, params[:user_id])
     # each文中から引っ張ってきているので再定義必要
     @user_id = params[:user_id]
     render 'status_change'
@@ -51,6 +53,8 @@ class FriendsController < ApplicationController
     # judgeにはtrueかfalseが入る
     if params[:judge]
       if friend.update(active_status: true)
+        # リクエスト承認したときの通知レコードを作成するメソッド
+        User.create_notification_approve!(current_user, params[:id])
         flash[:warning] = 'リクエスト承認しました'
       else
         flash[:danger] = 'リクエスト承認に失敗しました'

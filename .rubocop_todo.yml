@@ -105,7 +105,7 @@ Layout/EmptyLinesAroundClassBody:
 
 # def~endの間に入れることが可能な行数を設定
 Metrics/MethodLength:
-  Max: 15
+  Max: 20
   Exclude:
     - "app/controllers/posts_controller.rb"
     - "app/controllers/relearn_points_controller.rb"
@@ -130,6 +130,7 @@ Metrics/AbcSize:
     - "app/models/post.rb"
     - "app/helpers/posts_helper.rb"
     - "app/controllers/homes_controller.rb"
+    - "app/helpers/notifications_helper.rb"
 
   Enabled: true
   Max: 30
