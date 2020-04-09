@@ -12,16 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2020_03_21_005236) do
 
-  create_table "checks", force: :cascade do |t|
-    t.integer "post_id", null: false
-    t.boolean "first_check", default: false, null: false
-    t.boolean "second_check", default: false, null: false
-    t.boolean "third_check", default: false, null: false
-    t.boolean "forth_check", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "delete_comments", force: :cascade do |t|
     t.integer "user_id", null: false
     t.text "message"
@@ -46,20 +36,21 @@ ActiveRecord::Schema.define(version: 2020_03_21_005236) do
     t.string "type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_genres_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer "visiter_id"
+    t.integer "visitor_id"
     t.integer "receiver_id"
-    t.integer "post_id"
     t.integer "plan_timing_id"
+    t.integer "term_num"
     t.string "action", default: "", null: false
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["receiver_id"], name: "index_notifications_on_receiver_id"
-    t.index ["visiter_id", "receiver_id"], name: "index_notifications_on_visiter_id_and_receiver_id", unique: true
-    t.index ["visiter_id"], name: "index_notifications_on_visiter_id"
+    t.index ["visitor_id", "receiver_id"], name: "index_notifications_on_visitor_id_and_receiver_id", unique: true
+    t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
   create_table "plan_timings", force: :cascade do |t|
@@ -78,6 +69,7 @@ ActiveRecord::Schema.define(version: 2020_03_21_005236) do
     t.datetime "forth_max"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_plan_timings_on_post_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -91,6 +83,9 @@ ActiveRecord::Schema.define(version: 2020_03_21_005236) do
     t.integer "total_point", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["content"], name: "index_posts_on_content"
+    t.index ["relearn_count"], name: "index_posts_on_relearn_count"
+    t.index ["title"], name: "index_posts_on_title"
     t.index ["total_point"], name: "index_posts_on_total_point"
   end
 
@@ -106,6 +101,7 @@ ActiveRecord::Schema.define(version: 2020_03_21_005236) do
     t.integer "count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_rates_on_user_id"
   end
 
   create_table "real_timings", force: :cascade do |t|
@@ -116,6 +112,7 @@ ActiveRecord::Schema.define(version: 2020_03_21_005236) do
     t.datetime "forth_term"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_real_timings_on_post_id"
   end
 
   create_table "relearn_points", force: :cascade do |t|
@@ -126,6 +123,7 @@ ActiveRecord::Schema.define(version: 2020_03_21_005236) do
     t.integer "forth_score", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_relearn_points_on_post_id"
   end
 
   create_table "total_points", force: :cascade do |t|
@@ -133,6 +131,7 @@ ActiveRecord::Schema.define(version: 2020_03_21_005236) do
     t.integer "score", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_total_points_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

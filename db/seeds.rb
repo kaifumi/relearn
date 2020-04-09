@@ -341,7 +341,7 @@ end
       sender_id: 2,
       recipient_id: n+3,
       active_status: true,
-      send_request: false
+      send_request: true
    }
   ]
 )

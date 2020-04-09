@@ -2,16 +2,16 @@
 <%# リクエスト送信済みか判断するメソッド %>
 <% if send_request(user_id) == 0 %>
   <%# リクエスト未送信かつ未受信 %>
-  <div class="friend_request_btn"><%= link_to "友達リクエスト",send_request_path(id: current_user.id, user_id: user_id),
-                                                  method: :post, remote: true %></div>
+  <%= link_to send_request_path(id: current_user.id, user_id: user_id),method: :post, remote: true do %>
+    <div class="friend_request_btn"><p>友達リクエスト</p></div><% end %>
 <% elsif send_request(user_id) == 1 %>
   <%# リクエスト未送信かつ受信済 %>
-  <div class="friend_request_receive_btn"><%= link_to "リクエスト未承認",friend_receive_path(current_user.id) %></div>
+  <%= link_to friend_receive_path(current_user.id) do %><div class="friend_request_receive_btn"><p>リクエスト未承認</p></div><% end %>
 <% elsif send_request(user_id) == 2 %>
   <%# リクエスト送信済かつ承認済 %>
-  <div class="friend_request_reject_btn"><%= link_to "取り消し",cancel_request_path(id: current_user.id, user_id: user_id),
-                                                  method: :delete, remote: true %></div>
+  <%= link_to cancel_request_path(id: current_user.id, user_id: user_id),method: :delete, remote: true do %>
+    <div class="friend_request_reject_btn"><p>取り消し</p></div><% end %>
 <% else %>
   <%# リクエスト送信済かつ未承認 %>
-  <div class="already_friend_btn"><%= link_to "友達",user_friends_path(current_user.id) %></div>
+  <%= link_to user_friends_path(current_user.id) do %><div class="already_friend_btn"><p>友達</p></div><% end %>
 <% end %>  
