@@ -1,0 +1,14 @@
+<%# メニューの部分テンプレート %>
+<div id="nav-drawer">
+  <input id="nav-input" type="checkbox" class="nav-unshown">
+  <label id="nav-open" for="nav-input"><span></span></label>
+  <label class="nav-unshown" id="nav-close" for="nav-input"></label>
+  <div id="nav-content">
+    <ul class="menu_list">
+      <li><%= link_to "友達を探そう", friend_search_before_path(current_user.id), class:"menu_link" %></li>
+      <li><%= link_to "ランキング", point_rank_path, class:"menu_link" %></li>
+      <li><%= link_to "アカウント設定", edit_user_path(current_user.id), class:"menu_link" %></li>
+      <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"menu_link" %></li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<%# 指定した部分のHTMLだけ、renderで部分的に更新するという処理 %>
+$('#user_account_info').html("<%= j(render partial: 'users/profile_info', locals: {user: @user}) %>");
+ <%# ヘッダーのユーザーイメージ画像も変更 %>
+$('#nav_user_info').html("<%= j(render partial: 'layouts/user_info', locals: {user: @user}) %>");
+<%# サクセス・エラーメッセージ %>
+<% if flash %>
+  $('#flash_messages').html("<%= j(render 'layouts/flash_messages') %>");
+<% end %>

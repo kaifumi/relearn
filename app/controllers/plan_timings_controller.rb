@@ -13,13 +13,13 @@ class PlanTimingsController < ApplicationController
     # 分解した値を結合するメソッドをモデルに記載
     changed_data = PlanTiming.date_connection(plan_timing_params, params[:post_id])
     if changed_data.empty?
-      flash[:notice] = '変更可能な範囲で選択してください'
+      flash[:danger] = '変更可能な範囲で選択してください'
     elsif changed_data[:hoge] == 'hoge'
-      flash[:alert] = '空白での編集はできません'
+      flash[:danger] = '空白での編集はできません'
     elsif @plan_timing.update!(changed_data)
-      flash[:notice] = '更新できました'
+      flash[:warning] = '更新できました'
     else
-      flash[:alert] = '更新失敗しました'
+      flash[:danger] = '更新失敗しました'
     end
     redirect_to request.referer
   end

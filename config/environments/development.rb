@@ -31,7 +31,22 @@ Rails.application.configure do
   # config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  # メール機能の設定
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    port:                 587,
+    address:              ENV['DOMAIN_NAME'],
+    domain:               ENV['DOMAIN_NAME'],
+    user_name:            ENV['MAIL_NAME'],
+    password:             ENV['MAIL_PASSWORD'],
+    authentication:       'login',
+    enable_starttls_auto: true
+  }
+
+  # WEB上でメールの送信履歴を確認できる
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.delivery_method = :letter_opener_web
 
   config.action_mailer.perform_caching = false
 
@@ -47,7 +62,8 @@ Rails.application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
-  config.assets.debug = true
+  # 開発環境の動作速度UPのため
+  config.assets.debug = false # JSのデバッグ時には必要
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true

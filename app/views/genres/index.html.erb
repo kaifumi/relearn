@@ -1,40 +1,51 @@
-<div class="row">
-  <%# ユーザーが投稿したものすべてを表示 %>
-  <h1>学習ジャンル 追加 / 編集</h1>
-  <div class="col-xs-9">
-    <div class="col-xs-offset-1 col-xs-11">
-      <div class="genre_form">
-        <%= form_with(model: @genre, url: user_genres_path(user_id: current_user.id), method: :post, local: true, class:"form_control") do |f| %>
-          <%= f.text_field :type %>
-          <%= f.submit "追加", class:"btn btn-primary" %>
-        <% end %>
-      </div>
-    <table>
-      <thead>
-        <tr>
-          <td>ジャンル</td>
-          <td>変更後ジャンル名</td>
-          <td></td>
-          <td></td>
-        </tr>
-      </thead>
-      <tbody>
-        <% @genres.each do |genre| %>
-          <%= form_with(model: genre, url: user_genre_path(user_id: current_user.id, id: genre.id), method: :patch, local: true, class:"form_control") do |f| %>
-          <tr>
-            <td><%= genre.type %></td>
-            <td><%= f.text_field :type %></td>
-            <td><%= f.submit "更新", class:"btn btn-primary" %></td>
-            <td><%= link_to "削除", user_genre_path(user_id: current_user.id, id: genre.id), method: :delete, class:"btn btn-danger", data: {"turbolinks" => false} %></td>
-          </tr>
+<%# ユーザーが持っているジャンルすべてを表示 %>
+<h1>学習ジャンル 追加 / 編集</h1>
+<div class="genre_index_box row">
+  <div class="genre_main_box col-xs-9">
+    <div class="genre_list_box col-xs-10 col-xs-offset-2">
+        <div class="genre_form">
+          <%= form_with(model: @genre, url: user_genres_path(user_id: current_user.id), method: :post, local: true, class:"form_control") do |f| %>
+            <%= f.text_field :type ,class: "genre_type_form"%>
+            <%= f.submit "追加", class:"genre_form_btn" %>
           <% end %>
+        </div>
+      <% if @genres.present? %>
+        <table class="genre_table">
+          <thead class="genre_thead">
+            <tr>
+              <td>現在のジャンル名</td>
+              <td>変更後ジャンル名</td>
+              <td></td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody class="genre_tbody">
+            <% @genres.each do |genre| %>
+              <%= form_with(model: genre, url: user_genre_path(user_id: current_user.id, id: genre.id), method: :patch, local: true, class:"form_control") do |f| %>
+              <tr>
+                <td><%= genre.type.truncate(15) %></td>
+                <td><%= f.text_field :type ,class:"genre_table_form"%></td>
+                <td><%= f.submit "更新", class:"genre_form_btn" %></td>
+                <td><div class="genre_delete_btn"><%= link_to "削除", user_genre_path(user_id: current_user.id, id: genre.id), method: :delete, data: {"turbolinks" => false} %></div></td>
+              </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+        <%= paginate @genres %>
+        <% unless Post.find_by(user_id: current_user.id) %>
+          <div class="genre_post_new_use">  
+            <%= link_to "次は投稿をしてみましょう！", new_post_path %>
+          </div>
         <% end %>
-      </tbody>
-    </table>
-    <%= paginate @genres %>
+      <% else %>
+        <div class="genre_index-guide_box">
+          <p>学習したいジャンル名を入れてください。</p>
+        </div>
+      <% end %>
     </div>
   </div>
-  <div class="col-xs-3">
+  <div class="genre_side_box col-xs-3">
     <%# ジャンルの一覧をサイドバーで表示 %>
     <%= render partial: 'layouts/side_genre', locals: {genres: @genres} %>
   </div>

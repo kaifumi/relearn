@@ -6,5 +6,6 @@ class CreateRates < ActiveRecord::Migration[5.2]
       t.integer :count, default: 0, null: false
       t.timestamps
     end
+    add_index :rates, :user_id
   end
 end

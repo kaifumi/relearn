@@ -22,4 +22,70 @@ class Rate < ApplicationRecord
       return array_rate
     end
   end
+
+  # usersにはランキング掲載不可能なユーザーが複数レコード入っている
+  # total_pointsには合計得点のスコアが複数レコード入っている
+  def self.exclude(users, rates)
+    user_array = []
+    # userのidだけで配列化する
+    users&.each do |user|
+      user_array.push(user[:id])
+    end
+    rate_array = []
+    i = 0
+    # 除外したいユーザーと被らなければ配列に入れる
+    rates.each do |rate|
+      if user_array.include?(rate[:user_id])
+        next
+      # 最高で50人入れるまで繰り返す
+      elsif i <= 50
+        rate_array.push(rate)
+        i += 1
+      end
+    end
+    rate_average_array = []
+    # 並べてから平均値を計算したら順位が変動するため、ここで平均値を出して並べる
+    rate_array.each do |rate|
+      # 平均値を出す
+      average_rate = rate[:total_rate] / rate[:count]
+      # user_idと平均値の配列が入った配列をつくる。小数点が第2位まで。
+      rate_average_array.push(user_id: rate[:user_id], average_rate: average_rate.floor(2))
+    end
+    # 平均値の高い順で並び替え
+    rate_average_array.sort_by { |x| x[:average_rate] }.reverse
+  end
+
+  # 友達と自分の合計ポイントが高い順の配列を作るメソッド
+  def self.sorting(friends, current_user_id)
+    # 復習率の配列を用意
+    rate_array = []
+    friends.each do |friend|
+      # リクエスト送信者が自分の場合、その友達はリクエスト受信者
+      if friend.sender_id == current_user_id
+        rate_array.push(Rate.find_by(user_id: friend.recipient_id))
+      # リクエスト受信者が自分の場合、その友達はリクエスト送信者
+      elsif friend.recipient_id == current_user_id
+        rate_array.push(Rate.find_by(user_id: friend.sender_id))
+      end
+    end
+    # 最後に自分を入れる
+    rate_array.push(Rate.find_by(user_id: current_user_id))
+    # 平均化した復習率順の配列
+    rate_average_array = []
+    # 平均復習率を計算するeach文
+    rate_array.each do |rate|
+      # total_rateが0.0の場合はzero?メソッドで判断できる
+      if rate[:total_rate].zero?
+        # 復習回数0であれば平均値は0とする
+        rate_average_array.push(user_id: rate[:user_id], average_rate: 0.floor(2))
+      else
+        # 平均値を出す
+        average_rate = rate[:total_rate] / rate[:count]
+        # user_idと平均値の配列が入った配列をつくる。小数点が第2位まで。
+        rate_average_array.push(user_id: rate[:user_id], average_rate: average_rate.floor(2))
+      end
+    end
+    # 平均値の高い順で並び替え
+    rate_average_array.sort_by { |x| x[:average_rate] }.reverse
+  end
 end

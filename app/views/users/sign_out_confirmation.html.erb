@@ -1,2 +1,20 @@
-<h1>Users#sign_out_confirmation</h1>
-<p>Find me in app/views/users/sign_out_confirmation.html.erb</p>
+<h1>アカウントの削除</h1>
+<div class="account_custom">
+  <div class="account_custom_bar">
+    <%= link_to "プロフィール", edit_user_path(current_user.id), class:"account_item" %>
+    <%= link_to "退会", sign_out_confirm_path, class:"account_sign_out_confirm" %>
+  </div>
+  <div class="sign_out_box">
+    <div class="alert_message">
+      <p>※アカウントを削除するとこれまでのデータが全てなくなります。</p>
+    </div>
+    <div class="sign_out_comment form-group">
+      <p>よろしければ理由を教えて下さい（任意）</p>
+      <%# ここでform_withを使うとdestroyアクション内でメッセージの保存ができない %>
+      <%= form_for(@delete_comment, url: user_path(current_user.id), method: :delete)  do |f| %>
+        <%= f.text_area :message, class: "sign_out_form form_control" %>
+        <%= f.submit "削除", class: "user_delete_btn" %>
+      <% end %>
+    </div>
+  </div>
+</div>
