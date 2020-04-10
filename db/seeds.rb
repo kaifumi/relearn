@@ -2,7 +2,7 @@ User.create!(
   [
     {
       name:"貝野史弥",
-      email:"aaa@aaa",
+      email:"kaifumi1001@gmail.com",
       password:"aaaaaa"
     }
   ]
@@ -36,7 +36,7 @@ Genre.create!(
   Genre.create!(
   [
     {
-      user_id: n + 1,
+      user_id: 1,
       type: "test#{n + 1}"
     }
   ]
@@ -97,7 +97,7 @@ Post.create!(
   Post.create!(
   [
     {
-      user_id: n + 1,
+      user_id: 1,
       genre_id: n + 1,
       title:"test#{n + 1}",
       content:"test#{n + 1}test#{n + 1}test#{n + 1}",
