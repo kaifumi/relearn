@@ -19,7 +19,7 @@ class HomesController < ApplicationController
       @post = Post.find(@order_posts[0][0])
     end
     # pluckメソッドで単一のランダムレコードをもってくる
-    @quote = Quote.find(Quote.pluck(:id).sample).word
+    @quote = Quote.find(Quote.pluck(:id).sample).word if Quote.find(Quote.pluck(:id).sample).word
   end
 
   # アバウトページの表示

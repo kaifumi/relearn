@@ -13,7 +13,8 @@
       <div class="post_show_content">
         <%= simple_format(@post.content) %>
       </div>
-      <p class="post_show_link">link : <a href="<%= @post.link %>"><%= @post.link.truncate(70) %></a></p>
+      <%# target="_blank"をつけることでb別タブに飛ばす。rel="noopener noreferrer" %>
+      <p class="post_show_link">link : <a href="<%= @post.link %>" target="_blank" rel="noopener noreferrer"><%= @post.link.truncate(70) %></a></p>
     </div>
     <div class="post_show_graph_box col-xs-9">
       <p class="post_show_graph_title"><投稿後の忘却推移></p>
