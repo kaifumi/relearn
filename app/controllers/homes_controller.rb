@@ -18,8 +18,8 @@ class HomesController < ApplicationController
       # グラフ表示用。復習タームの最も近い投稿
       @post = Post.find(@order_posts[0][0])
     end
-      # pluckメソッドで単一のランダムレコードをもってくる
-      @quote = Quote.find(Quote.pluck(:id).sample).word if Quote.find(Quote.pluck(:id).sample).word
+    # pluckメソッドで単一のランダムレコードをもってくる
+    @quote = Quote.find(Quote.pluck(:id).sample).word if Quote.find(Quote.pluck(:id).sample).word
   end
 
   # アバウトページの表示
