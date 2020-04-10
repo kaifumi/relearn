@@ -63,6 +63,18 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "relearn_#{Rails.env}"
 
+  # メール機能の設定
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    port:                 587,
+    address:              ENV['DOMAIN_NAME'],
+    domain:               ENV['DOMAIN_NAME'],
+    user_name:            ENV['MAIL_NAME'],
+    password:             ENV['MAIL_PASSWORD'],
+    authentication:       'login',
+    enable_starttls_auto: true
+  }
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
