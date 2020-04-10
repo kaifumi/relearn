@@ -83,7 +83,6 @@ ActiveRecord::Schema.define(version: 2020_03_21_005236) do
     t.integer "total_point", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["content"], name: "index_posts_on_content"
     t.index ["relearn_count"], name: "index_posts_on_relearn_count"
     t.index ["title"], name: "index_posts_on_title"
     t.index ["total_point"], name: "index_posts_on_total_point"
