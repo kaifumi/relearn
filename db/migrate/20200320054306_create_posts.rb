@@ -1,8 +1,8 @@
 class CreatePosts < ActiveRecord::Migration[5.2]
   def change
     create_table :posts do |t|
-      t.integer :user_id, null: false
-      t.integer :genre_id, null: false
+      t.integer :user_id, null: false, index: true
+      t.integer :genre_id, null: false, index: true
       t.string :title, null: false
       t.text :content
       t.string :link
@@ -12,8 +12,6 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.timestamps
     end
     # 検索がよく行われる想定のため、indexを張る
-    add_foreign_key :posts, :user_id
-    add_foreign_key :posts, :genre_id
     add_index :posts, :title
     add_index :posts, :relearn_count
     add_index :posts, :total_point

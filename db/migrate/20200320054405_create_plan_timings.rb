@@ -1,7 +1,7 @@
 class CreatePlanTimings < ActiveRecord::Migration[5.2]
   def change
     create_table :plan_timings do |t|
-      t.integer :post_id, null: false
+      t.integer :post_id, null: false, index: true
       # 投稿作成時にt=Time.currentを実行して、t.since(日付)の値を代入する
       t.datetime :first_term
       t.datetime :second_term
@@ -17,6 +17,5 @@ class CreatePlanTimings < ActiveRecord::Migration[5.2]
       t.datetime :forth_max
       t.timestamps
     end
-    add_foreign_key :plan_timings, :post_id
   end
 end
