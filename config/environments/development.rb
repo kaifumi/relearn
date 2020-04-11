@@ -36,17 +36,18 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     port:                 587,
-    address:              ENV['DOMAIN_NAME'],
-    domain:               ENV['DOMAIN_NAME'],
+    address:              "smtp.gmail.com",
+    domain:               "gmail.com",
     user_name:            ENV['MAIL_NAME'],
     password:             ENV['MAIL_PASSWORD'],
     authentication:       'login',
     enable_starttls_auto: true
   }
 
-  # WEB上でメールの送信履歴を確認できる
+  # デフォルトの送信側ホストURL
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
-  config.action_mailer.delivery_method = :letter_opener_web
+  # WEB上でメールの送信履歴を確認できる
+  # config.action_mailer.delivery_method = :letter_opener_web
 
   config.action_mailer.perform_caching = false
 
