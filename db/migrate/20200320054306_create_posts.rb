@@ -12,6 +12,8 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.timestamps
     end
     # 検索がよく行われる想定のため、indexを張る
+    add_foreign_key :posts, :user_id
+    add_foreign_key :posts, :genre_id
     add_index :posts, :title
     add_index :posts, :relearn_count
     add_index :posts, :total_point
