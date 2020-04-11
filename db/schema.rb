@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 2020_03_21_005236) do
     t.string "type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_genres_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -69,7 +68,6 @@ ActiveRecord::Schema.define(version: 2020_03_21_005236) do
     t.datetime "forth_max"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_plan_timings_on_post_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -100,7 +98,6 @@ ActiveRecord::Schema.define(version: 2020_03_21_005236) do
     t.integer "count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_rates_on_user_id"
   end
 
   create_table "real_timings", force: :cascade do |t|
@@ -111,7 +108,6 @@ ActiveRecord::Schema.define(version: 2020_03_21_005236) do
     t.datetime "forth_term"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_real_timings_on_post_id"
   end
 
   create_table "relearn_points", force: :cascade do |t|
@@ -122,7 +118,6 @@ ActiveRecord::Schema.define(version: 2020_03_21_005236) do
     t.integer "forth_score", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_relearn_points_on_post_id"
   end
 
   create_table "total_points", force: :cascade do |t|
@@ -130,7 +125,6 @@ ActiveRecord::Schema.define(version: 2020_03_21_005236) do
     t.integer "score", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_total_points_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
