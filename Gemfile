@@ -64,6 +64,9 @@ gem 'owlcarousel-rails'
 # グラフ機能 rubyだけで記述が可能
 gem 'chartkick'
 
+# ファイルの変更を検知してそれをフックに何か処理ができるgemとのこと
+gem 'listen', '>= 3.0.5', '< 3.2'
+
 group :production do
   # 開発環境では、DBにはSQLiteを利用していたが、AWSで動作させる際にはMySQLを利用
   gem 'mysql2'
@@ -86,7 +89,6 @@ end
 
 group :development do
   gem 'web-console', '>= 3.3.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   # コーディングスタイルをチェックするための静的解析ツール
