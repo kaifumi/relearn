@@ -144,7 +144,7 @@ class PlanTiming < ApplicationRecord
     temp = Notification.where(["receiver_id = ? and plan_timing_id = ? and action = ? ", user.id, plan.id, 'plan_timing'])
     # 通知されていない場合のみ、通知レコードを作成
     if temp.blank?
-      notification = Notification.new(plan_timing_id: plan.id,receiver_id: user.id,action: 'plan_timing',plan_num: term_num)
+      notification = Notification.new(plan_timing_id: plan.id,receiver_id: user.id,action: 'plan_timing', term_num: term_num)
       # バリデーションが通れえば保存
       notification.save if notification.valid?
     end
