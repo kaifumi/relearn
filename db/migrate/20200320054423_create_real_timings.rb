@@ -9,6 +9,6 @@ class CreateRealTimings < ActiveRecord::Migration[5.2]
       t.datetime :forth_term, default: ''
       t.timestamps
     end
-    add_index :real_timings, :post_id
+    add_foreign_key :real_timings, :post_id
   end
 end
