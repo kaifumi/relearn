@@ -11,8 +11,8 @@ job_type :rbenv_rake, %q!eval "$(rbenv init -)"; cd :path && :environment_variab
 # 生活リズムも大事なので深夜には送らないように設定
 # 10分ごとに送るべきメールがあれば送信する
 # 6:00~23:50
-# every 1.days, :at => ('6'..'23').to_a.collect {|x| ["#{x}:00","#{x}:10","#{x}:20","#{x}:30","#{x}:40","#{x}:50"]}.flatten do
-every 1.minutes do
+every 1.days, :at => ('6'..'23').to_a.collect {|x| ["#{x}:00","#{x}:10","#{x}:20","#{x}:30","#{x}:40","#{x}:50"]}.flatten do
+# every 1.minutes do
   rake "plan_timing:first_term_mail"
 end
 

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # WEB上でメールを確認できる
+  # WEB上でメールを確認できる。必要なときのみコメントアウトを外す。
   # mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env == 'development'
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
