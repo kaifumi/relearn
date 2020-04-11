@@ -1,7 +1,7 @@
 class CreateRealTimings < ActiveRecord::Migration[5.2]
   def change
     create_table :real_timings do |t|
-      t.integer :post_id, null: false
+      t.integer :post_id, null: false, index: true
       # 値が無い場合も想定しているためnull: falseは不要
       t.datetime :first_term, default: ''
       t.datetime :second_term, default: ''
@@ -9,6 +9,5 @@ class CreateRealTimings < ActiveRecord::Migration[5.2]
       t.datetime :forth_term, default: ''
       t.timestamps
     end
-    add_foreign_key :real_timings, :post_id
   end
 end
