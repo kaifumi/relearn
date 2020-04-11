@@ -28,6 +28,10 @@ module Relearn
     config.active_record.default_timezone = :local
     # コントローラーに対応するヘルパーのみ呼び出せる
     config.action_controller.include_all_helpers = false
+    # パスをタスク作成時のリクエストのたびにロード設定
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
+    # パスを、rails起動の際にロードする設定
+    config.eager_load_paths += Dir["#{config.root}/lib/**/"] 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
