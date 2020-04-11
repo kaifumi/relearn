@@ -68,8 +68,8 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     port:                 587,
-    address:              ENV['DOMAIN_NAME'],
-    domain:               ENV['DOMAIN_NAME'],
+    address:              "smtp.gmail.com",
+    domain:               "gmail.com",
     user_name:            ENV['MAIL_NAME'],
     password:             ENV['MAIL_PASSWORD'],
     authentication:       'login',
@@ -77,6 +77,8 @@ Rails.application.configure do
   }
   config.action_mailer.perform_caching = false
 
+  # デフォルトの送信側ホストURL
+  config.action_mailer.default_url_options = { host: ENV['DOMAIN_NAME'] }
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
