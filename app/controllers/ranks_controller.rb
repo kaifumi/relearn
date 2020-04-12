@@ -37,10 +37,4 @@ class RanksController < ApplicationController
     # 友達のidを使って平均復習率の高い順番に分けるメソッド
     @friend_rhythm_ranks = Rate.sorting(@friends, current_user.id)
   end
-
-  private
-
-  def redi
-    redirect_to root_path unless user_signed_in?
-  end
 end
