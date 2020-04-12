@@ -1,6 +1,7 @@
 class RanksController < ApplicationController
   # ログインユーザーのみ実行可能にする
   before_action :authenticate_user!
+
   # 全体ポイントランキングの表示
   def point_rank
     # ランキング掲載不可の人の集合をつくる
@@ -35,5 +36,11 @@ class RanksController < ApplicationController
     @friends = Friend.where(active_status: true).where('sender_id=? or recipient_id=?', current_user.id, current_user.id)
     # 友達のidを使って平均復習率の高い順番に分けるメソッド
     @friend_rhythm_ranks = Rate.sorting(@friends, current_user.id)
+  end
+
+  private
+
+  def redi
+    redirect_to root_path unless user_signed_in?
   end
 end

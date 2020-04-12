@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(version: 2020_03_21_005236) do
     t.integer "forth_score", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_relearn_points_on_post_id"
   end
 
   create_table "total_points", force: :cascade do |t|
