@@ -1,6 +1,10 @@
-<table class="friend_table">
-  <tbody class="friend_tbody">
-    <% unless models.nil? %>
+<% unless models.nil? %>
+  <table class="friend_table">
+    <thead class="friend_thead">
+      <th></th>
+      <th><p>友達：<%= models.length %>人</p></th>
+    </thead>
+    <tbody class="friend_tbody">
       <%# modelsはレンダリング元から渡している各モデルを参照している %>
       <% models.each do |model| %>
         <% if model.sender.id == current_user.id %>
@@ -19,9 +23,9 @@
           </tr>
         <% end %>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+<% end %>
 
 
 
