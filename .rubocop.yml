@@ -18,6 +18,7 @@ AllCops:
     - "script/**/*"
     - !ruby/regexp /old_and_unused\.rb$/
     - "app/models/plan_timing.rb"
+    - "app/helpers/devise_helper.rb"
 
 # 日本語でのコメントを許可
 AsciiComments:
