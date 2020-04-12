@@ -11,6 +11,5 @@ class CreateNotifications < ActiveRecord::Migration[5.2]
     end
     add_index :notifications, :visitor_id
     add_index :notifications, :receiver_id
-    add_index :notifications, [:visitor_id, :receiver_id], unique: true
   end
 end
