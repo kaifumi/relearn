@@ -1,6 +1,9 @@
 class Rate < ApplicationRecord
   belongs_to :user
 
+  # バリデーション
+  validates :count, numericality: { only_integer: true, greater_than: -1 }
+
   # 受け取った値がどの復習タイミングか判別して遅れ具合の算出メソッド
   def self.check(received_score, post_id, user_id)
     # 復習番目と復習予定時間の配列を用意

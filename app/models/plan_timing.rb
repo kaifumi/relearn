@@ -2,6 +2,9 @@ class PlanTiming < ApplicationRecord
   belongs_to :post
   has_many :notification, dependent: :destroy
 
+  # バリデーション
+  validates :post_id, presence: true, uniqueness: true, numericality: { only_integer: true}
+
   # 分解した月日、時、分を結合
   def self.date_connection(values, post_id)
     # 月日を各dateに代入
@@ -53,25 +56,17 @@ class PlanTiming < ApplicationRecord
     # changed_data['first_term']などは"2020-03-25 07:00:00"のように表示されるが、
     # plan_timing.first_minだけではWed, 25 Mar 2020 10:00:00 JST +09:00のように表示されるため、
     # 不等号での比較に不具合が生じる場合がある。末尾に.strftime('%Y-%m-%d %H:%M:%S')が必要。
-    if changed_data['first_term'] && plan_timing.first_min.strftime('%Y-%m-%d %H:%M:%S') <= changed_data['first_term'] && plan_timing.first_max.strftime('%Y-%m-%d %H:%M:%S') >= changed_data['first_term']
-    else
-      changed_data.delete('first_term')
-    end
+    changed_data.delete('first_term') unless changed_data['first_term'] && plan_timing.first_min.strftime('%Y-%m-%d %H:%M:%S') <= 
+                  changed_data['first_term'] && plan_timing.first_max.strftime('%Y-%m-%d %H:%M:%S') >= changed_data['first_term']
     # 変更値が存在するかつ変更可能範囲に入っているならそのまま、違うならハッシュから値を取り除く
-    if changed_data['second_term'] && plan_timing.second_min.strftime('%Y-%m-%d %H:%M:%S') <= changed_data['second_term'] && plan_timing.second_max.strftime('%Y-%m-%d %H:%M:%S') >= changed_data['second_term']
-    else
-      changed_data.delete('second_term')
-    end
+    changed_data.delete('second_term') unless changed_data['second_term'] && plan_timing.second_min.strftime('%Y-%m-%d %H:%M:%S') <= 
+                  changed_data['second_term'] && plan_timing.second_max.strftime('%Y-%m-%d %H:%M:%S') >= changed_data['second_term']
     # 変更値が存在するかつ変更可能範囲に入っているならそのまま、違うならハッシュから値を取り除く
-    if changed_data['third_term'] && plan_timing.third_min.strftime('%Y-%m-%d %H:%M:%S') <= changed_data['third_term'] && plan_timing.third_max.strftime('%Y-%m-%d %H:%M:%S') >= changed_data['third_term']
-    else
-      changed_data.delete('third_term')
-    end
+    changed_data.delete('third_term') unless changed_data['third_term'] && plan_timing.third_min.strftime('%Y-%m-%d %H:%M:%S') <= 
+                  changed_data['third_term']&& plan_timing.third_max.strftime('%Y-%m-%d %H:%M:%S') >= changed_data['third_term']
     # 変更値が存在するかつ変更可能範囲に入っているならそのまま、違うならハッシュから値を取り除く
-    if changed_data['forth_term'] && plan_timing.forth_min.strftime('%Y-%m-%d %H:%M:%S') <= changed_data['forth_term'] && plan_timing.forth_max.strftime('%Y-%m-%d %H:%M:%S') >= changed_data['forth_term']
-    else
-      changed_data.delete('forth_term')
-    end
+    changed_data.delete('forth_term') unless changed_data['forth_term'] && plan_timing.forth_min.strftime('%Y-%m-%d %H:%M:%S') <= 
+                  changed_data['forth_term'] && plan_timing.forth_max.strftime('%Y-%m-%d %H:%M:%S') >= changed_data['forth_term']
     # 最後に値を返す
     changed_data
   end

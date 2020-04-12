@@ -63,7 +63,7 @@ class PostsController < ApplicationController
       flash[:warning] = '投稿完了しました。'
       redirect_to post_path(@post)
     else
-      flash[:danger] = '投稿失敗しました。'
+      flash[:danger] = 'タイトルと内容は必須です。'
       render :new
     end
   end

@@ -1,6 +1,9 @@
 class TotalPoint < ApplicationRecord
   belongs_to :user
 
+  # バリデーション
+  validates :score, numericality: { only_integer: true, greater_than: -1 }
+
   # usersにはランキング掲載不可能なユーザーが複数レコード入っている
   # total_pointsには合計得点のスコアが複数レコード入っている
   def self.exclude(users, total_points)
