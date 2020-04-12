@@ -8,6 +8,11 @@ class User < ApplicationRecord
   # 論理削除するために必要
   acts_as_paranoid
 
+  # バリデーション
+  validates :name, presence: true, length: { in: 1..20 }
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
+  validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
+
   has_many :posts, dependent: :destroy
   has_many :genres, dependent: :destroy
   has_many :rates, dependent: :destroy
@@ -32,16 +37,17 @@ class User < ApplicationRecord
   has_many :active_notifications, class_name: 'Notification',
                                   foreign_key: 'visitor_id',
                                   dependent: :destroy,
-                                  inverse_of: :visitor
+                                  inverse_of: :receiver
   # ユーザーから友達リクエスト通知が送られたときの関係
   has_many :passive_notifications, class_name: 'Notification',
                                    foreign_key: 'receiver_id',
                                    dependent: :destroy,
-                                   inverse_of: :receiver
-  # visitorsという外部キーをactive_notificationsという中間テーブルを通して1対多で関連付ける。
-  has_many :visitors, through: :active_notifications, source: :receiver
+                                   inverse_of: :visitor
+  # visitorsという外部キーをactive_notificationsという中間テーブルを通して1対多で関連付ける。sourceは省略してもいける。
+  has_many :visitors, through: :active_notifications, source: :visitor
+  # visitedという外部キーをもたせる。sourceは省略してもいける。
   # visitorsでは被るのでreceiversにしました。
-  has_many :receivers, through: :passive_notifications, source: :visitor
+  has_many :receivers, through: :passive_notifications, source: :receiver
 
   # 友達検索メソッド
   def self.search(word, current_user_id)
@@ -62,12 +68,12 @@ class User < ApplicationRecord
   end
 
   # 送ったリクエストが承認されたときの通知レコードを作成するメソッド
-  # 承認時はvisitorが他者でreceiverが利用ユーザーとなる
+  # 承認時はvisitorが他者でreceicerが利用ユーザーとなる
   def self.create_notification_approve!(current_user, user_id)
     temp = Notification.where(['visitor_id = ? and receiver_id = ? and action = ? ', user_id, current_user.id, 'approve'])
     return if temp.present?
 
-    notification = Notification.new(visitor_id: current_user.id, receiver_id: user_id, action: 'approve')
+    notification = Notification.new(visitor_id: user.id, receiver_id: current_user.id, action: 'approve')
     notification.save if notification.valid?
   end
 end

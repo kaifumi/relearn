@@ -1,6 +1,9 @@
 class RealTiming < ApplicationRecord
   belongs_to :post
 
+  # バリデーション
+  validates :post_id, presence: true, numericality: { only_integer: true }
+
   # 受け取った値がどの復習タイミングか判別するメソッド
   def self.check(received_score)
     # 復習番目と復習予定時間の配列を用意

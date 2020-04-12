@@ -64,8 +64,8 @@
       </tr>
       <tr>
         <td></td>
-        <td><%= f.submit "更新", class: "plan_edit_btn" %> </td>
-        <td></td>
+        <td><%= f.submit "更新", class: "plan_edit_btn" %></td>
+        <td><%= link_to post_path(@plan_timing.post.id) do %><p class="plan_edit_post_btn">投稿へ戻る</p><% end %></td>
       </tr>
     </tbody>
   </table>
