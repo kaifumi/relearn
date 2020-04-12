@@ -3,7 +3,9 @@
 <%# リズムランキングなら@rhythm_ranksにrateレコードの配列が入っている %>
 
 <%# ポイント配列にはなくて、リズム配列にはあるカラムで条件分岐 %>
-<% if models[0][:average_rate].nil? %> 
+<% if models.blank? %>
+  <br><p>まだデータがありません</p>
+<% elsif models[0][:average_rate].nil? %> 
   <%# 合計ポイントのランキング %>
   <table class="rank_table">
     <thead class="rank_thead">
