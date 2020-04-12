@@ -1133,6 +1133,9 @@ header {
   margin: 30px auto 0;
   width: 400px;
 }
+.receive_thead th {
+  text-align: center;
+}
 .search_tbody td:nth-child(1) {
   width: 20%;
   height: 60px;
@@ -1157,7 +1160,10 @@ header {
 // 友達リクエスト一覧ページ
 .receive_table {
   width: 400px;
-  margin-top: 70px;
+  margin-top: 30px;
+}
+.receive_thead th {
+  text-align: center;
 }
 .receive_tbody td:nth-child(1) {
   width: 25%;
@@ -1253,7 +1259,10 @@ header {
 // 友達一覧ページ
 .friend_table {
   width: 400px;
-  margin: 70px auto 0;
+  margin: 30px auto 0;
+}
+.friend_thead th {
+  text-align: center;
 }
 .friend_tbody td:nth-child(1) {
   width: 25%;
