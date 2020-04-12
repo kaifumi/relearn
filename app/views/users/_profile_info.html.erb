@@ -14,19 +14,19 @@
   <div class="edit_email_status_box">
     <p>メール配信設定</p>
     <div class="edit_email_status">
-      <%= f.check_box( :email_status , {checked: user.email_status, class: "check_email_status"}, checked_value = "true",unchecked_value = "false" ) %>
-      <p>復習タイミングの通知を受け取る</p>
+      <%= f.check_box( :email_status , {checked: user.email_status, id: "check_email_status"}, checked_value = "true",unchecked_value = "false" ) %>
+      <label for="check_email_status">復習タイミングの通知を受け取る</label>
     </div>
   </div>
   <div class="edit_privacy">
     <p>プライバシー設定</p>
     <div class="edit_rank_status"> 
-      <%= f.check_box( :rank_status , {checked: user.rank_status, class: "chech_rank_status"}, checked_value = "true",unchecked_value = "false" ) %>
-      <p>自分のランキングを公開する</p>
+      <%= f.check_box( :rank_status , {checked: user.rank_status, id: "check_rank_status"}, checked_value = "true",unchecked_value = "false" ) %>
+      <label for="check_rank_status">自分のランキングを公開する</label>
     </div>
     <div class="edit_search_status">
-      <%= f.check_box( :search_status , {checked: user.search_status, class: "check_email_status"}, checked_value = "true",unchecked_value = "false" ) %>
-      <p>友達検索に自分を表示する</p>
+      <%= f.check_box( :search_status , {checked: user.search_status, id: "check_search_status"}, checked_value = "true",unchecked_value = "false" ) %>
+      <label for="check_search_status">友達検索に自分を表示する</label>
     </div>
   </div>
   <%= f.submit "更新",id:"user_edit", class: "profile_edit_btn" %>

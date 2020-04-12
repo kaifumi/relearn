@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 2020_03_21_005236) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["receiver_id"], name: "index_notifications_on_receiver_id"
-    t.index ["visitor_id", "receiver_id"], name: "index_notifications_on_visitor_id_and_receiver_id", unique: true
     t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
