@@ -20,6 +20,10 @@ class RelearnPoint < ApplicationRecord
         # ハッシュ化
         hash_score = Hash[*array_score]
         return hash_score
+      # falseなら値に"nilを入れる"
+      elsif received_score[score[0]] == 'false'
+        hash_score = { score[0] => :nil }
+        return hash_score
       end
       i += 1
     end
