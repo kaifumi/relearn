@@ -17,7 +17,7 @@ class PlanTimingsController < ApplicationController
     elsif changed_data[:hoge] == 'hoge'
       flash[:danger] = '空白での編集はできません'
     elsif @plan_timing.update!(changed_data)
-      flash[:warning] = '更新できました'
+      flash[:warning] = '更新しました'
     else
       flash[:danger] = '更新失敗しました'
     end
