@@ -5,8 +5,15 @@ class Post < ApplicationRecord
   has_many :plan_timings, dependent: :destroy
   has_many :real_timings, dependent: :destroy
 
-  validates :title, presence: true
-  validates :content, presence: true
+  # バリデーション
+  validates :user_id, presence: true, numericality: { only_integer: true }
+  validates :genre_id, presence: true, numericality: { only_integer: true }
+  validates :title, presence: true, length: { in: 1..40 }
+  validates :content, presence: true, length: { in: 1..10_000 }
+  validates :link, length: { in: 1..200 }, allow_blank: true
+  validates :relearn_count, numericality: { only_integer: true, greater_than: -1, less_than: 5 }
+  validates :relearn_complete, inclusion: { in: [true, false] }
+  validates :total_point, numericality: { only_integer: true, greater_than: -1 }
 
   # 投稿の中で未復習でかつ最短の通知時間の投稿を振り分けるメソッド
   def self.latest_relearn(posts, _user_id)

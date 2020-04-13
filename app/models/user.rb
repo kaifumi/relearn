@@ -8,6 +8,11 @@ class User < ApplicationRecord
   # 論理削除するために必要
   acts_as_paranoid
 
+  # バリデーション
+  validates :name, presence: true, length: { in: 1..20 }
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
+  validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
+
   has_many :posts, dependent: :destroy
   has_many :genres, dependent: :destroy
   has_many :rates, dependent: :destroy

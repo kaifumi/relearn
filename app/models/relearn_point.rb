@@ -1,6 +1,12 @@
 class RelearnPoint < ApplicationRecord
   belongs_to :post
 
+  # バリデーション
+  validates :first_score, numericality: { only_integer: true, greater_than: -1, less_than: 101 }
+  validates :second_score, numericality: { only_integer: true, greater_than: -1, less_than: 201 }
+  validates :third_score, numericality: { only_integer: true, greater_than: -1, less_than: 301 }
+  validates :forth_score, numericality: { only_integer: true, greater_than: -1, less_than: 401 }
+
   # 受け取った値がどの復習タイミングか判別した上でポイントを計算するメソッド
   def self.calculate(received_score, post_id)
     # 復習番目と復習予定時間の配列を用意
@@ -16,9 +22,13 @@ class RelearnPoint < ApplicationRecord
         update_score = (100 * i) - score_rate.floor * 100 * i * 0.1
         update_score = 0 if update_score <= 0
         # 配列化
-        array_score = [score[0], update_score]
+        array_score = [score[0], update_score.floor]
         # ハッシュ化
         hash_score = Hash[*array_score]
+        return hash_score
+      # falseなら値に"nilを入れる"
+      elsif received_score[score[0]] == 'false'
+        hash_score = { score[0] => :nil }
         return hash_score
       end
       i += 1
