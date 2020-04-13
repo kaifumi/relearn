@@ -12,13 +12,19 @@
 
 参考サイト
 
-https://lernen-leag.com/about-the-forgetting-curve
+https://studygeek.jp/forgetting_curve/
 
 https://learn-tern.com/spaced-learning/
 
 ### テーマを選んだ理由
 
-こんなアプリがあったらいいなと思っていたから。学びはこれから 100 年時代ではテーマになってくると思うから。
+学習したことを効率的に復習したいと思い、このアプリを制作しました。
+
+これからの 100 年時代では学びは主要テーマになってくると思います。
+
+自分がこんなアプリを使いたかったところもありますが、色んな方に使っていただいて
+
+みなさんと一緒に成長していきたいです。
 
 ### ターゲットユーザ
 
@@ -29,6 +35,7 @@ https://learn-tern.com/spaced-learning/
 復習すべき内容の通知がきたら、その時だけ勉強する
 
 ## 設計書
+
 https://docs.google.com/spreadsheets/d/1V74t9IswrUKbrx4Mw2WNSCY-W1GDhJ9IyJlibP1A6KE/edit#gid=1418441861
 
 ### 機能一覧
