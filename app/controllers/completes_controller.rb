@@ -1,6 +1,8 @@
 class CompletesController < ApplicationController
   # ログインユーザーのみ実行可能にする
   before_action :authenticate_user!
+  # 他のユーザーの投稿は見れない
+  before_action :correct_user_check, only: [:show]
 
   # 復習完了した投稿の一覧
   def index
@@ -60,12 +62,21 @@ class CompletesController < ApplicationController
 
   # 投稿を削除する
   def destroy
-    @post = Post.find(params[:post_id])
+    @post = Post.find(params[:id])
     if @post.destroy
       flash[:warning] = '投稿の削除に成功しました'
     else
       flash[:danger] = '投稿の削除に失敗しました'
     end
     redirect_to request.referer
+  end
+
+  private
+
+  def correct_user_check
+    return if current_user.id == Post.find(params[:post_id]).user.id
+
+    flash[:danger] = '他のユーザーの投稿情報は見れないようになっています'
+    redirect_to root_path
   end
 end
