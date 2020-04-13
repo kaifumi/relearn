@@ -92,7 +92,7 @@ class PlanTiming < ApplicationRecord
     user_plan_array = []
     # 過去10分前~現在の間に該当タームの時間が入ってれば送る
     # where("term BETWEEN ? AND ?",from,to)の書き方で範囲抽出できる
-    plan_range=PlanTiming.where("second_term BETWEEN ? AND ?",Time.now-600,Time.now )
+    plan_range=PlanTiming.where("second_term BETWEEN ? AND ?",Time.now-660,Time.now )
     unless plan_range.empty? then
       plan_range.each do |plan| 
         user_plan_array.push([plan.post.user,plan]) if plan.post.user.email_status
@@ -107,7 +107,7 @@ class PlanTiming < ApplicationRecord
     user_plan_array = []
     # 過去10分前~現在の間に該当タームの時間が入ってれば送る
     # where("term BETWEEN ? AND ?",from,to)の書き方で範囲抽出できる
-    plan_range=PlanTiming.where("third_term BETWEEN ? AND ?",Time.now-600,Time.now )
+    plan_range=PlanTiming.where("third_term BETWEEN ? AND ?",Time.now-720,Time.now )
     unless plan_range.empty? then
       plan_range.each do |plan| 
         user_plan_array.push([plan.post.user,plan]) if plan.post.user.email_status
@@ -122,7 +122,7 @@ class PlanTiming < ApplicationRecord
     user_plan_array = []
     # 過去10分前~現在の間に該当タームの時間が入ってれば送る
     # where("term BETWEEN ? AND ?",from,to)の書き方で範囲抽出できる
-    plan_range=PlanTiming.where("forth_term BETWEEN ? AND ?",Time.now-600,Time.now )
+    plan_range=PlanTiming.where("forth_term BETWEEN ? AND ?",Time.now-780,Time.now )
     unless plan_range.empty? then
       plan_range.each do |plan| 
         user_plan_array.push([plan.post.user,plan]) if plan.post.user.email_status
