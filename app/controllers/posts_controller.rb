@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   # ログインユーザーのみ実行可能にする
   before_action :authenticate_user!
+  # 他のユーザーの通知時間は見れない
+  before_action :correct_user_check, only: [:show, :edit]
 
   # 投稿の新規登録
   def new
@@ -63,7 +65,7 @@ class PostsController < ApplicationController
       flash[:warning] = '投稿完了しました。'
       redirect_to post_path(@post)
     else
-      flash[:danger] = '投稿失敗しました。'
+      flash[:danger] = 'タイトルと内容は必須です。'
       render :new
     end
   end
@@ -102,5 +104,12 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:genre_id, :title, :content, :link)
+  end
+
+  def correct_user_check
+    return if current_user.id == Post.find(params[:id]).user.id
+
+    flash[:danger] = '他のユーザーの投稿情報は見れないようになっています'
+    redirect_to root_path
   end
 end

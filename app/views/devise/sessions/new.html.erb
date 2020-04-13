@@ -14,8 +14,8 @@
 
       <% if devise_mapping.rememberable? %>
         <div class="field">
-          <%= f.check_box :remember_me %>
-          <%= f.label :"ログインしたままにする" %>
+          <%= f.check_box :remember_me ,id: "login_remember" %>
+          <%= f.label :"ログインしたままにする" ,for: "login_remember" %>
         </div>
       <% end %>
 

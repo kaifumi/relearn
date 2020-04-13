@@ -1,6 +1,8 @@
 class PlanTimingsController < ApplicationController
   # ログインユーザーのみ実行可能にする
   before_action :authenticate_user!
+  # 他のユーザーの通知時間は見れない
+  before_action :correct_user_check, only: [:edit]
 
   # 予定通知時間を編集画面
   def edit
@@ -17,7 +19,7 @@ class PlanTimingsController < ApplicationController
     elsif changed_data[:hoge] == 'hoge'
       flash[:danger] = '空白での編集はできません'
     elsif @plan_timing.update!(changed_data)
-      flash[:warning] = '更新できました'
+      flash[:warning] = '更新しました'
     else
       flash[:danger] = '更新失敗しました'
     end
@@ -28,5 +30,12 @@ class PlanTimingsController < ApplicationController
 
   def plan_timing_params
     params.require(:form_plan_timing).permit(Form::PlanTiming::REGISTRABLE_ATTRIBUTES)
+  end
+
+  def correct_user_check
+    return if current_user.id == Post.find(params[:post_id]).user.id
+
+    flash[:danger] = '他のユーザーの投稿情報は見れないようになっています'
+    redirect_to root_path
   end
 end

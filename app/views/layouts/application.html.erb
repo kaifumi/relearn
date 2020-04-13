@@ -16,5 +16,12 @@
         </div>
       </div>
     </main>
+    <footer>
+      <p>© 2020 ReLearn</p>
+      <%# ロゴをリンク化 %>
+      <%= link_to root_path, class:"logo" do %>
+        <%= image_tag "ReLearn-logo-white.png", class: "footer_logo_img" %>
+      <% end %>
+    </footer>
   </body>
 </html>

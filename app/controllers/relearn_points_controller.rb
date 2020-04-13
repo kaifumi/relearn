@@ -9,8 +9,10 @@ class RelearnPointsController < ApplicationController
     # scoreには{first_score: 100}などが入る
     score = RelearnPoint.calculate(received_score, params[:post_id])
     relearn_point = RelearnPoint.find_by(post_id: params[:post_id])
+    if score.values == [:nil]
+      flash[:danger] = 'チェックを入れてから送信してください'
     # スコアを更新できれば実行する条件分岐
-    if relearn_point.update(score)
+    elsif relearn_point.update(score)
       post = Post.find(params[:post_id])
       # カウントが４未満なら1足す
       post[:relearn_count] += 1 if post[:relearn_count] < 4
@@ -31,14 +33,13 @@ class RelearnPointsController < ApplicationController
       array_rate = Rate.check(received_score, params[:post_id], current_user.id)
       rate = Rate.find_by(user_id: current_user)
       rate.update(total_rate: rate[:total_rate] + array_rate[0], count: array_rate[1])
+      if post[:relearn_count] >= 4
+        post.update(relearn_complete: true)
+        # and return を使って明示的に早期終了させる
+        redirect_to post_complete_path(post_id: params[:post_id]) and return
+      end
     else
       flash[:danger] = '復習登録に失敗しました'
-    end
-
-    if post[:relearn_count] >= 4
-      post.update(relearn_complete: true)
-      # and return を使って明示的に早期終了させる
-      redirect_to post_complete_path(post_id: params[:post_id]) and return
     end
     redirect_to request.referer
   end
