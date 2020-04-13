@@ -27,7 +27,6 @@ module Relearn
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
     # コントローラーに対応するヘルパーのみ呼び出せる
-    config.action_controller.include_all_helpers = false
     # パスをタスク作成時のリクエストのたびにロード設定
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
     # パスを、rails起動の際にロードする設定
