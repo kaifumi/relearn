@@ -134,6 +134,34 @@ header {
   color: white;
   text-align: center;
 }
+// フッター
+//
+footer {
+  position: relative;
+  margin: 0 auto;
+  background-color: #78bbe6;
+  width: 100%;
+  height: 150px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  p {
+    width: 90%;
+    margin: 0 auto;
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    line-height: 150px;
+    font-size: 30px;
+    float: left;
+  }
+  .footer_logo_img {
+    width: 140px;
+    float: right;
+    padding-top: 15px;
+  }
+}
+
 //サインアップ
 //
 .sign_up_box {
