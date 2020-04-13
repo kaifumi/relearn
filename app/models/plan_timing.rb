@@ -63,7 +63,7 @@ class PlanTiming < ApplicationRecord
                   changed_data['second_term'] && plan_timing.second_max.strftime('%Y-%m-%d %H:%M:%S') >= changed_data['second_term']
     # 変更値が存在するかつ変更可能範囲に入っているならそのまま、違うならハッシュから値を取り除く
     changed_data.delete('third_term') unless changed_data['third_term'] && plan_timing.third_min.strftime('%Y-%m-%d %H:%M:%S') <= 
-                  changed_data['third_term']&& plan_timing.third_max.strftime('%Y-%m-%d %H:%M:%S') >= changed_data['third_term']
+                  changed_data['third_term'] && plan_timing.third_max.strftime('%Y-%m-%d %H:%M:%S') >= changed_data['third_term']
     # 変更値が存在するかつ変更可能範囲に入っているならそのまま、違うならハッシュから値を取り除く
     changed_data.delete('forth_term') unless changed_data['forth_term'] && plan_timing.forth_min.strftime('%Y-%m-%d %H:%M:%S') <= 
                   changed_data['forth_term'] && plan_timing.forth_max.strftime('%Y-%m-%d %H:%M:%S') >= changed_data['forth_term']
