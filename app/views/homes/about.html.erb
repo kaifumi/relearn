@@ -1,2 +1,33 @@
-<h1>Homes#about</h1>
-<p>Find me in app/views/homes/about.html.erb</p>
+<div class="about_box">
+  <div class="about_page_header">
+    <p class="page_header_title">ReLearnについて</p>
+  </div>
+  <div class="about_main_box">
+    <div class="about_top_content">
+      <p>ReLearn（読み：りらーん）とは復習を意味し、</p>
+      <div class="about_block_content">
+        <p>ーー復習のベストタイミングを通知してくれるアプリーー</p>
+      </div>
+      <p>です。</p>
+    </div>
+    <div class="about_guide_content clearfix">
+      <div><%= image_tag "graph_image.jpg", class: "about_graph_img" %></div>
+      <div class="about_guide_text">
+        <p>
+          エビングハウスの忘却曲線によると、記憶は
+          <strong>1時間経つと56%減少し、1日後には74%減少</strong>し、時間が経つに連れてほぼ忘れてしまいます。<br><br>
+          しかし、ベストタイミングで復習することで記憶を蘇らせる時間は軽減され、忘れにくくなります。<br><br>
+        </p>
+      </div>
+    </div>
+    <div class="about_origin_text">
+      <p class="about_origin_message">
+        学習したことを、効率的に復習したい。</p><br>
+      <p>
+        そんな思いから、このアプリが生まれました。<br>
+        復習すべきタイミングで、学習した投稿を通知してくれてあなたの学習のサポートをしてくれます。<br><br>
+        ぜひ使ってみてください。
+      </p>
+    </div>
+  </div>
+</div>
