@@ -1,6 +1,10 @@
-<table class="search_table">
-  <tbody class="search_tbody">
-    <% unless models.nil? %>
+<% unless models.nil? %>
+  <table class="search_table">
+    <thead class="search_thead">
+      <th></th>
+      <th><p>検索結果：<%= models.length %>件</p></th>
+    </thead>
+    <tbody class="search_tbody">
       <%# modelsはレンダリング元から渡している各モデルを参照している %>
       <% models.each do |model| %>
         <tr>
@@ -12,6 +16,6 @@
                   </div></p></td>
         </tr>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+<% end %>

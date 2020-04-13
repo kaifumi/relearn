@@ -9,7 +9,7 @@ class GenresController < ApplicationController
     if @genre.save
       flash[:warning] = 'ジャンルの追加に成功しました'
     else
-      flash[:danger] = 'ジャンルの追加に失敗しました'
+      flash[:danger] = 'ジャンル名は20文字以内で入力してください'
     end
     redirect_to request.referer
   end

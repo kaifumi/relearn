@@ -1,6 +1,7 @@
 class RanksController < ApplicationController
   # ログインユーザーのみ実行可能にする
   before_action :authenticate_user!
+
   # 全体ポイントランキングの表示
   def point_rank
     # ランキング掲載不可の人の集合をつくる
