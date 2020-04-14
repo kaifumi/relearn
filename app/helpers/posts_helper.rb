@@ -72,7 +72,7 @@ module PostsHelper
       memory_array.push([post.real_timings[0][:third_term], 100])
       # 復習3回目現在までの記憶節約率を計算して配列に入れるメソッド
       third_count_memory(post.real_timings[0][:third_term], diff_third_to_now, memory_array)
-    # 復習回数が3回のとき
+    # 復習回数が4回のとき
     elsif post.relearn_count == 4
       # 復習1回するまでの時間を計算
       diff_first_time = post.real_timings[0][:first_term] - post_time
