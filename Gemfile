@@ -49,9 +49,6 @@ gem 'dotenv-rails'
 # 言語の翻訳や多言語サポートするためのgem
 gem 'rails-i18n'
 
-# カレンダーをRailsで使うためのgem
-gem 'fullcalendar-rails'
-
 # フォームでカレンダーから選べるように導入
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 
@@ -81,6 +78,8 @@ group :development, :test do
   gem 'rspec-rails'
   # テスト用のデータを作成してくれるツール
   gem 'factory_bot_rails'
+  # 複数のテストデータなどを簡単に作成できるGem
+  gem 'factory_girl_rails', '~> 4.0'
   # テスト自動化のためのgem
   gem 'guard-rspec'
   # springを使ってrspecを高速化するためのgem
