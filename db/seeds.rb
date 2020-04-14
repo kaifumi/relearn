@@ -3,11 +3,24 @@ User.create!(
     {
       name:"貝野史弥",
       email:"kaifumi1001@gmail.com",
-      password:"aaaaaa"
+      password:"aaaaaa",
+      rank_status: true,
+      search_status: true
     }
   ]
 )
-10.times do |n|
+User.create!(
+  [
+    {
+      name:"遠山の銀さん",
+      email:"a1@aa.aa",
+      password:"aaaaaa",
+      rank_status: true,
+      search_status: true
+    }
+  ]
+)
+9.times do |n|
   User.create!(
   [
     {
@@ -24,11 +37,11 @@ Genre.create!(
   [
     {
       user_id:1,
-      type:"プログラミング"
+      type:"Rails"
     },
     {
       user_id:2,
-      type:"フロントエンド"
+      type:"ruby"
     }
   ]
 )
@@ -47,48 +60,57 @@ Post.create!(
     {
       user_id:1,
       genre_id:1,
-      title:"rubyの勉強です",
-      content:"rails面白いです",
-      link:"http://localhost:3000/posts",
-      created_at:"2020-03-26 00:00:00"
+      title:"[Rails]通知機能の実装",
+      content:"モデルの作成
+                通知メソッドの作成",
+      link:"https://qiita.com/yuto_1014/items/2db1dd4fcd7945b980f7",
+      created_at:"2020-04-14 21:00:00"
+    },
+    {
+      user_id:1,
+      genre_id:2,
+      title:"【Ruby】例外処理",
+      content:"begin ~ rescue ~ end
+      プログラムの処理が期待通りにいかない事はよくあります。Ruby には、エラーが起こった場合に臨時で処理される例外処理といわれるものが用意されています。例外処理という考え方が存在しない言語もあるようですが、その場合は false や nill を返される度にそれに応じた処理を書かなければならないらしいです。Ruby で例外処理は以下のように書きます。",
+      link:"https://qiita.com/raindusk/items/6825bcefcad26da3471b",
+      created_at:"2020-04-14 22:00:00"
     },
     {
       user_id:1,
       genre_id:1,
-      title:"rubyの勉強です",
-      content:"rails面白いです",
-      link:"http://localhost:3000/posts",
+      title:"RailsでFullCalendarを使って予定を表示するまで",
+      content:"application.jsを弄る",
+      link:"https://qiita.com/sasasoni/items/fb0bc1644ece888ae1d4",
+      relearn_count: 1,
+      created_at:"2020-02-25 03:00:00"
+    },
+    {
+      user_id:1,
+      genre_id:1,
+      title:"[Rails]通知機能の実装",
+      content:"モデルの作成
+                通知メソッドの作成",
+      link:"https://qiita.com/yuto_1014/items/2db1dd4fcd7945b980f7",
+      relearn_count: 2,
+      created_at:"2020-02-25 04:00:00"
+    },
+    {
+      user_id:1,
+      genre_id:2,
+      title:"ruby面白いですの勉強です",
+      content:"ruby面白いです面白いです",
       relearn_count: 3,
-      created_at:"2020-02-26 02:00:00"
-    },
-    {
-      user_id:1,
-      genre_id:1,
-      title:"rubyの勉強です",
-      content:"rails面白いです",
       link:"http://localhost:3000/posts",
-      created_at:"2020-02-26 03:00:00"
-    },
-    {
-      user_id:1,
-      genre_id:1,
-      title:"rubyの勉強です",
-      content:"rails面白いです",
-      link:"http://localhost:3000/posts"
-    },
-    {
-      user_id:2,
-      genre_id:2,
-      title:"javascriptの勉強です",
-      content:"非同期ajax面白いです",
-      link:"http://localhost:3000/posts"
+      created_at:"2020-02-25 05:00:00"
     },
     {
       user_id:1,
       genre_id:2,
-      title:"javascriptの勉強です",
-      content:"非同期ajax面白いです",
-      link:"http://localhost:3000/posts"
+      title:"ruby面白いですの勉強です",
+      content:"ruby面白いです面白いです",
+      link:"http://localhost:3000/posts",
+      relearn_count: 4,
+      created_at:"2020-02-25 06:00:00"
     }
 
   ]
@@ -110,33 +132,33 @@ PlanTiming.create!(
   [
     {
       post_id: 1,
-      first_term: "2020-03-26 01:00:00",
-      second_term: "2020-03-28 01:00:00",
-      third_term: "2020-04-04 0:00:00",
-      forth_term: "2020-04-25 01:00:00",
-      first_min: "2020-03-25 02:00:00",
-      first_max: "2020-03-27 01:00:00",
-      second_min: "2020-03-28 01:00:00",
-      second_max: "2020-04-01 01:00:00",
-      third_min: "2020-04-02 01:00:00",
-      third_max: "2020-04-08 01:00:00",
-      forth_min: "2020-04-09 01:00:00",
-      forth_max: "2020-04-25 01:00:00"
+      first_term: "2020-04-14 21:00:00",
+      second_term: "2020-04-16 21:00:00",
+      third_term: "2020-04-23 21:00:00",
+      forth_term: "2020-05-13 21:00:00",
+      first_min: "2020-04-13 22:00:00",
+      first_max: "2020-04-15 21:00:00",
+      second_min: "2020-04-16 21:00:00",
+      second_max: "2020-04-19 21:00:00",
+      third_min: "2020-04-20 21:00:00",
+      third_max: "2020-04-26 21:00:00",
+      forth_min: "2020-04-27 21:00:00",
+      forth_max: "2020-05-13 21:00:00"
     },
     {
       post_id: 2,
-      first_term: "2020-02-26 02:00:00",
-      second_term: "2020-02-28 02:00:00",
-      third_term: "2020-03-04 02:00:00",
-      forth_term: "2020-03-25 02:00:00",
-      first_min: "2020-02-25 3:00:00",
-      first_max: "2020-02-27 02:00:00",
-      second_min: "2020-02-28 02:00:00",
-      second_max: "2020-03-01 02:00:00",
-      third_min: "2020-03-02 02:00:00",
-      third_max: "2020-03-08 02:00:00",
-      forth_min: "2020-03-09 02:00:00",
-      forth_max: "2020-03-25 02:00:00"
+      first_term: "2020-04-14 22:00:00",
+      second_term: "2020-04-16 22:00:00",
+      third_term: "2020-04-23 22:00:00",
+      forth_term: "2020-05-13 22:00:00",
+      first_min: "2020-04-13 23:00:00",
+      first_max: "2020-04-15 22:00:00",
+      second_min: "2020-04-16 22:00:00",
+      second_max: "2020-04-19 22:00:00",
+      third_min: "2020-04-20 22:00:00",
+      third_max: "2020-04-26 22:00:00",
+      forth_min: "2020-04-27 22:00:00",
+      forth_max: "2020-05-13 22:00:00"
     },
     {
       post_id: 3,
@@ -205,18 +227,18 @@ PlanTiming.create!(
   [
     {
       post_id: "#{n + 7}",
-      first_term: (Time.now.yesterday+n+1).since(1.day),
-      second_term: (Time.now.yesterday+n+1).since(3.day),
-      third_term: (Time.now.yesterday+n+1).since(10.day),
-      forth_term: (Time.now.yesterday+n+1).since(30.day),
-      first_min: (Time.now.yesterday+n+1).since(1.hour),
-      first_max: (Time.now.yesterday+n+1).since(2.day),
-      second_min: (Time.now.yesterday+n+1).since(3.day),
-      second_max: (Time.now.yesterday+n+1).since(7.day),
-      third_min: (Time.now.yesterday+n+1).since(8.day),
-      third_max: (Time.now.yesterday+n+1).since(14.day),
-      forth_min: (Time.now.yesterday+n+1).since(15.day),
-      forth_max: (Time.now.yesterday+n+1).since(30.day)
+      first_term: (Time.now.yesterday+n*100).since(1.day),
+      second_term: (Time.now.yesterday+n*100).since(3.day),
+      third_term: (Time.now.yesterday+n*100).since(10.day),
+      forth_term: (Time.now.yesterday+n*100).since(30.day),
+      first_min: (Time.now.yesterday+n*100).since(1.hour),
+      first_max: (Time.now.yesterday+n*100).since(2.day),
+      second_min: (Time.now.yesterday+n*100).since(3.day),
+      second_max: (Time.now.yesterday+n*100).since(7.day),
+      third_min: (Time.now.yesterday+n*100).since(8.day),
+      third_max: (Time.now.yesterday+n*100).since(14.day),
+      forth_min: (Time.now.yesterday+n*100).since(15.day),
+      forth_max: (Time.now.yesterday+n*100).since(30.day)
     }
   ]
 )
@@ -227,22 +249,29 @@ RealTiming.create!(
       post_id: 1
     },
     {
-      post_id: 2,
-      first_term: "2020-02-27 02:00:00",
-      second_term: "2020-02-29 02:00:00",
-      third_term: "2020-03-06 02:00:00"
+      post_id: 2
     },
     {
-      post_id: 3
+      post_id: 3,
+      first_term: "2020-02-26 21:00:00"
     },
     {
-      post_id: 4
+      post_id: 4,
+      first_term: "2020-02-26 21:00:00",
+      second_term: "2020-02-28 21:00:00"
     },
     {
-      post_id: 5
+      post_id: 5,
+      first_term: "2020-02-26 21:00:00",
+      second_term: "2020-02-28 21:00:00",
+      third_term: "2020-03-04 21:00:00"
     },
     {
-      post_id: 6
+      post_id: 6,
+      first_term: "2020-02-26 21:00:00",
+      second_term: "2020-02-28 21:00:00",
+      third_term: "2020-03-04 21:00:00",
+      forth_term: "2020-03-24 21:00:00"
     }
   ]
 )
@@ -265,16 +294,26 @@ RelearnPoint.create!(
     post_id: 2
   },
   {
-    post_id: 3
+    post_id: 3,
+    first_score: 100
   },
   {
-    post_id: 4
+    post_id: 4,
+    first_score: 100,
+    second_score: 200
   },
   {
-    post_id: 5
+    post_id: 5,
+    first_score: 100,
+    second_score: 200,
+    third_score: 300
   },
   {
-    post_id: 6
+    post_id: 6,
+    first_score: 100,
+    second_score: 200,
+    third_score: 300,
+    forth_score: 400
   }
   ]
 )
@@ -290,7 +329,8 @@ end
 TotalPoint.create!(
   [
     {
-        user_id: 1
+        user_id: 1,
+        score: 8000
     }
   ]
 )
@@ -299,7 +339,7 @@ TotalPoint.create!(
   [
     {
       user_id: n + 2,
-      score: 1000+n
+      score: 1000+n*100
    }
   ]
 )
@@ -307,7 +347,9 @@ end
 Rate.create!(
   [
     {
-        user_id: 1
+        user_id: 1,
+        total_rate: 19,
+        count:20
     }
   ]
 )
@@ -322,7 +364,7 @@ Rate.create!(
   ]
 )
 end
-10.times do |n|
+5.times do |n|
   Friend.create!(
   [
     {
@@ -346,12 +388,12 @@ end
   ]
 )
 end
-5.times do |n|
+2.times do |n|
   Friend.create!(
   [
     {
-      sender_id: 3,
-      recipient_id: n+4,
+      sender_id: n+7,
+      recipient_id: 1,
       active_status: false,
       send_request: true
    }
