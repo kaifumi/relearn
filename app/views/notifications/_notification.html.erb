@@ -1,6 +1,6 @@
 <div class="user-view clearfix ">
   <% if !notification.plan_timing.nil?%>
-    <%= link_to post_path(notification.plan_timing.post_id) do %>
+    <%= link_to user_post_path(user_id: current_user.id, id: notification.plan_timing.post_id) do %>
       <%= attachment_image_tag(current_user, :image, :fill, 50, 50, fallback: "default.png", class: "notification_user_image") %>
     <% end %>
     <%= notification_form(notification) %><span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)}前)" %></span>

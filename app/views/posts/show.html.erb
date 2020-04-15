@@ -8,7 +8,7 @@
       </div>
       <div class="content_head">
         <p class="post_show_content_title">内容</p>
-        <p class="post_show_content_edit"><%= link_to "投稿内容の編集", edit_post_path(@post), data: { "turbolinks" => false } %></p>
+        <p class="post_show_content_edit"><%= link_to "投稿内容の編集", edit_user_post_path(user_id: current_user.id, id: @post.id) %></p>
       </div>
       <div class="post_show_content">
         <%= simple_format(@post.content) %>
@@ -28,7 +28,7 @@
       <p class="post_show_bottom_message">※通知時間になるまでは復習のチェックは出来ません</p>
       <div class="post_show_bottom_btn">
         <p class="post_show_complete_btn"><%= link_to "復習完了にする", relearn_complete_path(@post), method: :patch %></p>
-        <p class="post_show_delete_btn"><%= link_to "投稿を削除する", post_path(@post), method: :delete, data: { confirm: '削除しますか？' } %></p>
+        <p class="post_show_delete_btn"><%= link_to "投稿を削除する", user_post_path(user_id: current_user.id, id: @post.id), method: :delete %></p>
       </div>
   </div>
 </div>

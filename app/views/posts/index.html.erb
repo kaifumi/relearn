@@ -19,7 +19,7 @@
           <% @posts.each do |post| %>
             <tr>
               <td><%= i %></td>
-              <td><%= link_to post.title.truncate(15), post_path(post) %></td>
+              <td><%= link_to post.title.truncate(15), user_post_path(user_id: current_user.id, id: post.id) %></td>
               <td><%= post.genre.type.truncate(15) %></td>
               <td><%= post.content.truncate(20) %></td>
               <td><%= post.relearn_count %>/4</td>
