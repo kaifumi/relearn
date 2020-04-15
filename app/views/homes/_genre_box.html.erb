@@ -8,7 +8,7 @@
     <% order_posts.each do |order_post| %>
       <%# genre_idが一致したら表示 %>
       <% if order_post[3] == genre %>
-        <%= link_to post_path(order_post[0]) do%>
+        <%= link_to user_post_path(user_id: current_user.id, id: order_post[0]) do%>
           <div class="latest_posts item"> 
             <%# タームの時間を表示 %>
             <div class="latest_term">

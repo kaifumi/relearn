@@ -35,7 +35,7 @@
         <%= paginate @genres %>
         <% unless Post.find_by(user_id: current_user.id) %>
           <div class="genre_post_new_use">  
-            <%= link_to "次は投稿をしてみましょう！", new_post_path %>
+            <%= link_to "次は投稿をしてみましょう！", new_user_post_path(user_id: current_user.id) %>
           </div>
         <% end %>
       <% else %>
