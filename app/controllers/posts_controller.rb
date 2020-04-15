@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
   # ログインユーザーのみ実行可能にする
   before_action :authenticate_user!
-  # 他のユーザーの通知時間は見れない
-  # before_action :correct_friend_check, only: [:show, :edit]
+  # 自分と友達以外の投稿情報は見れないようにチェック
+  before_action :correct_friend_check, only: [:index, :genre_posts_index, :show, :new, :edit]
 
   # 投稿の新規登録
   def new
@@ -11,15 +11,15 @@ class PostsController < ApplicationController
 
   # 投稿一覧画面の表示
   def index
-    @posts = Post.where(user_id: current_user.id, relearn_complete: false).page(params[:page])
-    @genres = Genre.where(user_id: current_user.id).limit(20)
+    @posts = Post.where(user_id: params[:user_id], relearn_complete: false).page(params[:page])
+    @genres = Genre.where(user_id: params[:user_id]).limit(20)
   end
 
   # ジャンルごとの投稿一覧
   def genre_posts_index
     @genre = Genre.find(params[:id])
-    @posts = Post.where(user_id: current_user.id, genre_id: @genre.id).page(params[:page])
-    @genres = Genre.where(user_id: current_user.id).limit(20)
+    @posts = Post.where(user_id: params[:user_id], genre_id: @genre.id).page(params[:page])
+    @genres = Genre.where(user_id: params[:user_id]).limit(20)
   end
 
   # 投稿詳細画面の表示
@@ -106,14 +106,17 @@ class PostsController < ApplicationController
     params.require(:post).permit(:genre_id, :title, :content, :link)
   end
 
+  # 自分と友達以外の投稿情報は見れないように判断するメソッド
   def correct_friend_check
-    return if current_user
-
+    # このメソッドを通過していれば、特定のビューだけ友達のインスタンスを使用できる
     @friend_user = User.find(params[:user_id])
-    # 友達であれば処理を中断しビューを表示させる
-    return if Friend.friend_user?(current_user, friend_user)
+    # 利用ユーザーと入力されたユーザーのidが同じなら自分のビューを見ることになる
+    return if current_user.id == params[:user_id].to_i
+    # 友達であればビューを表示させる
+    return if Friend.friend_user?(current_user, @friend_user)
 
-    flash[:danger] = '自分と友達以外の投稿情報は見れないようになっています'
+    # 自分でも友達でもなければエラーメッセージと共にルートへ飛ばす
+    flash[:danger] = '友達でないユーザーの投稿情報は見れないようになっています'
     redirect_to root_path
   end
 end

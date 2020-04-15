@@ -8,7 +8,7 @@
       <ul class="nav-list_center">
         <li class="nav-list-item-center"><%= link_to new_user_post_path(user_id: current_user.id) do %><div class="header_new_post_btn"><p>+新規投稿</p></div><% end %></li>
         <li class="nav-list-item-center"><%= link_to user_posts_path(user_id: current_user.id) do %><div class="header_post_index_btn"><p>Relearn一覧</p></div><% end %></li>
-        <li class="nav-list-item-center"><%= link_to complete_posts_path(id: current_user.id) do%><div class="header_relearn_index_btn"><p>Relearn履歴</p></div><% end %></li>
+        <li class="nav-list-item-center"><%= link_to complete_posts_path(user_id: current_user.id) do%><div class="header_relearn_index_btn"><p>Relearn履歴</p></div><% end %></li>
       </ul>
     </nav>
     <div class="header_right_box">

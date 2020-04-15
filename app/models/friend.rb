@@ -13,7 +13,7 @@ class Friend < ApplicationRecord
   def self.friend_user?(current_user, friend_user)
     friend = Friend.where(active_status: true).where('(sender_id=?) or (recipient_id=?)',
                                                      current_user.id, current_user.id).where('(sender_id=?) or (recipient_id=?)', friend_user.id, friend_user.id)
-    # 友達になっているならtrueを返す
-    friend[0].active_status
+    # friendの中身が空じゃないかつ友達になっているならtrueを返す
+    friend[0].present? && friend[0].active_status
   end
 end
