@@ -1,4 +1,13 @@
-<h1>Relearn 履歴詳細</h1>
+<%# フレンドユーザーの投稿であれば見れるようにする %>
+<% if @friend_user.id != current_user.id %>
+  <h1><%= @friend_user.name%>さんのRelearn 履歴詳細</h1>
+  <div class="post_index_friend_btn_box">
+    <div class="post_index_friend_posts_btn"><%= link_to user_posts_path(user_id: @friend_user.id) do %><p><%= @friend_user.name %><br>さんのRelearn 一覧</p><% end %></div>
+    <div class="post_index_friend_complete_posts_btn"><%= link_to complete_posts_path(id: @friend_user.id) do %><p><%= @friend_user.name %><br>さんのRelearn 履歴</p><% end %></div>
+  </div>
+<% else %>
+  <h1>Relearn 履歴詳細</h1>
+<% end %>
 <div class="row">
   <div class="post_show_box">
     <div class="post_show_main_box col-xs-3">
@@ -24,11 +33,12 @@
     <%= render partial: 'point', locals: { post: @post,relearn_point: @relearn_point,
           plan_timing: @plan_timing, real_timing: @real_timing } %>
     <p></p>
-    <div class="post_show_bottom_btn">
-        <p class="post_show_complete_btn"><%= link_to "もう一度復習する", user_post_complete_path(user_id: current_user.id, post_id: @post.id), method: :patch %></p>
-        <p class="post_show_delete_btn"><%= link_to "投稿を削除する", user_post_path(user_id: current_user.id, id: @post.id), method: :delete, data: { confirm: '削除しますか？' } %></p>
-    </div>
-      
-      
+    <%# フレンドユーザーからは見えないようにする %>
+    <% if @friend_user.id == current_user.id %>
+      <div class="post_show_bottom_btn">
+          <p class="post_show_complete_btn"><%= link_to "もう一度復習する", user_post_complete_path(user_id: current_user.id, post_id: @post.id), method: :patch %></p>
+          <p class="post_show_delete_btn"><%= link_to "投稿を削除する", user_post_path(user_id: current_user.id, id: @post.id), method: :delete, data: { confirm: '削除しますか？' } %></p>
+      </div>
+    <% end %>
   </div>
 </div>

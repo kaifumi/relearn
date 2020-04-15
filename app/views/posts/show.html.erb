@@ -1,4 +1,13 @@
-<h1>投稿詳細</h1>
+<%# フレンドユーザーの投稿であれば見れるようにする %>
+<% if @friend_user.id != current_user.id %>
+  <h1><%= @friend_user.name%>さんの投稿詳細</h1>
+  <div class="post_index_friend_btn_box">
+    <div class="post_index_friend_posts_btn"><%= link_to user_posts_path(user_id: @friend_user.id) do %><p><%= @friend_user.name %><br>さんのRelearn 一覧</p><% end %></div>
+    <div class="post_index_friend_complete_posts_btn"><%= link_to complete_posts_path(id: @friend_user.id) do %><p><%= @friend_user.name %><br>さんのRelearn 履歴</p><% end %></div>
+  </div>
+<% else %>
+  <h1>投稿詳細</h1>
+<% end %>
 <div class="row">
   <div class="post_show_box">
     <div class="post_show_main_box col-xs-3">
@@ -8,7 +17,10 @@
       </div>
       <div class="content_head">
         <p class="post_show_content_title">内容</p>
-        <p class="post_show_content_edit"><%= link_to "投稿内容の編集", edit_user_post_path(user_id: current_user.id, id: @post.id) %></p>
+        <%# フレンドユーザーからは見えないようにする %>
+        <% if @friend_user.id == current_user.id %>
+          <p class="post_show_content_edit"><%= link_to "投稿内容の編集", edit_user_post_path(user_id: current_user.id, id: @post.id) %></p>
+        <% end %>
       </div>
       <div class="post_show_content">
         <%= simple_format(@post.content) %>
@@ -21,14 +33,17 @@
       <%= render partial: "layouts/chart", locals:{ post: @post } %>
     </div>
   </div>
-  <div class="post_show_bottom_box col-xs-12">
-    <%# ポイント入力フォーム %>
-    <%= render partial: 'point_form', locals: { post: @post,relearn_point: @relearn_point,
-          plan_timing: @plan_timing, time_now: @time_now, real_timing: @real_timing } %>
-      <p class="post_show_bottom_message">※通知時間になるまでは復習のチェックは出来ません</p>
-      <div class="post_show_bottom_btn">
-        <p class="post_show_complete_btn"><%= link_to "復習完了にする", relearn_complete_path(@post), method: :patch %></p>
-        <p class="post_show_delete_btn"><%= link_to "投稿を削除する", user_post_path(user_id: current_user.id, id: @post.id), method: :delete %></p>
-      </div>
-  </div>
+  <%# フレンドユーザーであってもポイント入力フォーム以下は見えないようにする %>
+  <% if @friend_user.id == current_user.id %>
+    <div class="post_show_bottom_box col-xs-12">
+      <%# ポイント入力フォーム %>
+      <%= render partial: 'point_form', locals: { post: @post,relearn_point: @relearn_point,
+            plan_timing: @plan_timing, time_now: @time_now, real_timing: @real_timing } %>
+        <p class="post_show_bottom_message">※通知時間になるまでは復習のチェックは出来ません</p>
+          <div class="post_show_bottom_btn">
+            <p class="post_show_complete_btn"><%= link_to "復習完了にする", relearn_complete_path(@post), method: :patch %></p>
+            <p class="post_show_delete_btn"><%= link_to "投稿を削除する", user_post_path(user_id: current_user.id, id: @post.id), method: :delete %></p>
+          </div>
+    </div>
+  <% end %>
 </div>
