@@ -9,8 +9,8 @@ module NotificationsHelper
     when 'approve'
       tag.a(notification.visitor.name, href: user_friends_path(current_user.id), style: 'font-weight: bold;') + 'さんがあなたの友達リクエストを承認しました'
     when 'plan_timing'
-      tag.a(notification.plan_timing.post.title, href: post_path(notification.plan_timing.post_id), style: 'font-weight: bold;') + 'の' +
-        tag.a(notification.term_num, href: post_path(notification.plan_timing.post_id), style: 'font-weight: bold;') + '回目の復習タイミングになりました'
+      tag.a(notification.plan_timing.post.title, href: user_post_path(user_id: current_user.id, id: notification.plan_timing.post_id), style: 'font-weight: bold;') + 'の' +
+        tag.a(notification.term_num, href: user_post_path(user_id: current_user.id, id: notification.plan_timing.post_id), style: 'font-weight: bold;') + '回目の復習タイミングになりました'
     end
   end
 end

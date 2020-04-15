@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   # ログインユーザーのみ実行可能にする
   before_action :authenticate_user!
   # 他のユーザーの通知時間は見れない
-  before_action :correct_user_check, only: [:show, :edit]
+  # before_action :correct_friend_check, only: [:show, :edit]
 
   # 投稿の新規登録
   def new
@@ -63,7 +63,7 @@ class PostsController < ApplicationController
                         forth_min: 15.days.from_now.strftime('%Y-%m-%d %H:%M'), forth_max: 1.month.from_now.strftime('%Y-%m-%d %H:%M'))
       RealTiming.create!(post_id: @post.id)
       flash[:warning] = '投稿完了しました。'
-      redirect_to post_path(@post)
+      redirect_to user_post_path(user_id: current_user.id, id: @post.id)
     else
       flash[:danger] = 'タイトルと内容は必須です。'
       render :new
@@ -81,7 +81,7 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id
     if @post.update(post_params)
       flash[:warning] = '更新完了しました。'
-      redirect_to post_path(@post)
+      redirect_to user_post_path(user_id: current_user.id, id: @post.id)
     else
       flash[:danger] = '更新失敗しました。'
       render :edit
@@ -93,7 +93,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     if @post.destroy
       flash[:warning] = '投稿削除しました。'
-      redirect_to posts_path
+      redirect_to user_posts_path(user_id: current_user.id)
     else
       flash[:danger] = '更新失敗しました。'
       render :show
@@ -106,10 +106,14 @@ class PostsController < ApplicationController
     params.require(:post).permit(:genre_id, :title, :content, :link)
   end
 
-  def correct_user_check
-    return if current_user.id == Post.find(params[:id]).user.id
+  def correct_friend_check
+    return if current_user
 
-    flash[:danger] = '他のユーザーの投稿情報は見れないようになっています'
+    @friend_user = User.find(params[:user_id])
+    # 友達であれば処理を中断しビューを表示させる
+    return if Friend.friend_user?(current_user, friend_user)
+
+    flash[:danger] = '自分と友達以外の投稿情報は見れないようになっています'
     redirect_to root_path
   end
 end

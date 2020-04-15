@@ -8,4 +8,12 @@ class Friend < ApplicationRecord
   validates :recipient_id, presence: true, numericality: { only_integer: true }
   validates :active_status, inclusion: { in: [true, false] }
   validates :send_request, inclusion: { in: [true, false] }
+
+  # すでにフレンドになっているか確認するメソッド
+  def self.friend_user?(current_user, friend_user)
+    friend = Friend.where(active_status: true).where('(sender_id=?) or (recipient_id=?)',
+                                                     current_user.id, current_user.id).where('(sender_id=?) or (recipient_id=?)', friend_user.id, friend_user.id)
+    # 友達になっているならtrueを返す
+    friend[0].active_status
+  end
 end

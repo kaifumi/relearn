@@ -1,7 +1,7 @@
 <div class="post_show_point_form_box">
   <p class="post_show_point_check">復習チェックフォーム</p>
   <%# 復習したらチェックして送信するフォーム %>
-  <%= form_with(model: relearn_point, url: post_relearn_point_path(post_id: post.id), method: :patch, local: true) do |f| %>
+  <%= form_with(model: relearn_point, url: user_post_relearn_point_path(user_id: current_user.id, post_id: post.id), method: :patch, local: true) do |f| %>
   <table class="post_show_point_table">
     <thead class="post_show_point_thead">
       <tr>
@@ -64,7 +64,7 @@
           <td>
             <%# 4回目の通知時間が現在を過ぎていたら編集できないようにする %>
             <% if plan_timing.forth_term >= time_now %>
-              <p class="post_show_edit_plan_btn"><%= link_to "通知時間の編集", edit_post_plan_timing_path(post) %></p>
+              <p class="post_show_edit_plan_btn"><%= link_to "通知時間の編集", edit_user_post_plan_timing_path(user_id: current_user.id, post_id: post.id) %></p>
             <% end %>
           </td>
         </tr>
@@ -119,7 +119,7 @@
           <td>
             <%# 4回目の通知時間が現在を過ぎていたら編集できないようにする %>
             <% if plan_timing.forth_term >= time_now %>
-              <p class="post_show_edit_plan_btn"><%= link_to "通知時間の編集", edit_post_plan_timing_path(post) %></p>
+              <p class="post_show_edit_plan_btn"><%= link_to "通知時間の編集", edit_user_post_plan_timing_path(user_id: current_user.id, post_id: post.id) %></p>
             <% end %>
           </td>
         </tr>
@@ -174,7 +174,7 @@
           <td>
             <%# 4回目の通知時間が現在を過ぎていたら編集できないようにする %>
             <% if plan_timing.forth_term >= time_now %>
-              <p class="post_show_edit_plan_btn"><%= link_to "通知時間の編集", edit_post_plan_timing_path(post) %></p>
+              <p class="post_show_edit_plan_btn"><%= link_to "通知時間の編集", edit_user_post_plan_timing_path(user_id: current_user.id, post_id: post.id) %></p>
             <% end %>
           </td>
         </tr>
@@ -229,7 +229,7 @@
           <td>
             <%# 4回目の通知時間が現在を過ぎていたら編集できないようにする %>
             <% if plan_timing.forth_term >= time_now %>
-              <p class="post_show_edit_plan_btn"><%= link_to "通知時間の編集", edit_post_plan_timing_path(post) %></p>
+              <p class="post_show_edit_plan_btn"><%= link_to "通知時間の編集", edit_user_post_plan_timing_path(user_id: current_user.id, post_id: post.id) %></p>
             <% end %>
           </td>  
         </tr>

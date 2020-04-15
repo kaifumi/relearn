@@ -88,6 +88,8 @@ Layout/LineLength:
   Exclude:
     - "app/models/form/plan_timing.rb"
     - "app/controllers/friends_controller.rb"
+    - "app/helpers/notifications_helper.rb"
+    - "app/models/friend.rb"
 
 # タブが過剰(ストロングパラメータ用)
 Layout/Tab:
