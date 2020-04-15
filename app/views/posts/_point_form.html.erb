@@ -61,7 +61,12 @@
           <td><%= @relearn_point.first_score + relearn_point.second_score + relearn_point.third_score+ relearn_point.forth_score %> / 1000 P</td>
           <td></td>
           <td></td>
-          <td><p class="post_show_edit_plan_btn"><%= link_to "通知時間の編集", edit_post_plan_timing_path(post), data: {"turbolinks" => false} %></p></td>
+          <td>
+            <%# 4回目の通知時間が現在を過ぎていたら編集できないようにする %>
+            <% if plan_timing.forth_term >= time_now %>
+              <p class="post_show_edit_plan_btn"><%= link_to "通知時間の編集", edit_post_plan_timing_path(post) %></p>
+            <% end %>
+          </td>
         </tr>
       </tfoot>
     <%# 復習回数が1のとき %>
@@ -111,7 +116,12 @@
           <td><%= @relearn_point.first_score + relearn_point.second_score + relearn_point.third_score+ relearn_point.forth_score %> / 1000 P</td>
           <td></td>
           <td></td>
-          <td><p class="post_show_edit_plan_btn"><%= link_to "通知時間の編集", edit_post_plan_timing_path(post), data: {"turbolinks" => false} %></p></td>
+          <td>
+            <%# 4回目の通知時間が現在を過ぎていたら編集できないようにする %>
+            <% if plan_timing.forth_term >= time_now %>
+              <p class="post_show_edit_plan_btn"><%= link_to "通知時間の編集", edit_post_plan_timing_path(post) %></p>
+            <% end %>
+          </td>
         </tr>
       </tfoot>
     <%# 復習回数が2のとき %>
@@ -161,7 +171,12 @@
           <td><%= @relearn_point.first_score + relearn_point.second_score + relearn_point.third_score+ relearn_point.forth_score %> / 1000 P</td>
           <td></td>
           <td></td>
-          <td><p class="post_show_edit_plan_btn"><%= link_to "通知時間の編集", edit_post_plan_timing_path(post), data: {"turbolinks" => false} %></p></td>
+          <td>
+            <%# 4回目の通知時間が現在を過ぎていたら編集できないようにする %>
+            <% if plan_timing.forth_term >= time_now %>
+              <p class="post_show_edit_plan_btn"><%= link_to "通知時間の編集", edit_post_plan_timing_path(post) %></p>
+            <% end %>
+          </td>
         </tr>
       </tfoot>
     <%# 復習回数が3以上のとき %>
@@ -211,7 +226,12 @@
           <td><%= @relearn_point.first_score + relearn_point.second_score + relearn_point.third_score+ relearn_point.forth_score %> / 1000 P</td>
           <td></td>
           <td></td>
-          <td><p class="post_show_edit_plan_btn"><%= link_to "通知時間の編集", edit_post_plan_timing_path(post), data: {"turbolinks" => false} %></p></td>
+          <td>
+            <%# 4回目の通知時間が現在を過ぎていたら編集できないようにする %>
+            <% if plan_timing.forth_term >= time_now %>
+              <p class="post_show_edit_plan_btn"><%= link_to "通知時間の編集", edit_post_plan_timing_path(post) %></p>
+            <% end %>
+          </td>  
         </tr>
       </tfoot>
     <% else %>
