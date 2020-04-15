@@ -6,5 +6,8 @@
     <% end %>
   </ul>
   <br>
-  <%= link_to "ジャンルの追加/編集",  user_genres_path(user_id: current_user.id) %>
+  <%# フレンドユーザーからは見えないようにする %>
+  <% if @friend_user.id == current_user.id %>
+    <%= link_to "ジャンルの追加/編集",  user_genres_path(user_id: current_user.id) %>
+  <% end %>
 </div>
