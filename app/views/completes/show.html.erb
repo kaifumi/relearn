@@ -25,8 +25,8 @@
           plan_timing: @plan_timing, real_timing: @real_timing } %>
     <p></p>
     <div class="post_show_bottom_btn">
-        <p class="post_show_complete_btn"><%= link_to "もう一度復習する", post_complete_path(@post), method: :patch %></p>
-        <p class="post_show_delete_btn"><%= link_to "投稿を削除する", post_path(@post), method: :delete, data: { confirm: '削除しますか？' } %></p>
+        <p class="post_show_complete_btn"><%= link_to "もう一度復習する", user_post_complete_path(user_id: current_user.id, post_id: @post.id), method: :patch %></p>
+        <p class="post_show_delete_btn"><%= link_to "投稿を削除する", user_post_path(user_id: current_user.id, id: @post.id), method: :delete, data: { confirm: '削除しますか？' } %></p>
     </div>
       
       

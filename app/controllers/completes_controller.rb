@@ -2,7 +2,7 @@ class CompletesController < ApplicationController
   # ログインユーザーのみ実行可能にする
   before_action :authenticate_user!
   # 他のユーザーの投稿は見れない
-  before_action :correct_user_check, only: [:show]
+  # before_action :correct_friend_check, only: [:show]
 
   # 復習完了した投稿の一覧
   def index
@@ -26,7 +26,7 @@ class CompletesController < ApplicationController
     post = Post.find(params[:id])
     if post.update(relearn_complete: true)
       flash[:warning] = '復習ステータスを更新しました'
-      redirect_to post_complete_path(post_id: params[:id])
+      redirect_to user_post_complete_path(user_id: current_user.id, post_id: params[:id])
     else
       flash[:danger] = '復習ステータスの更新に失敗しました'
       redirect_to request.referer
@@ -53,7 +53,7 @@ class CompletesController < ApplicationController
       @relearn_point.update(first_score: 0, second_score: 0, third_score: 0, forth_score: 0)
       flash[:warning] = '復習ステータスを更新しました'
       # もう一度復習するので投稿詳細へとばす
-      redirect_to post_path(@post.id)
+      redirect_to user_post_path(user_id: current_user.id, id: @post.id)
     else
       flash[:danger] = '復習ステータスの更新に失敗しました'
       redirect_to request.referer
@@ -73,10 +73,12 @@ class CompletesController < ApplicationController
 
   private
 
-  def correct_user_check
-    return if current_user.id == Post.find(params[:post_id]).user.id
+  def correct_friend_check
+    @friend_user = User.find(params[:user_id])
+    # 友達であれば処理を中断しビューを表示させる
+    return if Friend.friend_user?(current_user, friend_user)
 
-    flash[:danger] = '他のユーザーの投稿情報は見れないようになっています'
+    flash[:danger] = '自分と友達以外の投稿情報は見れないようになっています'
     redirect_to root_path
   end
 end
