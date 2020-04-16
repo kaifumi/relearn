@@ -35,15 +35,13 @@ class Rate < ApplicationRecord
       user_array.push(user[:id])
     end
     rate_array = []
-    i = 0
     # 除外したいユーザーと被らなければ配列に入れる
-    rates.each do |rate|
+    rates.each.with_index do |rate, i|
       if user_array.include?(rate[:user_id])
         next
       # 最高で50人入れるまで繰り返す
       elsif i <= 50
         rate_array.push(rate)
-        i += 1
       end
     end
     rate_average_array = []
