@@ -68,12 +68,11 @@ class User < ApplicationRecord
   end
 
   # 送ったリクエストが承認されたときの通知レコードを作成するメソッド
-  # 承認時はvisitorが他者でreceicerが利用ユーザーとなる
   def self.create_notification_approve!(current_user, user_id)
     temp = Notification.where(['visitor_id = ? and receiver_id = ? and action = ? ', user_id, current_user.id, 'approve'])
     return if temp.present?
 
-    notification = Notification.new(visitor_id: user_id, receiver_id: current_user.id, action: 'approve')
+    notification = Notification.new(visitor_id: current_user.id, receiver_id: user_id, action: 'approve')
     notification.save if notification.valid?
   end
 end

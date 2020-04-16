@@ -36,7 +36,7 @@ class RelearnPointsController < ApplicationController
       if post[:relearn_count] >= 4
         post.update(relearn_complete: true)
         # and return を使って明示的に早期終了させる
-        redirect_to post_complete_path(post_id: params[:post_id]) and return
+        redirect_to user_post_complete_path(user_id: current_user.id, post_id: params[:post_id]) and return
       end
     else
       flash[:danger] = '復習登録に失敗しました'

@@ -35,7 +35,7 @@ class PlanTimingsController < ApplicationController
   def correct_user_check
     return if current_user.id == Post.find(params[:post_id]).user.id
 
-    flash[:danger] = '他のユーザーの投稿情報は見れないようになっています'
+    flash[:danger] = '他のユーザーの通知時間の編集はできないようになっています'
     redirect_to root_path
   end
 end
