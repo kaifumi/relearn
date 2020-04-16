@@ -6,7 +6,7 @@
 「<%= @plan.post.title %>」の2回目の復習タイミングになりましたのでご連絡致しました。
 
 こちらのリンクから投稿詳細ページへ飛ぶことが出来ます。
-link : <%= user_post_url(@plan.post) %>
+link : <%= user_post_url(user_id: @user.id, id: @plan.post.id) %>
 
 ベストなタイミングに復習することで最も効率良く記憶力をあげることができます。
 ぜひこのチャンスを大事にしましょう！

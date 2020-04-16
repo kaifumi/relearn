@@ -84,6 +84,11 @@ group :development, :test do
   gem 'guard-rspec'
   # springを使ってrspecを高速化するためのgem
   gem 'spring-commands-rspec'
+  # ローカル環境の変更をリモート環境へ反映できる
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano3-puma'
+  gem 'capistrano-rbenv'
 end
 
 group :development do
