@@ -23,9 +23,8 @@
           </tr>
         </thead>
         <tbody>
-          <% i = 1%>
           <%# 投稿の数だけeach文を回す %>
-          <% @posts.each do |post| %>
+          <% @posts.each.with_index(1) do |post, i| %>
             <tr>
               <td><%= i %></td>
               <td><%= link_to post.title.truncate(15), user_post_path(user_id: current_user.id, id: post.id) %></td>
@@ -33,7 +32,6 @@
               <td><%= post.content.truncate(20) %></td>
               <td><%= post.relearn_count %>/4</td>
             </tr>
-            <% i += 1 %>
           <% end %>
         </tbody>
       </table>
