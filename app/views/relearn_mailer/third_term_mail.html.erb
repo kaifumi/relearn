@@ -14,7 +14,7 @@
   <p>この度は「ReLearn」をご利用頂きましてありがとうございます。</p>
   <p>「<%= @plan.post.title %>」の3回目の復習タイミングになりましたのでご連絡致しました。<br /></p>
   <p>こちらのリンクから投稿詳細ページへ飛ぶことが出来ます。</p>
-  <p>link : <a href="<%= user_post_url(@plan.post) %>"><%= user_post_url(@plan.post) %></a><br /></p><br />
+  <p>link : <a href="<%= user_post_url(user_id: @user.id, id: @plan.post.id) %>"><%= user_post_url(user_id: @user.id, id: @plan.post.id) %></a><br /></p><br />
   <p>ベストなタイミングに復習をすることで最も効率良く記憶力を高めることができます。<br /></p>
   <p>ぜひこのチャンスを大事にしましょう！</p>
   <hr />
