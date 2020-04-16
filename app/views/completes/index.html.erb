@@ -24,9 +24,9 @@
       </thead>
       <tbody class="post_index_tbody">
         <%# 投稿の数だけeach文を回す %>
-        <% @posts.each do |post| %>
+        <% @posts.each.with_index(1) do |post, i| %>
         <tr>
-          <td><%= post.id %></td>
+          <td><%= i %></td>
           <td><%= link_to post.title.truncate(15), user_post_complete_path(user_id: @friend_user.id,post_id: post.id) %></td>
           <td><%= post.genre.type.truncate(15) %></td>
           <td><%= post.content.truncate(20) %></td>
