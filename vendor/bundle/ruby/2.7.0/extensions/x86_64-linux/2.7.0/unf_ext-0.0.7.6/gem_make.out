@@ -1,0 +1,16 @@
+current directory: /home/ec2-user/relearn/vendor/bundle/ruby/2.7.0/gems/unf_ext-0.0.7.6/ext/unf_ext
+/home/ec2-user/.rbenv/versions/2.7.0/bin/ruby -I /home/ec2-user/.rbenv/versions/2.7.0/lib/ruby/2.7.0 -r ./siteconf20200331-10082-p82z6g.rb extconf.rb
+checking for -lstdc++... yes
+creating Makefile
+
+current directory: /home/ec2-user/relearn/vendor/bundle/ruby/2.7.0/gems/unf_ext-0.0.7.6/ext/unf_ext
+make "DESTDIR=" clean
+
+current directory: /home/ec2-user/relearn/vendor/bundle/ruby/2.7.0/gems/unf_ext-0.0.7.6/ext/unf_ext
+make "DESTDIR="
+compiling unf.cc
+linking shared-object unf_ext.so
+
+current directory: /home/ec2-user/relearn/vendor/bundle/ruby/2.7.0/gems/unf_ext-0.0.7.6/ext/unf_ext
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 unf_ext.so ./.gem.20200331-10082-1g5bwya
