@@ -2,7 +2,7 @@
 <h1>学習ジャンル 追加 / 編集</h1>
 <div class="genre_index_box row">
   <div class="genre_main_box col-xs-9">
-    <div class="genre_list_box col-xs-10 col-xs-offset-2">
+    <div class="genre_list_box col-xs-9 col-xs-offset-3">
         <div class="genre_form">
           <%= form_with(model: @genre, url: user_genres_path(user_id: current_user.id), method: :post, local: true, class:"form_control") do |f| %>
             <%= f.text_field :type ,class: "genre_type_form"%>
@@ -35,7 +35,7 @@
         <%= paginate @genres %>
         <% unless Post.find_by(user_id: current_user.id) %>
           <div class="genre_post_new_use">  
-            <%= link_to "次は投稿をしてみましょう！", new_post_path %>
+            <%= link_to "次は投稿をしてみましょう！", new_user_post_path(user_id: current_user.id) %>
           </div>
         <% end %>
       <% else %>
@@ -44,9 +44,5 @@
         </div>
       <% end %>
     </div>
-  </div>
-  <div class="genre_side_box col-xs-3">
-    <%# ジャンルの一覧をサイドバーで表示 %>
-    <%= render partial: 'layouts/side_genre', locals: {genres: @genres} %>
   </div>
 </div>

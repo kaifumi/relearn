@@ -1,5 +1,14 @@
+<%# フレンドユーザーの投稿であれば見れるようにする %>
+<% if @friend_user.id != current_user.id %>
+  <h1><%= @friend_user.name%>さんのRelearn 一覧</h1>
+  <div class="post_index_friend_btn_box">
+    <div class="post_index_friend_posts_btn"><%= link_to user_posts_path(user_id: @friend_user.id) do %><p><%= @friend_user.name %><br>さんのRelearn 一覧</p><% end %></div>
+    <div class="post_index_friend_complete_posts_btn"><%= link_to complete_posts_path(id: @friend_user.id) do %><p><%= @friend_user.name %><br>さんのRelearn 履歴</p><% end %></div>
+  </div>
+<% else %>
+  <h1>Relearn 一覧</h1>
+<% end %>
 <%# ユーザーが投稿したものすべてを表示 %>
-<h1>Relearn 一覧</h1>
 <div class="post_index_box row">
   <div class="post_index_main_box col-xs-9">
     <div class="post_index_list">
@@ -14,17 +23,15 @@
           </tr>
         </thead>
         <tbody class="post_index_tbody">
-          <% i = 1%>
           <%# 投稿の数だけeach文を回す %>
-          <% @posts.each do |post| %>
+          <% @posts.each.with_index(1) do |post, i| %>
             <tr>
               <td><%= i %></td>
-              <td><%= link_to post.title.truncate(15), post_path(post) %></td>
+              <td><%= link_to post.title.truncate(15), user_post_path(user_id: @friend_user.id, id: post.id) %></td>
               <td><%= post.genre.type.truncate(15) %></td>
               <td><%= post.content.truncate(20) %></td>
               <td><%= post.relearn_count %>/4</td>
             </tr>
-            <% i += 1 %>
           <% end %>
         </tbody>
       </table>
