@@ -1,6 +1,6 @@
 <h1>新規投稿</h1>
 <div class="new_post_box">
-  <%= form_with model: @post, local: true do |f| %>
+  <%= form_with(url: user_posts_path(user_id: current_user.id), model: @post, local: true) do |f| %>
     <%# 項目を横並びにするためにテーブル化 %>
     <table class="new_post_table">
       <tbody class="new_post_tbody">

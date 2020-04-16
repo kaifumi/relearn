@@ -813,6 +813,30 @@ footer {
     width: 20%;
   }
 }
+// フレンド用のボタンのレイアウト
+//
+.post_index_friend_btn_box {
+  display: flex;
+  // justify-content: space-between;
+  width: 60%;
+  margin-top: 20px;
+  font-size: 20px;
+}
+.post_index_friend_posts_btn {
+  border: solid 2px rgb(103, 214, 39);
+  border-radius: 10px;
+  background-color: rgb(103, 214, 39);
+  width: 40%;
+  text-align: center;
+}
+.post_index_friend_complete_posts_btn {
+  border: solid 2px rgb(103, 214, 39);
+  border-radius: 10px;
+  background-color: rgb(103, 214, 39);
+  width: 40%;
+  text-align: center;
+  margin-left: 20px;
+}
 
 // サイドバーのジャンル一覧
 .side_genre {
@@ -1298,27 +1322,39 @@ footer {
 }
 // 友達一覧ページ
 .friend_table {
-  width: 400px;
+  width: 500px;
   margin: 30px auto 0;
 }
 .friend_thead th {
   text-align: center;
 }
 .friend_tbody td:nth-child(1) {
-  width: 25%;
+  width: 20%;
   height: 60px;
 }
 .friend_tbody td:nth-child(2) {
-  width: 40%;
+  width: 35%;
   text-align: left;
 }
 .friend_tbody td:nth-child(3) {
-  width: 5%;
+  width: 25%;
   text-align: center;
 }
 .friend_tbody td:nth-child(4) {
-  width: 30%;
+  width: 20%;
   text-align: center;
+}
+.friend_index_posts_btn {
+  position: relative;
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #fff;
+  background: rgb(103, 214, 39); /*色*/
+  border: solid 1px #b1f1b1; /*線色*/
+  border-radius: 4px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 
 // メニュー
