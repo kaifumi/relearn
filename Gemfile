@@ -64,6 +64,11 @@ gem 'chartkick'
 # ファイルの変更を検知してそれをフックに何か処理ができるgemとのこと
 gem 'listen', '>= 3.0.5', '< 3.2'
 
+# マークダウン形式で記入するためのgem
+gem 'redcarpet', '~> 2.3.0'
+# シンタックスハイライトに対応させるためのgem
+gem 'coderay'
+
 group :production do
   # 開発環境では、DBにはSQLiteを利用していたが、AWSで動作させる際にはMySQLを利用
   gem 'mysql2'

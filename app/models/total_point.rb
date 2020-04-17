@@ -17,7 +17,7 @@ class TotalPoint < ApplicationRecord
     # 合計スコアの集合
     total_point_array = []
     # 除外したいユーザーと被らなければ配列に入れる
-    total_points.each.with_index do |total_point, i|
+    total_points.each.with_index(1) do |total_point, i|
       if user_array.include?(total_point[:user_id])
         next
       # 最高で50人入れるまで繰り返す

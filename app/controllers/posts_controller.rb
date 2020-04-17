@@ -29,9 +29,8 @@ class PostsController < ApplicationController
     # _point_formで使用するrelearn_pointのデータの入れ方条件分岐
     if RelearnPoint.find_by(post_id: params[:id]).nil?
       # もしrelearn_pointのレコードがなければ作らせる
-      @relearn_point = RelearnPoint.create!(post_id: params[:id])
+      RelearnPoint.create!(post_id: params[:id])
     end
-    @relearn_point = RelearnPoint.find_by(post_id: params[:id])
     if PlanTiming.find_by(post_id: params[:id]).nil?
       # もしplan_timingのレコードがなければ作らせる
       @plan_timing = PlanTiming.create!(post_id: @post.id, first_term: 1.day.from_now.strftime('%Y-%m-%d %H:%M'),
