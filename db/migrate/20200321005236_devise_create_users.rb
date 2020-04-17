@@ -13,7 +13,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.datetime :remember_created_at
       t.string :provider
       t.string :uid
-      t.string :usernam
+      t.string :username
       t.string :image_url
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false
