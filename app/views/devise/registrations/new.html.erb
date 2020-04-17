@@ -32,6 +32,13 @@
       </div>
     <% end %>
 
+    <%= link_to '/auth/twitter' do %>
+      <p class="signup_twitter_link">
+        <i class="fab fa-twitter-square fa-2x"></i>
+        <%= session[:user_name] %>
+      </p>
+    <% end %><br>
+
     <%= render "devise/shared/links" %>
   </div>
 </div>
