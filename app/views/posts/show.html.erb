@@ -23,7 +23,7 @@
         <% end %>
       </div>
       <div class="post_show_content">
-        <%= simple_format(@post.content) %>
+        <%= markdown(@post.content).html_safe %>
       </div>
       <%# target="_blank"をつけることでb別タブに飛ばす。rel="noopener noreferrer" %>
       <p class="post_show_link">link : <a href="<%= @post.link %>" target="_blank" rel="noopener noreferrer"><%= @post.link.truncate(70) %></a></p>
@@ -37,7 +37,7 @@
   <% if @friend_user.id == current_user.id %>
     <div class="post_show_bottom_box col-xs-12">
       <%# ポイント入力フォーム %>
-      <%= render partial: 'point_form', locals: { post: @post,relearn_point: @relearn_point,
+      <%= render partial: 'point_form', locals: { post: @post,
             plan_timing: @plan_timing, time_now: @time_now, real_timing: @real_timing } %>
         <p class="post_show_bottom_message">※通知時間になるまでは復習のチェックは出来ません</p>
           <div class="post_show_bottom_btn">
