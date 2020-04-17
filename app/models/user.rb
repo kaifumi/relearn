@@ -75,4 +75,18 @@ class User < ApplicationRecord
     notification = Notification.new(visitor_id: current_user.id, receiver_id: user_id, action: 'approve')
     notification.save if notification.valid?
   end
+
+  # twitterログインで使用
+  # ユーザー情報があれば探し、なければ作成する
+  def self.find_or_create_from_auth(auth)
+    provider = auth[:provider]
+    uid = auth[:uid]
+    user_name = auth[:info][:user_name]
+    image_url = auth[:info][:image]
+
+    find_or_create_by(provider: provider, uid: uid) do |user|
+      user.user_name = user_name
+      user.image_url = image_url
+    end
+  end
 end

@@ -19,6 +19,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # ログイン機能
 gem 'devise'
 
+# twitterでのログインを可能にするgem
+gem 'omniauth'
+gem 'omniauth-twitter'
+
 # 画像ファイルをアップロード
 gem 'refile', require: 'refile/rails', github: 'manfe/refile'
 # 画像のリサイズ機能
