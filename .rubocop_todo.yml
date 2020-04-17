@@ -92,7 +92,7 @@ Layout/LineLength:
     - "app/models/friend.rb"
 
 # タブが過剰(ストロングパラメータ用)
-Layout/Tab:
+Layout/IndentationStyle:
   Exclude:
     - "app/controllers/application_controller.rb"
 
@@ -160,3 +160,4 @@ AllCops:
     - "public/**/*"
     - "tmp/**/*"
     - "log/**/*"
+    - "vendor/**/*"

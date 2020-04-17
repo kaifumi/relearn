@@ -36,7 +36,7 @@ class Rate < ApplicationRecord
     end
     rate_array = []
     # 除外したいユーザーと被らなければ配列に入れる
-    rates.each.with_index do |rate, i|
+    rates.each.with_index(1) do |rate, i|
       if user_array.include?(rate[:user_id])
         next
       # 最高で50人入れるまで繰り返す

@@ -11,7 +11,7 @@ class RelearnPoint < ApplicationRecord
   def self.calculate(received_score, post_id)
     # 復習番目と復習予定時間の配列を用意
     scores = [%w[first_score first_term], %w[second_score second_term], %w[third_score third_term], %w[forth_score forth_term]]
-    scores.each.with_index do |score, i|
+    scores.each.with_index(1) do |score, i|
       if received_score[score[0]] == 'true'
         # 復習する予定だった時間と実際の復習時間(現在の時間)の差異(絶対値メソッドabsを使う)の1日あたりの割合を出す
         score_rate = (PlanTiming.find_by(post_id: post_id)[(score[1])] - Time.zone.now).abs / 86_400
