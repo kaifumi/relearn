@@ -78,6 +78,9 @@ Style/GuardClause:
   Exclude:
     - "app/controllers/homes_controller.rb"
 
+Layout/DefEndAlignment:
+  AutoCorrect: true
+
 Layout/SpaceInsideArrayLiteralBrackets:
   Exclude:
     - "config/environments/production.rb"
