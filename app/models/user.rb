@@ -10,12 +10,13 @@ class User < ApplicationRecord
   acts_as_paranoid
 
   # omniauthのコールバック時に呼ばれるメソッド
-  def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0, 20]
-    end
-  end
+  # def self.from_omniauth(auth)
+  #   where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+  #     user.email = auth.info.email
+  #     user.password = Devise.friendly_token[0, 20]
+  #   end
+  # end
+
   # バリデーション
   validates :name, presence: true, length: { in: 1..20 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
@@ -82,5 +83,22 @@ class User < ApplicationRecord
 
     notification = Notification.new(visitor_id: current_user.id, receiver_id: user_id, action: 'approve')
     notification.save if notification.valid?
+  end
+
+  def self.find_for_oauth(auth)
+    user = User.find_by(uid: auth.uid, provider: auth.provider)
+
+    user ||= User.create(
+      uid: auth.uid,
+      provider: auth.provider,
+      email: User.dummy_email(auth),
+      password: Devise.friendly_token[0, 20]
+    )
+
+    user
+  end
+
+  def self.dummy_email(auth)
+    "#{auth.uid}-#{auth.provider}@example.com"
   end
 end
