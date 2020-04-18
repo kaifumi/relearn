@@ -18,7 +18,7 @@ class User < ApplicationRecord
   # end
 
   # バリデーション
-  validates :name, length: { in: 1..20 }
+  validates :name
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
 
@@ -89,7 +89,7 @@ class User < ApplicationRecord
     user = User.find_by(uid: auth.uid, provider: auth.provider)
 
     user ||= User.create!(
-      name: User.dummy_name(auth),
+      name: auth.username,
       uid: auth.uid,
       provider: auth.provider,
       email: User.dummy_email(auth),
