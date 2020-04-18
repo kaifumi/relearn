@@ -2,12 +2,20 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: [:facebook, :twitter, :google_oauth2]
   # refileでイメージ画像を扱えるようにする
   attachment :image
   # 論理削除するために必要
   acts_as_paranoid
 
+  # omniauthのコールバック時に呼ばれるメソッド
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+    end
+  end
   # バリデーション
   validates :name, presence: true, length: { in: 1..20 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
@@ -74,19 +82,5 @@ class User < ApplicationRecord
 
     notification = Notification.new(visitor_id: current_user.id, receiver_id: user_id, action: 'approve')
     notification.save if notification.valid?
-  end
-
-  # twitterログインで使用
-  # ユーザー情報があれば探し、なければ作成する
-  def self.find_or_create_from_auth(auth)
-    provider = auth[:provider]
-    uid = auth[:uid]
-    user_name = auth[:info][:user_name]
-    image_url = auth[:info][:image]
-
-    find_or_create_by(provider: provider, uid: uid) do |user|
-      user.user_name = user_name
-      user.image_url = image_url
-    end
   end
 end
