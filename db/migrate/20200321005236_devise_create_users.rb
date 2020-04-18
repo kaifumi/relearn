@@ -1,7 +1,7 @@
 class DeviseCreateUsers < ActiveRecord::Migration[5.2]
   def change
     create_table :users do |t|
-      t.string :name, null: false
+      t.string :name
       t.string :email, null: false, default: ""
       t.string :image_id
       t.boolean :email_status,null:false, default:true
@@ -13,7 +13,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.datetime :remember_created_at
       t.string :provider
       t.string :uid
-      t.string :user_name
+      t.string :username
       t.string :image_url
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false
