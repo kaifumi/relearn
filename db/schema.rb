@@ -135,7 +135,7 @@ ActiveRecord::Schema.define(version: 2020_03_21_005236) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name"
     t.string "email", default: "", null: false
     t.string "image_id"
     t.boolean "email_status", default: true, null: false
@@ -147,7 +147,7 @@ ActiveRecord::Schema.define(version: 2020_03_21_005236) do
     t.datetime "remember_created_at"
     t.string "provider"
     t.string "uid"
-    t.string "user_name"
+    t.string "username"
     t.string "image_url"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
