@@ -8,7 +8,9 @@ Rails.application.routes.draw do
    }
   root 'homes#top'
   get '/about' => 'homes#about'
-  get 'auth/:provider/callback' => 'users#create'#このpathを通して認証が行われる。
+  #このpathを通して認証が行われる。
+  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy'
   # ジャンルごとの投稿一覧
   get '/posts/genre/:id' => 'posts#genre_posts_index', as: 'genre_posts_index'
   # 復習完了した投稿一覧、ユーザーの区別をするためid有りにする
