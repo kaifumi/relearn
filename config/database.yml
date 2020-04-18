@@ -9,10 +9,6 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
-default_twitter: &default_twitter
-  twitter_api_key: <%= ENV["TWITTER_CONSUMER_KEY"] %>
-  twitter_api_secret: <%= ENV["TWITTER_CONSUMER_SECRET"] %>
-
 development:
   <<: *default
   database: db/development.sqlite3
