@@ -9,8 +9,9 @@ Rails.application.routes.draw do
   root 'homes#top'
   get '/about' => 'homes#about'
   #このpathを通して認証が行われる。
-  get '/auth/:provider/callback' => 'sessions#create'
-  get '/logout' => 'sessions#destroy'
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  # get '/auth/:provider/callback' => 'sessions#create'
+  # get '/logout' => 'sessions#destroy'
   # ジャンルごとの投稿一覧
   get '/posts/genre/:id' => 'posts#genre_posts_index', as: 'genre_posts_index'
   # 復習完了した投稿一覧、ユーザーの区別をするためid有りにする
