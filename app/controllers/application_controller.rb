@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 	protect_from_forgery with: :exception
 	# devise動作時の利用カラムを制限する
 	before_action :configure_permitted_parameters, if: :devise_controller?
+	helper_method :logged_in?
 
 	 protected
 
@@ -12,4 +13,14 @@ class ApplicationController < ActionController::Base
 		devise_parameter_sanitizer.permit :account_update, keys: added_attrs
 		devise_parameter_sanitizer.permit :sign_in, keys: added_attrs
 	end
+
+	def logged_in?
+    !session[:user_id].nil?
+ end
+
+	def authenticate
+		return if logged_in?
+
+		redirect_to root_path
+ end
 end
