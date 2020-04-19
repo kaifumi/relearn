@@ -136,6 +136,7 @@ Metrics/AbcSize:
     - "app/helpers/posts_helper.rb"
     - "app/controllers/homes_controller.rb"
     - "app/helpers/notifications_helper.rb"
+    - "app/controllers/users/omniauth_callbacks_controller.rb"
 
   Enabled: true
   Max: 30
