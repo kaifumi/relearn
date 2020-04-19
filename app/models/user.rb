@@ -18,6 +18,7 @@ class User < ApplicationRecord
   # end
 
   # バリデーション
+  validates :name, presence: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
 
@@ -92,18 +93,14 @@ class User < ApplicationRecord
       provider: auth.provider,
       email: User.dummy_email(auth),
       password: Devise.friendly_token[0, 20],
-      username: auth[:username],
-      name: auth[:username]
+      name: auth[:info][:name],
+      image_id: auth[:info][:image]
     )
 
     user
   end
 
-  def self.dummy_name(auth)
-    "#{auth.uid}-#{auth.provider}"
-  end
-
   def self.dummy_email(auth)
-    "#{auth.uid}-#{auth.provider}@example.com"
+    "#{Time.now.strftime('%Y%m%d%H%M%S').to_i}-#{auth.uid}-#{auth.provider}@example.com"
   end
 end
