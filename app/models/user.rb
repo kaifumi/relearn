@@ -88,11 +88,12 @@ class User < ApplicationRecord
     user = User.find_by(uid: auth.uid, provider: auth.provider)
 
     user ||= User.create!(
-      name: auth.username,
       uid: auth.uid,
       provider: auth.provider,
       email: User.dummy_email(auth),
-      password: Devise.friendly_token[0, 20]
+      password: Devise.friendly_token[0, 20],
+      username: auth[:username],
+      name: auth[:username]
     )
 
     user
