@@ -6,6 +6,13 @@
         <h1>Next Relearn</h1>
         <h4 class="quote">良さげな言葉　：　<p class="quote_word"><%= @quote %></p></h4>
       </div>
+      <% if current_user.email.length > 50 %>
+        <p class="top_mail_change_message" >
+          ※外部認証でログインされた方は正しいメールアドレスへ変更をお願いします。
+          このままですと正しく通知が送られません。
+        </p>
+      <% end %>
+      
       <%# 最短の復習ジャンルごとに表示 %>
       <div class="col-xs-12 genre_box">
         <%= render partial: "homes/genre_box", locals: { genres: @genres, order_posts: @order_posts } %>
