@@ -26,7 +26,7 @@
                 <td><%= genre.type.truncate(15) %></td>
                 <td><%= f.text_field :type ,class:"genre_table_form"%></td>
                 <td><%= f.submit "更新", class:"genre_form_btn" %></td>
-                <td><div class="genre_delete_btn"><%= link_to "削除", user_genre_path(user_id: current_user.id, id: genre.id), method: :delete, data: {"turbolinks" => false} %></div></td>
+                <td><%= link_to user_genre_path(user_id: current_user.id, id: genre.id), method: :delete do %><div class="genre_delete_btn"><p>削除</p></div><% end %></td>
               </tr>
               <% end %>
             <% end %>
@@ -35,11 +35,11 @@
         <%= paginate @genres %>
         <% unless Post.find_by(user_id: current_user.id) %>
           <div class="genre_post_new_use">  
-            <%= link_to "次は投稿をしてみましょう！", new_user_post_path(user_id: current_user.id) %>
+            <%= link_to new_user_post_path(user_id: current_user.id) do %><p>次は投稿をしてみましょう！</p><% end %>
           </div>
         <% end %>
       <% else %>
-        <div class="genre_index-guide_box">
+        <div class="genre_index_guide_box">
           <p>学習したいジャンル名を入れてください。</p>
         </div>
       <% end %>
