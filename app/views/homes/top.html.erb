@@ -31,7 +31,7 @@
         <h4 class="quote">良さげな言葉：<p class="quote_word"><%= @quote %></p></h4>
       </div>
       <div class="top_genre_new_use">
-        <%= link_to "まず最初に学習ジャンルを登録!", user_genres_path(user_id: current_user.id) %>
+        <%= link_to user_genres_path(user_id: current_user.id) do %><p>まず最初に学習ジャンルを登録!</p><% end %>
       </div>
     </div>
   <%# サインインしていない場合の表示 %>
