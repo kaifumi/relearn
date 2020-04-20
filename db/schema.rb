@@ -147,8 +147,6 @@ ActiveRecord::Schema.define(version: 2020_03_21_005236) do
     t.datetime "remember_created_at"
     t.string "provider"
     t.string "uid"
-    t.string "username"
-    t.string "image_url"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
