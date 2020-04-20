@@ -94,7 +94,7 @@ class User < ApplicationRecord
       email: User.dummy_email(auth),
       password: Devise.friendly_token[0, 20],
       name: auth[:info][:name],
-      image_id: auth[:info][:image]
+      image: auth[:info][:image]
     )
 
     user
