@@ -51,19 +51,19 @@ class FriendsController < ApplicationController
   def update
     friend = Friend.find_by(sender_id: params[:id], recipient_id: current_user.id, send_request: true, active_status: false)
     # judgeにはtrueかfalseが入る
-    if params[:judge]
+    if params[:judge] == 'true'
       if friend.update(active_status: true)
         # リクエスト承認したときの通知レコードを作成するメソッド
         User.create_notification_approve!(current_user, params[:id])
-        flash[:warning] = 'リクエスト承認しました'
+        flash[:warning] = 'リクエストを承認しました'
       else
-        flash[:danger] = 'リクエスト承認に失敗しました'
+        flash[:danger] = 'リクエストの承認に失敗しました'
       end
     else
       flash[:danger] = if friend.destroy
-                         'リクエスト拒否しました'
+                         'リクエストを拒否しました'
                        else
-                         'リクエスト承認に失敗しました'
+                         'リクエストの拒否に失敗しました'
                        end
     end
     redirect_to request.referer

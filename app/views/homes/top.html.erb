@@ -1,6 +1,6 @@
 <div class="row">
   <%# サインインしていて、利用ユーザーの投稿が存在する場合の表示 %>
-  <% if user_signed_in? && Post.find_by(user_id: current_user.id) %>
+  <% if user_signed_in? && Post.find_by(user_id: current_user.id, relearn_complete: false ) %>
     <div class="col-xs-9">
       <div class="top_title">
         <h1>Next Relearn</h1>
