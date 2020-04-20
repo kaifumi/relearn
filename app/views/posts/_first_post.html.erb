@@ -1,0 +1,62 @@
+<%= form_with(url: user_posts_path(user_id: current_user.id), model: post, local: true) do |f| %>
+  <%# 初めて投稿するときのガイド付きテーブル %>
+  <table class="new_post_table">
+    <tbody class="new_post_tbody">
+      <tr>
+        <td><p>学習ジャンル</p></td>
+        <%# セレクトボックスでジャンル一覧を表示 %>
+        <td>
+          <p class="new_post_genre_form"><%= f.select :genre_id, Genre.where(user_id:current_user).map{|g| [g.type, g.id]} %></p>
+          <p><%= link_to "+新規ジャンルはこちらから追加", user_genres_path(user_id: current_user.id), data: {"turbolinks" => false} %></p></td>
+      <tr> 
+        <td></td> 
+        <td>
+          <div class="first_post_genre_guide_box">
+            <p>学習したいジャンル名を選んでください。</p>
+          </div></td>  
+      </tr>
+
+      </tr>
+      <tr>
+        <td><p>タイトル</p></td>
+        <td><%= f.text_field :title, class: "new_post_title_form", placeholder: "タイトル" %></td>
+      </tr>
+      <tr> 
+        <td></td> 
+        <td>
+          <div class="first_post_title_guide_box">
+            <p>学習タイトルを入れてください。</p>
+          </div></td>  
+      </tr>
+
+      <tr>
+        <td><p>内容<br><br>マークダウン形式で記入もできます</p></td>
+        <td><%= f.text_area :content, class: "new_post_content_form", placeholder: "内容" %></td>
+      </tr>
+      <tr> 
+        <td></td> 
+        <td>
+          <div class="first_post_content_guide_box">
+            <p>学習したい内容を入れてください。</p>
+          </div></td>  
+      </tr>
+
+      <tr>
+        <td><p>リンク（任意）</p></td>
+        <td><%= f.text_field :link, class: "new_post_link_form", placeholder: "リンク" %></td>   
+      </tr>
+      <tr> 
+        <td></td> 
+        <td>
+          <div class="first_post_link_guide_box">
+            <p>学習の際に参考にしたURLリンクをいれてください。</p>
+          </div></td>  
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td><%= f.submit "投稿", class: "new_post_btn" %></td>      
+      </tr>
+    </tbody>
+  </table>
+<% end %>

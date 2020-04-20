@@ -1,6 +1,6 @@
 <div class="row">
   <%# サインインしていて、利用ユーザーの投稿が存在する場合の表示 %>
-  <% if user_signed_in? && Post.find_by(user_id: current_user.id) %>
+  <% if user_signed_in? && Post.find_by(user_id: current_user.id, relearn_complete: false ) %>
     <div class="col-xs-9">
       <div class="top_title">
         <h1>Next Relearn</h1>
@@ -31,7 +31,7 @@
         <h4 class="quote">良さげな言葉：<p class="quote_word"><%= @quote %></p></h4>
       </div>
       <div class="top_genre_new_use">
-        <%= link_to "まず最初に学習ジャンルを登録!", user_genres_path(user_id: current_user.id) %>
+        <%= link_to user_genres_path(user_id: current_user.id) do %><p>まず最初に学習ジャンルを登録!</p><% end %>
       </div>
     </div>
   <%# サインインしていない場合の表示 %>

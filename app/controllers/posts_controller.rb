@@ -20,6 +20,11 @@ class PostsController < ApplicationController
     @genre = Genre.find(params[:id])
     @posts = Post.where(user_id: params[:user_id], genre_id: @genre.id).page(params[:page])
     @genres = Genre.where(user_id: params[:user_id]).limit(20)
+    # もし入力されたgenreのidが自分でも友達でもなければトップページへとばす
+    return unless @genre.user.id != @friend_user.id
+
+    flash[:danger] = '自分と友達以外のジャンルごとの投稿は見れなくなっています。'
+    redirect_to root_path
   end
 
   # 投稿詳細画面の表示
@@ -107,7 +112,7 @@ class PostsController < ApplicationController
 
   # 自分と友達以外の投稿情報は見れないように判断するメソッド
   def correct_friend_check
-    # このメソッドを通過していれば、特定のビューだけ友達のインスタンスを使用できる
+    # このメソッドを通過していれば、利用ユーザーが特定のビューにおいて@friend_userのインスタンスを使用できる
     @friend_user = User.find(params[:user_id])
     # 利用ユーザーと入力されたユーザーのidが同じなら自分のビューを見ることになる
     return if current_user.id == params[:user_id].to_i

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   root 'homes#top'
   get '/about' => 'homes#about'
   # ジャンルごとの投稿一覧
-  get '/posts/genre/:id' => 'posts#genre_posts_index', as: 'genre_posts_index'
+  get '/posts/genre/:user_id/:id' => 'posts#genre_posts_index', as: 'genre_posts_index'
   # 復習完了した投稿一覧、ユーザーの区別をするためid有りにする
   get '/posts/completes/:user_id' => 'completes#index', as: 'complete_posts'
   # 復習回数が4回未満で復習完了する場合
