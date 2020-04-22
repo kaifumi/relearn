@@ -67,6 +67,11 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   # FactoryGirlを使うときに記述を減らすことができる
   config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
+  # springが動かない場合があるので、強制的に再起動させる
+  config.before(:all) do
+    FactoryBot.reload
+  end
 
   # rspec内でデバイスを使えるようにする
   Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
