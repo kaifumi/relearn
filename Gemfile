@@ -88,7 +88,7 @@ group :development, :test do
   # テスト用のデータを作成してくれるツール
   gem 'factory_bot_rails'
   # 複数のテストデータなどを簡単に作成できるGem
-  gem 'factory_girl_rails', '~> 4.0'
+  # gem 'factory_girl_rails', '~> 4.0'
   # テスト自動化のためのgem
   gem 'guard-rspec'
   # springを使ってrspecを高速化するためのgem
