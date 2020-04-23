@@ -31,13 +31,11 @@
         <%= f.submit "登録" ,class:"sign_up_btn" %>
       </div>
     <% end %>
-
-    <p class="signup_twitter_link">  
-      <%= link_to user_twitter_omniauth_authorize_path do %>
-        <i class="fab fa-twitter-square fa-2x"></i>
-        <%= session[:user_name] %>
-      <% end %>
-    </p><br>
+ 
+    <%= link_to user_twitter_omniauth_authorize_path do %>
+      <i class="fab fa-twitter-square fa-2x"></i>
+    <% end %><br>
+    
     <%= render "devise/shared/links" %>
   </div>
 </div>

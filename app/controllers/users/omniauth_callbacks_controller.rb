@@ -36,8 +36,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.find_for_oauth(request.env['omniauth.auth'])
 
     if @user.persisted?
-      TotalPoint.create!(user_id: @user.id) if TotalPoint.find_by(user_id: @user.id).nil?
-      Rate.create!(user_id: @user.id) if Rate.find_by(user_id: @user.id).nil?
+      # サインアップ時に行いたい処理があればここに書きます。
       flash[:notice] = I18n.t('devise.omniauth_callbacks.success', kind: provider.capitalize)
       sign_in_and_redirect @user, event: :authentication
     else
