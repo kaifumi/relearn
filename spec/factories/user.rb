@@ -20,3 +20,11 @@
 #     search_status         false
 #   end
 # end
+
+FactoryBot.define do
+  factory :total_point do
+    id { 1 }
+    user_id { 1 }
+    score { 2700 }
+  end
+end
