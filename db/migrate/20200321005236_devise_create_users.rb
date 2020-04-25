@@ -11,6 +11,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
       t.datetime :remember_created_at
+      # 外部APIログイン用
       t.string :provider
       t.string :uid
       ## Trackable
