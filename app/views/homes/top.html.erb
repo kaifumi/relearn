@@ -20,8 +20,7 @@
     </div>
     <%# 右側のサイドバー %>
     <div class="top_side_box col-xs-3">
-      <%= render partial: "homes/side_box", locals: { total_point: @total_point, average_rate: @average_rate,
-                                                    post: @post, user_rate: @user_rate } %>
+      <%= render partial: "homes/side_box", locals: { total_point: @total_point, post: @post, user_rate: @user_rate } %>
     </div>
   <%# サインインしてるが投稿が無い場合の表示 %>
   <% elsif user_signed_in? %>

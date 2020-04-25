@@ -1,11 +1,8 @@
 <div class="side_point">
   <p>Relearnポイント：</p>
   <p class="top_side_total_point"><%= total_point %>P</p>
-  <% if user_rate.count >= 1 %>
-    <p>Relearn率：</p>
-    <%# sprintf(or format)を使うと整数でも小数点表示ができる %>
-    <p class="top_side_average_rate"><%= sprintf("%.2f", average_rate) %>/1.00</p>
-  <% end %>
+  <p>Relearn率：</p>
+  <p class="top_side_average_rate"><%= average_rate(current_user) %>/1.00</p>
 </div>
 <div class="top_page_graph_box">
   <%# 記憶節約率を表現したグラフ %>

@@ -12,24 +12,11 @@ module HomesHelper
     (float_term / 3600 * 24 % 1 * 60).round
   end
 
-  # # 該当するジャンルの投稿が何件あるかチェックするメソッド
-  # # [ジャンル1,投稿3件],[ジャンル2,投稿5件]みたいな感じでほしい
-  # def item_counts(posts, genres)
-  #   i = 1
-  #   count_array = []
-  #   genres.each do |genre|
-  #     post_array = []
-  #     posts.each do |post|
-  #       # 投稿のジャンルと一致するジャンルを判別する
-  #       if post[3] == genre
-  #         # 一致したものを配列に挿入する
-  #         post_array.push(post[0])
-  #       end
-  #     end
-  #     count_array.push([i, post_array.length])
-  #     i += 1
-  #   end
-  #   # [ジャンル順番,該当の投稿件数]の配列の集合をかえす
-  #   count_array
-  # end
+  # 復習リズムの計算メソッド
+  # 小数点かつ0以上1以下で返す
+  def average_rate(current_user)
+    user_rate = Rate.find_by(user_id: current_user.id)
+    # 平均復習率を計算して表示
+    (user_rate.total_rate / user_rate.count).floor(2) if user_rate.total_rate > 1
+  end
 end
