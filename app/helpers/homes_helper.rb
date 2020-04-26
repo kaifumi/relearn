@@ -16,7 +16,7 @@ module HomesHelper
   # 小数点かつ0以上1以下で返す
   def average_rate(current_user)
     user_rate = Rate.find_by(user_id: current_user.id)
-    # 平均復習率を計算して表示
-    (user_rate.total_rate / user_rate.count).floor(2) if user_rate.total_rate > 1
+    # 平均復習率を計算して小数点第2位まで表示
+    format('%<rate>0.2f', rate: user_rate.total_rate / user_rate.count) if user_rate.total_rate > 1
   end
 end
