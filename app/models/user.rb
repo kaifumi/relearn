@@ -8,6 +8,7 @@ class User < ApplicationRecord
   attachment :image
   # 論理削除するために必要
   acts_as_paranoid
+  validates :email, uniqueness: { scope: deleted_at }
 
   # omniauthのコールバック時に呼ばれるメソッド
   # def self.from_omniauth(auth)
