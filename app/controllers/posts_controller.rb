@@ -69,7 +69,7 @@ class PostsController < ApplicationController
       flash[:warning] = '投稿完了しました。'
       redirect_to user_post_path(user_id: current_user.id, id: @post.id)
     else
-      flash[:danger] = 'タイトルと内容は必須です。'
+      flash[:danger] = 'ジャンル、タイトル、内容は必須です。'
       render :new
     end
   end
