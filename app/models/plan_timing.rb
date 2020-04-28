@@ -2,7 +2,6 @@ class PlanTiming < ApplicationRecord
   belongs_to :post
   has_many :notification, dependent: :destroy
 
-  # バリデーション
   validates :post_id, presence: true, uniqueness: true, numericality: { only_integer: true}
 
   # 分解した月日、時、分を結合

@@ -1,7 +1,6 @@
 class RelearnPoint < ApplicationRecord
   belongs_to :post
 
-  # バリデーション
   validates :first_score, numericality: { only_integer: true, greater_than: -1, less_than: 101 }
   validates :second_score, numericality: { only_integer: true, greater_than: -1, less_than: 201 }
   validates :third_score, numericality: { only_integer: true, greater_than: -1, less_than: 301 }

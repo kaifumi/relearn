@@ -6,7 +6,6 @@ class Notification < ApplicationRecord
   # スコープ(新着順)
   default_scope { order(created_at: :desc) }
 
-  # バリデーション
   validates :visitor_id, numericality: { only_integer: true }, allow_blank: true
   validates :receiver_id, numericality: { only_integer: true }, allow_blank: true
   validates :plan_timing_id, numericality: { only_integer: true }, allow_blank: true

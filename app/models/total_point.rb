@@ -1,7 +1,6 @@
 class TotalPoint < ApplicationRecord
   belongs_to :user
 
-  # バリデーション
   validates :score, numericality: { only_integer: true, greater_than: -1 }
 
   # usersにはランキング掲載不可能なユーザーが複数レコード入っている
