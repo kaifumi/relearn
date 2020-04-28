@@ -26,7 +26,9 @@
                 <td><%= genre.type.truncate(15) %></td>
                 <td><%= f.text_field :type ,class:"genre_table_form"%></td>
                 <td><%= f.submit "更新", class:"genre_form_btn" %></td>
-                <td><%= link_to user_genre_path(user_id: current_user.id, id: genre.id), method: :delete do %><div class="genre_delete_btn"><p>削除</p></div><% end %></td>
+                <td><%= link_to user_genre_path(user_id: current_user.id, id: genre.id), method: :delete, data: {confirm: "紐付いた投稿がすべて削除されますが、本当に削除しますか？"} do %>
+                  <div class="genre_delete_btn"><p>削除</p></div><% end %>
+                </td>
               </tr>
               <% end %>
             <% end %>
