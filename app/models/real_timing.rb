@@ -1,7 +1,6 @@
 class RealTiming < ApplicationRecord
   belongs_to :post
 
-  # バリデーション
   validates :post_id, presence: true, numericality: { only_integer: true }
 
   # 受け取った値がどの復習タイミングか判別するメソッド

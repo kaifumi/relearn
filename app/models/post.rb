@@ -5,7 +5,6 @@ class Post < ApplicationRecord
   has_many :plan_timings, dependent: :destroy
   has_many :real_timings, dependent: :destroy
 
-  # バリデーション
   validates :user_id, presence: true, numericality: { only_integer: true }
   validates :genre_id, presence: true, numericality: { only_integer: true }
   validates :title, presence: true, length: { in: 1..40 }
