@@ -8,7 +8,7 @@ class User < ApplicationRecord
   attachment :image
   # 論理削除するために必要
   acts_as_paranoid
-  validates :email, uniqueness: { scope: deleted_at }
+  validates :email, uniqueness: { scope: :deleted_at }
 
   # omniauthのコールバック時に呼ばれるメソッド
   # def self.from_omniauth(auth)
@@ -21,7 +21,7 @@ class User < ApplicationRecord
   # バリデーション
   validates :name, presence: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
-  validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
 
   has_many :posts, dependent: :destroy
   has_many :genres, dependent: :destroy

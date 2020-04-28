@@ -41,9 +41,11 @@ class TotalPoint < ApplicationRecord
         total_point_array.push(TotalPoint.find_by(user_id: friend.sender_id))
       end
     end
-    # 最後に自分を入れる
-    total_point_array.push(TotalPoint.find_by(user_id: current_user_id))
-    # ポイントの高い順に並び替える
-    total_point_array.sort_by { |x| x[:score] }.reverse
+    if total_point_array.blank?
+      # 最後に自分を入れる
+      total_point_array.push(TotalPoint.find_by(user_id: current_user_id))
+      # ポイントの高い順に並び替える
+      total_point_array.sort_by { |x| x[:score] }.reverse
+    end
   end
 end
