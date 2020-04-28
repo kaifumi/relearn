@@ -32,13 +32,15 @@ class TotalPoint < ApplicationRecord
   def self.sorting(friends, current_user_id)
     # 合計ポイントの配列を用意
     total_point_array = []
-    friends.each do |friend|
-      # リクエスト送信者が自分の場合、その友達はリクエスト受信者
-      if friend.sender_id == current_user_id
-        total_point_array.push(TotalPoint.find_by(user_id: friend.recipient_id))
-      # リクエスト受信者が自分の場合、その友達はリクエスト送信者
-      elsif friend.recipient_id == current_user_id
-        total_point_array.push(TotalPoint.find_by(user_id: friend.sender_id))
+    if friends.present?
+      friends.each do |friend|
+        # リクエスト送信者が自分の場合、その友達はリクエスト受信者
+        if friend.sender_id == current_user_id
+          total_point_array.push(TotalPoint.find_by(user_id: friend.recipient_id))
+        # リクエスト受信者が自分の場合、その友達はリクエスト送信者
+        elsif friend.recipient_id == current_user_id
+          total_point_array.push(TotalPoint.find_by(user_id: friend.sender_id))
+        end
       end
     end
     # 最後に自分を入れる

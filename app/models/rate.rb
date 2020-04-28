@@ -60,13 +60,15 @@ class Rate < ApplicationRecord
   def self.sorting(friends, current_user_id)
     # 復習率の配列を用意
     rate_array = []
-    friends.each do |friend|
-      # リクエスト送信者が自分の場合、その友達はリクエスト受信者
-      if friend.sender_id == current_user_id
-        rate_array.push(Rate.find_by(user_id: friend.recipient_id))
-      # リクエスト受信者が自分の場合、その友達はリクエスト送信者
-      elsif friend.recipient_id == current_user_id
-        rate_array.push(Rate.find_by(user_id: friend.sender_id))
+    if friends.present?
+      friends.each do |friend|
+        # リクエスト送信者が自分の場合、その友達はリクエスト受信者
+        if friend.sender_id == current_user_id
+          rate_array.push(Rate.find_by(user_id: friend.recipient_id))
+        # リクエスト受信者が自分の場合、その友達はリクエスト送信者
+        elsif friend.recipient_id == current_user_id
+          rate_array.push(Rate.find_by(user_id: friend.sender_id))
+        end
       end
     end
     # 最後に自分を入れる
@@ -82,11 +84,10 @@ class Rate < ApplicationRecord
       else
         # 平均値を出す
         average_rate = rate[:total_rate] / rate[:count]
-        # user_idと平均値の配列が入った配列をつくる。小数点が第2位まで。
         rate_average_array.push(user_id: rate[:user_id], average_rate: average_rate.floor(2))
       end
     end
     # 平均値の高い順で並び替え
-    rate_average_array.sort_by { |x| x[:average_rate] }.reverse
+    rate_average_array.sort_by { |x| x[:average_rate] }.reverse if rate_average_array.present?
   end
 end
