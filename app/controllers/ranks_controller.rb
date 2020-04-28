@@ -4,7 +4,6 @@ class RanksController < ApplicationController
 
   # 全体ポイントランキングの表示
   def point_rank
-    # ランキング掲載不可の人の集合をつくる
     @exclude_users = User.where(rank_status: false)
     # 合計ポイントが0ではなく、降順に並べる
     @total_points = TotalPoint.where.not(score: 0).order(score: :desc)
