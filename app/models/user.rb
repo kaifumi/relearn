@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:facebook, :twitter, :google_oauth2]
@@ -10,15 +8,6 @@ class User < ApplicationRecord
   acts_as_paranoid
   validates :email, uniqueness: { scope: :deleted_at }
 
-  # omniauthのコールバック時に呼ばれるメソッド
-  # def self.from_omniauth(auth)
-  #   where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-  #     user.email = auth.info.email
-  #     user.password = Devise.friendly_token[0, 20]
-  #   end
-  # end
-
-  # バリデーション
   validates :name, presence: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
@@ -27,7 +16,6 @@ class User < ApplicationRecord
   has_many :genres, dependent: :destroy
   has_many :rates, dependent: :destroy
   has_many :total_points, dependent: :destroy
-  # has_many :delete_comments, dependent: :destroy
   # 能動関係に対して1対多の関連付け
   has_many :active_relationships, class_name: 'Friend',
                                   foreign_key: 'sender_id',

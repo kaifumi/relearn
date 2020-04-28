@@ -1,10 +1,12 @@
 class HomesController < ApplicationController
   # トップページの表示
   def top
-    # もしログインしていたら合計得点と平均復習率を取得
-    if user_signed_in? && Post.find_by(user_id: current_user.id, relearn_complete: false)
+    if user_signed_in?
       TotalPoint.create!(user_id: current_user.id) if TotalPoint.find_by(user_id: current_user.id).nil?
       Rate.create!(user_id: current_user.id) if Rate.find_by(user_id: current_user.id).nil?
+    end
+    # もしログインしていたら合計得点と平均復習率を取得
+    if user_signed_in? && Post.find_by(user_id: current_user.id, relearn_complete: false)
       @total_point = TotalPoint.find_by(user_id: current_user).score
       @posts = Post.where(user_id: current_user.id, relearn_complete: false).limit(200)
       # 投稿の中で未復習でかつ最短の通知時間の投稿を振り分けるメソッド

@@ -55,22 +55,15 @@ Style/StringLiterals:
     - "config/puma.rb"
     - "test/**/*"
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: MinSize.
-# SupportedStyles: percent, brackets
 Style/SymbolArray:
   EnforcedStyle: brackets
 
-# For rubocop < 1.0.0
 Style/HashEachMethods:
   Enabled: true
 
-# For rubocop < 1.0.0
 Style/HashTransformKeys:
   Enabled: true
 
-# For rubocop < 1.0.0
 Style/HashTransformValues:
   Enabled: true
 

@@ -1,7 +1,6 @@
 class Rate < ApplicationRecord
   belongs_to :user
 
-  # バリデーション
   validates :count, numericality: { only_integer: true, greater_than: -1 }
 
   # 受け取った値がどの復習タイミングか判別して遅れ具合の算出メソッド
