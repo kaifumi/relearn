@@ -87,6 +87,6 @@ class Rate < ApplicationRecord
       end
     end
     # 平均値の高い順で並び替え
-    rate_average_array.sort_by { |x| x[:average_rate] }.reverse if rate_average_array.present?
+    rate_average_array.sort_by { |x| x[:average_rate] }.reverse
   end
 end
