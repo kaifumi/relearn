@@ -1,7 +1,7 @@
 <div class="notification_index_box">
   <h1>通知一覧</h1>
   <div class="notification_index_main_box">
-    <%= link_to destroy_all_notifications_path(current_user.id), method: :delete do %>
+    <%= link_to destroy_all_notifications_path(current_user.id), method: :delete, data: {confirm: "本当に全削除しますか？"} do %>
       <i class="fas fa-trash" style="color: black; font-size: 1.5em;"></i>
       <h7 style="color: black;">全削除</h7>
     <% end %>

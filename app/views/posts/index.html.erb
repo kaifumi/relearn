@@ -12,6 +12,7 @@
 <div class="post_index_box row">
   <div class="post_index_main_box col-xs-9">
     <div class="post_index_list">
+      <%= paginate @posts %>
       <table class="post_index_table">
         <thead class="post_index_thead">
           <tr>
@@ -24,7 +25,7 @@
         </thead>
         <tbody class="post_index_tbody">
           <%# 投稿の数だけeach文を回す %>
-          <% @posts.each.with_index(1) do |post, i| %>
+          <% @posts.each.with_index(page_number(Post.page.current_page)) do |post, i| %>
             <tr>
               <td><%= i %></td>
               <td><%= link_to post.title.truncate(15), user_post_path(user_id: @friend_user.id, id: post.id) %></td>

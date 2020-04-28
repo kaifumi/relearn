@@ -213,4 +213,10 @@ module PostsHelper
       break if day_num == 29
     end
   end
+
+  # 現在のページ数に応じて投稿番号のスタートの戻り値を返すメソッド
+  def page_number(current_page)
+    current_page += (current_page - 1) * 30 if current_page > 1
+    current_page
+  end
 end
