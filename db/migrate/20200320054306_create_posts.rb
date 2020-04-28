@@ -4,7 +4,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.integer :user_id, null: false, index: true
       t.integer :genre_id, null: false, index: true
       t.string :title, null: false
-      t.text :content
+      t.text :content, nul: false
       t.string :link
       t.integer :relearn_count, default: 0
       t.boolean :relearn_complete, default: false
