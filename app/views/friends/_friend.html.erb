@@ -12,14 +12,14 @@
             <td><p><%= attachment_image_tag(model.recipient, :image, :fill, 50, 50, fallback: "default.png", class: "friend_image") %></p></td>
             <td><p><%= model.recipient.name %></p></td>
             <td><%= link_to user_posts_path(user_id: model.recipient_id) do %><p class="friend_index_posts_btn">友達の投稿</p><% end %></td>
-            <td><%= link_to user_friend_path(user_id: current_user.id, id: model.recipient_id),method: :delete do %><p class="friend_request_reject_btn">友達解除</p><% end %></td>
+            <td><%= link_to user_friend_path(user_id: current_user.id, id: model.recipient_id),method: :delete, data: {confirm: "本当に解除しますか？"} do %><p class="friend_request_reject_btn">友達解除</p><% end %></td>
           </tr>
         <% else %>
           <tr>
             <td><p><%= attachment_image_tag(model.sender, :image, :fill, 50, 50, fallback: "default.png", class: "friend_image") %></p></td>
             <td><p><%= model.sender.name %></p></td>
             <td><%= link_to user_posts_path(user_id: model.sender_id) do %><p class="friend_index_posts_btn">友達の投稿</p><% end %></td>
-            <td><%= link_to user_friend_path(user_id: current_user.id, id: model.sender_id),method: :delete do %><p class="friend_request_reject_btn">友達解除</p><% end %></td>
+            <td><%= link_to user_friend_path(user_id: current_user.id, id: model.sender_id),method: :delete, data: {confirm: "本当に解除しますか？"} do %><p class="friend_request_reject_btn">友達解除</p><% end %></td>
           </tr>
         <% end %>
       <% end %>
