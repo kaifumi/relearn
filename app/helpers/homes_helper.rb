@@ -18,4 +18,20 @@ module HomesHelper
     # 復習回数が0なら0.00を返す
     format('%<rate>.2f', rate: user_rate.total_rate) if user_rate.count.zero?
   end
+
+  # 現在時刻が通知時間よりも後の場合にtrueを返すメソッド
+  def check_timing_bool(plan_timing, relearn_count, time_now)
+    if relearn_count.zero?
+      return true if plan_timing.first_term <= time_now
+    elsif relearn_count == 1
+      return true if plan_timing.second_term <= time_now
+    elsif relearn_count == 2
+      return true if plan_timing.third_term <= time_now
+    elsif relearn_count == 3
+      return true if plan_timing.forth_term <= time_now
+    else
+      false
+    end
+    false
+  end
 end
