@@ -49,8 +49,8 @@ class User < ApplicationRecord
 
   # 友達検索メソッド
   def self.search(word, current_user_id)
-    # 空検索の場合何も返さない
-    return nil if word.blank?
+    # 空検索の場合、検索可能な全ユーザーを返さない
+    return User.where(search_status: true).where.not(id: current_user_id) if word.blank?
 
     # 名前が一致するものをすべて返す
     User.where(['name LIKE ?', "%#{word}%"]).where(search_status: true).where.not(id: current_user_id)
