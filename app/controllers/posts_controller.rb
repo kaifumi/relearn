@@ -85,22 +85,22 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id
     if @post.update(post_params)
       flash[:warning] = '更新完了しました。'
-      redirect_to user_post_path(user_id: current_user.id, id: @post.id)
+      redirect_to user_post_path(user_id: current_user.id, id: post.id)
     else
-      flash[:danger] = '更新失敗しました。'
+      flash[:danger] = 'ジャンル、タイトル、内容は必須です'
       render :edit
     end
   end
 
   # 投稿の削除
   def destroy
-    @post = Post.find(params[:id])
-    if @post.destroy
+    post = Post.find(params[:id])
+    if post.destroy
       flash[:warning] = '投稿削除しました。'
       redirect_to user_posts_path(user_id: current_user.id)
     else
-      flash[:danger] = '更新失敗しました。'
-      render :show
+      flash[:danger] = '投稿削除に失敗しました。'
+      redirect_to request.referer
     end
   end
 

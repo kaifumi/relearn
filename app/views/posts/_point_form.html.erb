@@ -70,7 +70,7 @@
         <td></td>
         <%# 通知時間前に送信出来ないようにする %>
         <td><% if check_timing_bool(plan_timing, post.relearn_count, time_now) %>
-              <%= f.submit "Relearn" ,class:"post_show_score_form_btn"%>
+              <%= f.submit "復習登録" ,class:"post_show_score_form_btn"%>
             <% end %></td>
         <td><%= post.relearn_points[0][:first_score] + post.relearn_points[0][:second_score] + post.relearn_points[0][:third_score]+ post.relearn_points[0][:forth_score] %> / 1000 P</td>
         <td></td>
