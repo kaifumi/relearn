@@ -11,9 +11,13 @@
     <%= link_to "復習リズム", friend_rhythm_rank_path, class:"rhythm_rank_tab" %>
   </div>
 
-  <%# 全体の獲得ポイントランキング %>
+  <%# 友達の復習リズムランキング %>
   <div class="friend_rhythm_rank_box">
-    <%# テーブルでランキング表示 %>
-    <%= render partial: "ranks/rank", locals: { models: @friend_rhythm_ranks} %> 
+    <% if @friend_rhythm_ranks.blank? %>
+      <br><p>まだデータがありません</p>
+    <% else %>
+      <%# テーブルでランキング表示 %>
+      <%= render partial: "ranks/rhythm_rank", locals: { models: @friend_rhythm_ranks} %>
+    <% end %>
   </div>
 </div>

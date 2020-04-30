@@ -30,7 +30,8 @@
     </div>
     <div class="post_show_graph_box col-xs-9">
       <p class="post_show_graph_title"><投稿後の忘却推移></p>
-      <%= render partial: "layouts/chart", locals:{ post: @post } %>
+      <%# 記憶忘却推移を表現したグラフ %>
+      <%= render partial: "layouts/chart", locals:{ post: @post, height: '400px' } %>
     </div>
   </div>
   <%# フレンドユーザーであってもポイント入力フォーム以下は見えないようにする %>
@@ -41,8 +42,8 @@
             plan_timing: @plan_timing, time_now: @time_now, real_timing: @real_timing } %>
         <p class="post_show_bottom_message">※通知時間になるまでは復習のチェックは出来ません</p>
           <div class="post_show_bottom_btn">
-            <%= link_to relearn_complete_path(@post), method: :patch do %><p class="post_show_complete_btn">復習完了にする</p><% end %>
-            <%= link_to user_post_path(user_id: current_user.id, id: @post.id), method: :delete, data: {confirm: "削除しますか？"} do %><p class="post_show_delete_btn">投稿を削除する</p><% end %>
+            <%= link_to relearn_complete_path(@post), method: :patch, data: {confirm: "復習完了にしますか？"} do %><p class="post_show_complete_btn">復習完了にする</p><% end %>
+            <%= link_to user_post_path(user_id: current_user.id, id: @post.id), method: :delete, data: {confirm: "投稿を削除しますか？"} do %><p class="post_show_delete_btn">投稿を削除する</p><% end %>
           </div>
     </div>
   <% end %>

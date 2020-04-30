@@ -1,5 +1,5 @@
+<p class="post_show_point_check">復習チェックフォーム</p>
 <div class="post_show_point_form_box">
-  <p class="post_show_point_check">復習チェックフォーム</p>
   <%# 復習したらチェックして送信するフォーム %>
   <%= form_with(model: post.relearn_points, url: user_post_relearn_point_path(user_id: current_user.id, post_id: post.id), method: :patch, local: true) do |f| %>
   <table class="post_show_point_table">
@@ -78,9 +78,9 @@
         <td>
           <%# 4回目の通知時間が現在を過ぎていたら編集できないようにする %>
           <% if plan_timing.forth_term >= time_now %>
-            <p class="post_show_edit_plan_btn"><%= link_to "通知時間の編集", edit_user_post_plan_timing_path(user_id: current_user.id, post_id: post.id) %></p>
+            <%= link_to edit_user_post_plan_timing_path(user_id: current_user.id, post_id: post.id) do %><p class="post_show_edit_plan_btn">通知時間の編集</p><% end %>
           <% end %>
-        </td>  
+        </td>
       </tr>
     </tfoot>
   </table>
