@@ -16,7 +16,7 @@ class PlanTimingsController < ApplicationController
     changed_data = PlanTiming.date_connection(plan_timing_params, params[:post_id])
     if changed_data.empty?
       flash[:danger] = '変更可能な範囲で選択してください'
-    elsif changed_data[:hoge] == 'hoge'
+    elsif changed_data[:hoge] == :hoge
       flash[:danger] = '空白での編集はできません'
     elsif @plan_timing.update!(changed_data)
       flash[:warning] = '更新しました'
