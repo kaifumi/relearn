@@ -1,2 +1,2 @@
-class Users::ConfirmationsController < Devise::ConfirmationsControlle
+class Users::ConfirmationsController < Devise::ConfirmationsController
 end

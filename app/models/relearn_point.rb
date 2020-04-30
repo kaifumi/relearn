@@ -25,7 +25,7 @@ class RelearnPoint < ApplicationRecord
         return hash_score
       # falseなら値に"nilを入れる"
       elsif received_score[score[0]] == 'false'
-        hash_score = { score[0] => :nil }
+        hash_score = {}
         return hash_score
       end
     end

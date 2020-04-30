@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     else
       flash.now[:danger] = 'ユーザー情報更新に失敗しました。'
     end
+    render :update
   end
 
   # ユーザー論理削除および退会

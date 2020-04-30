@@ -35,25 +35,25 @@ class CompletesController < ApplicationController
 
   # もう一度復習にする
   def update
-    @post = Post.find(params[:post_id])
+    post = Post.find(params[:post_id])
     # 復習完了状態をfalseにする
-    @post[:relearn_complete] = false
-    if @post.update(relearn_complete: false, relearn_count: 0, created_at: Time.zone.now)
-      @plan_timing = PlanTiming.find_by(post_id: params[:post_id])
-      @plan_timing.update(post_id: @post.id, first_term: 1.day.from_now.strftime('%Y-%m-%d %H:%M'),
-                          second_term: 3.days.from_now.strftime('%Y-%m-%d %H:%M'), third_term: 10.days.from_now.strftime('%Y-%m-%d %H:%M'),
-                          forth_term: 1.month.from_now.strftime('%Y-%m-%d %H:%M'),
-                          first_min: 1.hour.from_now.strftime('%Y-%m-%d %H:%M'), first_max: 2.days.from_now.strftime('%Y-%m-%d %H:%M'),
-                          second_min: 3.days.from_now.strftime('%Y-%m-%d %H:%M'), second_max: 7.days.from_now.strftime('%Y-%m-%d %H:%M'),
-                          third_min: 8.days.from_now.strftime('%Y-%m-%d %H:%M'), third_max: 14.days.from_now.strftime('%Y-%m-%d %H:%M'),
-                          forth_min: 15.days.from_now.strftime('%Y-%m-%d %H:%M'), forth_max: 1.month.from_now.strftime('%Y-%m-%d %H:%M'))
-      @real_timing = RealTiming.find_by(post_id: params[:post_id])
-      @real_timing.update(post_id: @post.id, first_term: '', second_term: '', third_term: '', forth_term: '')
-      @relearn_point = RelearnPoint.find_by(post_id: params[:post_id])
-      @relearn_point.update(first_score: 0, second_score: 0, third_score: 0, forth_score: 0)
+    post[:relearn_complete] = false
+    if post.update(relearn_complete: false, relearn_count: 0, created_at: Time.zone.now)
+      plan_timing = PlanTiming.find_by(post_id: params[:post_id])
+      plan_timing.update(post_id: post.id, first_term: 1.day.from_now.strftime('%Y-%m-%d %H:%M'),
+                         second_term: 3.days.from_now.strftime('%Y-%m-%d %H:%M'), third_term: 10.days.from_now.strftime('%Y-%m-%d %H:%M'),
+                         forth_term: 1.month.from_now.strftime('%Y-%m-%d %H:%M'),
+                         first_min: 1.hour.from_now.strftime('%Y-%m-%d %H:%M'), first_max: 2.days.from_now.strftime('%Y-%m-%d %H:%M'),
+                         second_min: 3.days.from_now.strftime('%Y-%m-%d %H:%M'), second_max: 7.days.from_now.strftime('%Y-%m-%d %H:%M'),
+                         third_min: 8.days.from_now.strftime('%Y-%m-%d %H:%M'), third_max: 14.days.from_now.strftime('%Y-%m-%d %H:%M'),
+                         forth_min: 15.days.from_now.strftime('%Y-%m-%d %H:%M'), forth_max: 1.month.from_now.strftime('%Y-%m-%d %H:%M'))
+      real_timing = RealTiming.find_by(post_id: params[:post_id])
+      real_timing.update(post_id: post.id, first_term: '', second_term: '', third_term: '', forth_term: '')
+      relearn_point = RelearnPoint.find_by(post_id: params[:post_id])
+      relearn_point.update(first_score: 0, second_score: 0, third_score: 0, forth_score: 0)
       flash[:warning] = '復習ステータスを更新しました'
       # もう一度復習するので投稿詳細へとばす
-      redirect_to user_post_path(user_id: current_user.id, id: @post.id)
+      redirect_to user_post_path(user_id: current_user.id, id: post.id)
     else
       flash[:danger] = '復習ステータスの更新に失敗しました'
       redirect_to request.referer
@@ -62,8 +62,8 @@ class CompletesController < ApplicationController
 
   # 投稿を削除する
   def destroy
-    @post = Post.find(params[:id])
-    if @post.destroy
+    post = Post.find(params[:id])
+    if post.destroy
       flash[:warning] = '投稿の削除に成功しました'
     else
       flash[:danger] = '投稿の削除に失敗しました'

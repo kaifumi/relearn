@@ -1,0 +1,23 @@
+<%# 復習リズムランキングのテーブル %>
+<table class="rank_table">
+  <thead class="rank_thead">
+    <tr>
+      <td><p>順位</p></td>
+      <td></td>
+      <td><p>ユーザー名</p></td>
+      <td><p>復習リズム</p></td>
+    </tr>
+  </thead>
+  <tbody class="rank_tbody">
+    <%# modelsはレンダリング元から渡している各モデルを参照している %>
+    <% models.each.with_index(1) do |model, i| %>
+      <% user = User.find(model[:user_id]) %>
+      <tr>
+        <td><p><%= i %>位</p></td>
+        <td><p><%= attachment_image_tag(user, :image, :fill, 50, 50, fallback: "default.png", class: "rank_user_image") %></p></td>
+        <td><p><%= user[:name] %></p></td>
+        <td><p><%= sprintf("%.2f", model[:average_rate]) %></p></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

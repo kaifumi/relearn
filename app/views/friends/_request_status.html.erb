@@ -1,5 +1,4 @@
-<%# リクエスト送信前か後かのパーシャル %>
-<%# リクエスト送信済みか判断するメソッド %>
+<%# リクエスト送信済みか判断する条件分岐 %>
 <% if send_request(user_id) == 0 %>
   <%# リクエスト未送信かつ未受信 %>
   <%= link_to send_request_path(id: current_user.id, user_id: user_id),method: :post, remote: true do %>
@@ -14,4 +13,4 @@
 <% else %>
   <%# リクエスト送信済かつ未承認 %>
   <%= link_to user_friends_path(current_user.id) do %><div class="already_friend_btn"><p>友達</p></div><% end %>
-<% end %>  
+<% end %>
