@@ -34,7 +34,7 @@
                 <%= f.select :second_term_hour, (0..23).to_a.map { |v| "%02d" % v }, { selected: "#{ @plan_timing.second_term.strftime("%H") }" }, class: 'form-control' %> :
                 <%= f.select :second_term_minute, (0..59).to_a.map { |v| "%02d" % v }, { selected: "#{ @plan_timing.second_term.strftime("%M") }" }, class: 'form-control' %>
             </div></td>
-        <td><p class="changeable_range">3日後~7日後</p>
+        <td><p class="changeable_range">2日後~7日後</p>
             <%= @plan_timing.second_min.strftime("%m-%d %H:%M") %>
             ~ <%= @plan_timing.second_max.strftime("%m-%d %H:%M") %></td>
       </tr>
@@ -46,7 +46,7 @@
                 <%= f.select :third_term_hour, (0..23).to_a.map { |v| "%02d" % v }, { selected: "#{ @plan_timing.third_term.strftime("%H") }" }, class: 'form-control' %> :
                 <%= f.select :third_term_minute, (0..59).to_a.map { |v| "%02d" % v }, { selected: "#{ @plan_timing.third_term.strftime("%M") }" }, class: 'form-control' %>
             </div></td>
-        <td><p class="changeable_range">8日後~14日後</p>
+        <td><p class="changeable_range">7日後~14日後</p>
             <%= @plan_timing.third_min.strftime("%m-%d %H:%M") %>
             ~ <%= @plan_timing.third_max.strftime("%m-%d %H:%M") %></td>
       </tr>
@@ -58,9 +58,9 @@
                 <%= f.select :forth_term_hour, (0..23).to_a.map { |v| "%02d" % v }, { selected: "#{ @plan_timing.forth_term.strftime("%H") }" }, class: 'form-control' %> :
                 <%= f.select :forth_term_minute, (0..59).to_a.map { |v| "%02d" % v }, { selected: "#{ @plan_timing.forth_term.strftime("%M") }" }, class: 'form-control' %>
             </div></td>
-        <td><p class="changeable_range">15日後~1ヶ月後</p>
+        <td><p class="changeable_range">14日後~1ヶ月後</p>
             <%= @plan_timing.forth_min.strftime("%m-%d %H:%M") %>
-            ~ <%= @plan_timing.forth_max.strftime("%m-%d %H:%M") %></td>    
+            ~ <%= @plan_timing.forth_max.strftime("%m-%d %H:%M") %></td>
       </tr>
       <tr>
         <td></td>
