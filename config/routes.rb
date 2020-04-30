@@ -26,9 +26,7 @@ Rails.application.routes.draw do
   get '/friend_rhythm_rank' => 'ranks#friend_rhythm_rank'
   # 退会確認画面
   get '/sign_out_confirm' => 'users#sign_out_confirmation'
-  # 友達検索前の画面
-  get 'user/:id/friend_search_before' => 'friends#search_before', as: "friend_search_before"
-  # 友達検索後の画面
+  # 友達検索の画面
   get 'user/:id/friend_search' => 'friends#search', as: "friend_search"
   # 友達リクエスト一覧表示
   get 'user/:id/friend_receive' => 'friends#receive', as: "friend_receive"

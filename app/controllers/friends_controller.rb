@@ -2,12 +2,6 @@ class FriendsController < ApplicationController
   # ログインユーザーのみ実行可能にする
   before_action :authenticate_user!
 
-  # テンプレートエラーになったため検索前のページを用意した
-  def search_before
-    # userモデルにsearchメソッドを記述
-    @users = User.search(params[:search_word], current_user.id)
-  end
-
   # 友達検索
   def search
     # userモデルにsearchメソッドを記述
