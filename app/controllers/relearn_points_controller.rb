@@ -9,7 +9,7 @@ class RelearnPointsController < ApplicationController
     # scoreには{first_score: 100}などが入る
     score = RelearnPoint.calculate(received_score, params[:post_id])
     relearn_point = RelearnPoint.find_by(post_id: params[:post_id])
-    if score.values == [:nil]
+    if score.blank?
       flash[:danger] = 'チェックを入れてから送信してください'
     # スコアを更新できれば実行する条件分岐
     elsif relearn_point.update(score)

@@ -14,7 +14,7 @@ class NotificationsController < ApplicationController
 
   # 通知を全削除
   def destroy_all
-    @notifications = current_user.passive_notifications.destroy_all
+    current_user.passive_notifications.destroy_all
     flash[:warning] = '通知を全削除しました'
     redirect_to user_notifications_path(user_id: current_user)
   end
