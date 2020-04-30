@@ -1,9 +1,8 @@
-<%# フレンドユーザーの投稿であれば見れるようにする %>
-<% if @friend_user.id != current_user.id %>
-  <h1><%= @friend_user.name%>さんの<%= @genre.type %> Relearn 一覧</h1>
+<% if @other_user.id != current_user.id %>
+  <h1><%= @other_user.name%>さんの<%= @genre.type %> Relearn 一覧</h1>
   <div class="post_index_friend_btn_box">
-    <div class="post_index_friend_posts_btn"><%= link_to user_posts_path(user_id: @friend_user.id) do %><p><%= @friend_user.name %><br>さんのRelearn 一覧</p><% end %></div>
-    <div class="post_index_friend_complete_posts_btn"><%= link_to complete_posts_path(id: @friend_user.id) do %><p><%= @friend_user.name %><br>さんのRelearn 履歴</p><% end %></div>
+    <div class="post_index_friend_posts_btn"><%= link_to user_posts_path(user_id: @other_user.id) do %><p><%= @other_user.name %><br>さんのRelearn 一覧</p><% end %></div>
+    <div class="post_index_friend_complete_posts_btn"><%= link_to complete_posts_path(id: @other_user.id) do %><p><%= @other_user.name %><br>さんのRelearn 履歴</p><% end %></div>
   </div>
 <% else %>
   <h1><%= @genre.type %> Relearn 一覧</h1>

@@ -1,9 +1,9 @@
-<%# フレンドユーザーの投稿であれば見れるようにする %>
-<% if @friend_user.id != current_user.id %>
-  <h1><%= @friend_user.name%>さんのRelearn 履歴一覧</h1>
+<%# 他のユーザー用のビュー %>
+<% if @other_user.id != current_user.id %>
+  <h1><%= @other_user.name%>さんのRelearn 履歴一覧</h1>
   <div class="post_index_friend_btn_box">
-    <div class="post_index_friend_posts_btn"><%= link_to user_posts_path(user_id: @friend_user.id) do %><p><%= @friend_user.name %><br>さんのRelearn 一覧</p><% end %></div>
-    <div class="post_index_friend_complete_posts_btn"><%= link_to complete_posts_path(id: @friend_user.id) do %><p><%= @friend_user.name %><br>さんのRelearn 履歴</p><% end %></div>
+    <div class="post_index_friend_posts_btn"><%= link_to user_posts_path(user_id: @other_user.id) do %><p><%= @other_user.name %><br>さんのRelearn 一覧</p><% end %></div>
+    <div class="post_index_friend_complete_posts_btn"><%= link_to complete_posts_path(id: @other_user.id) do %><p><%= @other_user.name %><br>さんのRelearn 履歴</p><% end %></div>
   </div>
 <% else %>
   <h1>Relearn 履歴一覧</h1>
@@ -28,7 +28,7 @@
         <% @posts.each.with_index(page_number(Post.page.current_page)) do |post, i| %>
         <tr>
           <td><%= i %></td>
-          <td><%= link_to post.title.truncate(15), user_post_complete_path(user_id: @friend_user.id,post_id: post.id) %></td>
+          <td><%= link_to post.title.truncate(15), user_post_complete_path(user_id: @other_user.id,post_id: post.id) %></td>
           <td><%= post.genre.type.truncate(15) %></td>
           <td><%= post.content.truncate(20) %></td>
           <td><%= post.relearn_count %>/4</td>

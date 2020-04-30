@@ -2,7 +2,7 @@ class CompletesController < ApplicationController
   # ログインユーザーのみ実行可能にする
   before_action :authenticate_user!
   # 自分と友達以外の投稿情報は見れない
-  before_action :correct_friend_check, only: [:index, :show]
+  before_action :searchable_user_check, only: [:index, :show]
 
   # 復習完了した投稿の一覧
   def index
@@ -73,17 +73,16 @@ class CompletesController < ApplicationController
 
   private
 
-  # 自分と友達以外の投稿情報は見れないように判断するメソッド
-  def correct_friend_check
-    # このメソッドを通過していれば、特定のビューだけ友達のインスタンスを使用できる
-    @friend_user = User.find(params[:user_id])
+  # 検索可能者または友達かを判断するメソッド
+  def searchable_user_check
+    @other_user = User.find(params[:user_id])
     # 利用ユーザーと入力されたユーザーのidが同じなら自分のビューを見ることになる
     return if current_user.id == params[:user_id].to_i
-    # 友達であればビューを表示させる
-    return if Friend.friend_user?(current_user, @friend_user)
+    return if @other_user.search_status
+    return if Friend.friend_user?(current_user, @other_user)
 
-    # 自分でも友達でもなければエラーメッセージと共にルートへ飛ばす
-    flash[:danger] = '友達でないユーザーの投稿情報は見れないようになっています'
+    # 友達でないかつ検索負荷の人の場合はエラーメッセージと共にルートへ飛ばす
+    flash[:danger] = 'このユーザーの投稿情報は見れないようになっています'
     redirect_to root_path
   end
 end
