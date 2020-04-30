@@ -912,18 +912,17 @@ footer {
 }
 
 .post_show_point_form_box {
-  width: 100%;
-  margin: 0 auto;
+  width: 90%;
   font-size: 20px;
+  border: solid 10px #78bbe6;
+  border-radius: 10px;
 }
 
 .post_show_point_check {
-  background: #78bbe6;
   font-weight: bold;
-  color: white;
-  border: solid 3px #78bbe6;
-  border-radius: 10px;
-  width: 85%;
+  color: #78bbe6;
+  width: 90%;
+  font-size: 30px;
 }
 
 .post_show_point_table td,
@@ -998,7 +997,7 @@ footer {
   border: solid 2px rgb(103, 214, 39);
   border-radius: 10px;
   background-color: rgb(103, 214, 39);
-  width: 50%;
+  width: 70%;
   text-align: center;
 }
 
