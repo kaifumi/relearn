@@ -32,5 +32,12 @@ $(function () {
 $(function () {
   $(".slide-banner.owl-carousel").owlCarousel({
     items: 4,
+    loop: true,
+    nav: true,
+    autoplay: true,
+    autoplayTimeout: 4000,
+    autoplayHoverPause: true,
+    smartSpeed: 4000,
+    transitionStyle: "fade"
   });
 });

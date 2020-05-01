@@ -7,6 +7,7 @@
   </div>
 <% else %>
   <h1>投稿詳細</h1>
+  <a href="https://twitter.com/intent/tweet?text=【<%= @post.title.truncate(40) %>】を復習します%0a内容：<%= @post.content.truncate(40) %>%0a&url=https://re-learn.work/users/<%= @post.user_id %>/posts/<%= @post.id %>/&hashtags=relearn,復習" class="twitter-share-button" data-size="large" data-lang="ja"><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>tweet</a>
 <% end %>
 <div class="row">
   <div class="post_show_box">
