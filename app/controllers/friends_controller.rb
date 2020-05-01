@@ -5,7 +5,7 @@ class FriendsController < ApplicationController
   # 友達検索
   def search
     # userモデルにsearchメソッドを記述
-    @users = User.search(params[:search_word], current_user.id)
+    @users = User.search(params[:search_word], current_user.id).page(params[:page])
   end
 
   # 友達リクエストの送信
@@ -38,7 +38,7 @@ class FriendsController < ApplicationController
   def index
     # active_statusがtrueかつsender_idもしくはrecipient_idがcurrent_idの時の集合
     # whereで複数条件検索
-    @friends = Friend.where(active_status: true).where('(sender_id=?) or (recipient_id=?)', current_user.id, current_user.id)
+    @friends = Friend.where(active_status: true).where('(sender_id=?) or (recipient_id=?)', current_user.id, current_user.id).page(params[:page])
   end
 
   # 友達リクエスト承認or拒否

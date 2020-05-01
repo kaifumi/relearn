@@ -78,7 +78,7 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id
     if @post.update(post_params)
       flash[:warning] = '更新完了しました。'
-      redirect_to user_post_path(user_id: current_user.id, id: post.id)
+      redirect_to user_post_path(user_id: current_user.id, id: @post.id)
     else
       flash[:danger] = 'ジャンル、タイトル、内容は必須です'
       render :edit
