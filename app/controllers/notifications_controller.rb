@@ -5,7 +5,7 @@ class NotificationsController < ApplicationController
   # 通知内容の一覧表示
   def index
     # ユーザーが受け取った通知を抽出
-    @notifications = current_user.passive_notifications.page(params[:page])
+    @notifications = current_user.passive_notifications.order(id: 'DESC').page(params[:page])
     # 通知を未読の場合は既読にする
     @notifications.where(checked: false).each do |notification|
       notification.update(checked: true)
