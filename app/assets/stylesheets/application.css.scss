@@ -833,6 +833,23 @@ footer {
 
 // 投稿詳細
 //
+.post_show_top_title {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  float: left;
+  margin-right: 100px;
+
+  a {
+    color: #1da1f2;
+  }
+}
+
+.post_show_twitter {
+  margin-top: 30px;
+  color: #1da1f2;
+}
+
 .post_show_box {
   width: 100%;
   margin: 0px auto 20px;
