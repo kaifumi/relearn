@@ -47,7 +47,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    if @post.save!
+    if @post.save
       # 新規投稿時に復習ポイントのレコードと通知予定時間のレコードを作成する
       RelearnPoint.create!(post_id: @post.id)
       # 予定している通知時間を1日後、3日後、10日後、1ヶ月後に設定
