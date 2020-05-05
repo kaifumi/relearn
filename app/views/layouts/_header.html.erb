@@ -6,9 +6,9 @@
   <% if user_signed_in? %>
     <nav class="header_nav">
       <ul class="nav-list_center">
-        <li class="nav-list-item-center"><%= link_to new_user_post_path(user_id: current_user.id) do %><div class="header_new_post_btn"><p>+新規投稿</p></div><% end %></li>
-        <li class="nav-list-item-center"><%= link_to user_posts_path(user_id: current_user.id) do %><div class="header_post_index_btn"><p>Relearn一覧</p></div><% end %></li>
-        <li class="nav-list-item-center"><%= link_to complete_posts_path(user_id: current_user.id) do%><div class="header_relearn_index_btn"><p>Relearn履歴</p></div><% end %></li>
+        <%= link_to new_user_post_path(user_id: current_user.id) do %><li class="nav-list-item-center">+新規投稿</li><% end %>
+        <%= link_to user_posts_path(user_id: current_user.id) do %><li class="nav-list-item-center">Relearn一覧</li><% end %>
+        <%= link_to complete_posts_path(user_id: current_user.id) do%><li class="nav-list-item-center">Relearn履歴</li><% end %>
       </ul>
     </nav>
     <div class="header_right_box">
@@ -20,32 +20,31 @@
               <%= render partial: "layouts/user_info", locals: { user: current_user} %>
             </span>
           <% end %>
-            <%= link_to user_notifications_path(current_user.id) do%> 
-              <% if unchecked_notifications.any? %>
-                <li class="nav-list-item fa-stack">
-                  <i class="far fa-bell fa-lg fa-stack-2x"></i>
-                  <i class="fa fa-circle fa-stack-1x n-circle"></i>
-                </li>
-              <% else %>
-                <li class="nav-list-item"">
-                  <i class="far fa-bell fa-lg" style="font-size: 1.8em;"></i>
-                </li>
-              <% end %>
+          <%= link_to user_notifications_path(current_user.id) do%> 
+            <% if unchecked_notifications.any? %>
+              <li class="nav-list-item fa-stack">
+                <i class="far fa-bell fa-lg fa-stack-2x"></i>
+                <i class="fa fa-circle fa-stack-1x n-circle"></i>
+              </li>
+            <% else %>
+              <li class="nav-list-item"">
+                <i class="far fa-bell fa-lg" style="font-size: 1.8em;"></i>
+              </li>
             <% end %>
+          <% end %>
         </ul>
       </div>
-      <div class="menu_render">  
-        <%= render "layouts/menu" %>
-      </div>
     </div>
-    
   <% else %>
     <nav class="header_nav">
       <ul class="nav-list_center">
-        <li class="nav-list-item"><%= link_to "about", about_path, class:"btn btn-info btn-lg" %></li>
-        <li class="nav-list-item"><%= link_to "新規登録", new_user_registration_path, class:"btn btn-info btn-lg" %></li>
-        <li class="nav-list-item"><%= link_to "ログイン", new_user_session_path, class:"btn btn-info btn-lg"  %></li>
+        <%= link_to about_path do %><li class="nav-list-item-center">about</li><% end %>
+        <%= link_to new_user_registration_path do %><li class="nav-list-item-center">新規登録</li><% end %>
+        <%= link_to new_user_session_path do %><li class="nav-list-item-center">ログイン</li><% end %>
       </ul>
     </nav>
   <% end %>
 </header>
+<% if user_signed_in? %>
+  <%= render "layouts/menu" %>
+ <% end %>
