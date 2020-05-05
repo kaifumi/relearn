@@ -95,7 +95,8 @@ header {
   float: right;
   height: 80px;
   position: sticky;
-  width: 250px;
+  min-width: 250px;
+  max-width: 600px;
 }
 
 .header_right_box {
@@ -1887,5 +1888,5 @@ footer {
 
 @media screen and (min-width: 768px) {
   /* タブレット用スタイル */
-  
+
 }
