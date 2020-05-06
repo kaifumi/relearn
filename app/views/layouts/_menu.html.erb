@@ -1,11 +1,11 @@
 <div class="under_menu">
   <nav class="header_under_nav">
     <ul class="under_nav-list">
+      <%= link_to about_path do %><li class="under_nav-list-item">ReLearnについて</li><% end %>
       <%= link_to edit_user_path(current_user.id) do %><li class="under_nav-list-item">アカウント設定</li><% end %>
       <%= link_to friend_search_path(current_user.id) do %><li class="under_nav-list-item">友達を探そう</li><% end %>
       <%= link_to point_rank_path do %><li class="under_nav-list-item">ランキング</li><% end %>
-      <%= link_to about_path do %><li class="under_nav-list-item">ReLearnについて</li><% end %>
-      <%= link_to destroy_user_session_path, method: :delete do %><li class="under_nav-list-item">ログアウト</li><% end %>
+      <%= link_to destroy_user_session_path, method: :delete, data: { confirm: 'ログアウトしますか？' } do %><li class="under_nav-list-item">ログアウト</li><% end %>
     </ul>
   </nav>
 </div>

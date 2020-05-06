@@ -8,7 +8,7 @@
 <% else %>
   <div class="post_show_top_title">
     <h1>投稿詳細</h1>
-    <a href="https://twitter.com/intent/tweet?text=【<%= @post.title.truncate(40) %>】を復習します%0a内容：<%= @post.content.truncate(40) %>%0a&url=https://re-learn.work/users/<%= @post.user_id %>/posts/<%= @post.id %>/&hashtags=relearn,復習" class="twitter-share-button" data-size="large" data-lang="ja" onClick="window.open(encodeURI(decodeURI(this.href)), 'tweetwindow', 'width=650, height=470, personalbar=0, toolbar=0, scrollbars=1, sizable=1'); return false;" rel="nofollow"><i class="fab fa-twitter fa-2x post_show_twitter"></i>ツイッターで共有する</a>
+    <a href="https://twitter.com/intent/tweet?text=【<%= @post.title.truncate(40) %>】を復習します%0a&url=https://re-learn.work/users/<%= @post.user_id %>/posts/<%= @post.id %>/&hashtags=relearn,復習" class="twitter-share-button" data-size="large" data-lang="ja" onClick="window.open(encodeURI(decodeURI(this.href)), 'tweetwindow', 'width=650, height=470, personalbar=0, toolbar=0, scrollbars=1, sizable=1'); return false;" rel="nofollow"><i class="fab fa-twitter fa-2x post_show_twitter"></i>ツイッターで共有する</a>
   </div>
 <% end %>
 <div class="row">
