@@ -1,3 +1,4 @@
+<%= render 'layouts/error_messages', model: @post %>
 <h1>新規投稿</h1>
 <div class="new_post_box">
   <% if user_signed_in? && Post.find_by(user_id: current_user.id).present? %>
