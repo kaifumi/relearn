@@ -34,3 +34,12 @@ $(function () {
     items: 4
   });
 });
+
+// ユーザー更新を押したらページ上部へいく
+$(function () {
+  $("#user_edit").click(function () {
+    $("html,body").animate({
+      scrollTop: 0
+    }, "1000");
+  });
+});
