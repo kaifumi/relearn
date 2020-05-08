@@ -7,9 +7,9 @@ class Post < ApplicationRecord
 
   validates :user_id, presence: true, numericality: { only_integer: true }
   validates :genre_id, presence: true, numericality: { only_integer: true }
-  validates :title, presence: true, length: { in: 1..40 }
+  validates :title, presence: true, length: { in: 1..50 }
   validates :content, presence: true, length: { in: 1..10_000 }
-  validates :link, length: { in: 1..200 }, allow_blank: true
+  validates :link, length: { in: 1..1000 }, allow_blank: true
   validates :relearn_count, numericality: { only_integer: true, greater_than: -1, less_than: 5 }
   validates :relearn_complete, inclusion: { in: [true, false] }
   validates :total_point, numericality: { only_integer: true, greater_than: -1 }
