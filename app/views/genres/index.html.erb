@@ -1,8 +1,9 @@
+<%= render 'layouts/error_messages', model: @genre %>
 <%# ユーザーが持っているジャンルすべてを表示 %>
 <h1>学習ジャンル 追加 / 編集</h1>
 <div class="genre_index_box row">
-  <div class="genre_main_box col-xs-9">
-    <div class="genre_list_box col-xs-9 col-xs-offset-3">
+  <div class="genre_main_box col-xs-9 col-xs-offset-1">
+    <div class="genre_list_box">
         <div class="genre_form">
           <%= form_with(model: @genre, url: user_genres_path(user_id: current_user.id), method: :post, local: true, class:"form_control") do |f| %>
             <%= f.text_field :type ,class: "genre_type_form"%>
@@ -23,7 +24,7 @@
             <% @genres.each do |genre| %>
               <%= form_with(model: genre, url: user_genre_path(user_id: current_user.id, id: genre.id), method: :patch, local: true, class:"form_control") do |f| %>
               <tr>
-                <td><%= genre.type.truncate(15) %></td>
+                <td><%= genre.type %></td>
                 <td><%= f.text_field :type ,class:"genre_table_form"%></td>
                 <td><%= f.submit "更新", class:"genre_form_btn" %></td>
                 <td><%= link_to user_genre_path(user_id: current_user.id, id: genre.id), method: :delete, data: {confirm: "紐付いた投稿がすべて削除されますが、本当に削除しますか？"} do %>
