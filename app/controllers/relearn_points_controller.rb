@@ -46,7 +46,7 @@ class RelearnPointsController < ApplicationController
 
   private
 
-  def relearn_point_params
-    params.require(:relearn_point).permit(:post_id, :first_score, :second_score, :third_score, :forth_score)
-  end
+    def relearn_point_params
+      params.require(:relearn_point).permit(:post_id, :first_score, :second_score, :third_score, :forth_score)
+    end
 end

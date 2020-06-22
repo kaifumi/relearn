@@ -28,14 +28,14 @@ class PlanTimingsController < ApplicationController
 
   private
 
-  def plan_timing_params
-    params.require(:form_plan_timing).permit(Form::PlanTiming::REGISTRABLE_ATTRIBUTES)
-  end
+    def plan_timing_params
+      params.require(:form_plan_timing).permit(Form::PlanTiming::REGISTRABLE_ATTRIBUTES)
+    end
 
-  def correct_user_check
-    return if current_user.id == Post.find(params[:post_id]).user.id
+    def correct_user_check
+      return if current_user.id == Post.find(params[:post_id]).user.id
 
-    flash[:danger] = '他のユーザーの通知時間の編集はできないようになっています'
-    redirect_to root_path
-  end
+      flash[:danger] = '他のユーザーの通知時間の編集はできないようになっています'
+      redirect_to root_path
+    end
 end

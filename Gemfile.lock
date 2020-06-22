@@ -262,9 +262,6 @@ GEM
       activerecord (>= 4.0, < 6.1)
     parser (2.7.1.1)
       ast (~> 2.4.0)
-    pluginator (1.5.0)
-    pre-commit (0.39.0)
-      pluginator (~> 1.5)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -506,7 +503,6 @@ DEPENDENCIES
   omniauth-twitter
   owlcarousel-rails
   paranoia
-  pre-commit
   pry-rails
   puma (~> 3.11)
   rails (~> 5.2.4, >= 5.2.4.1)
