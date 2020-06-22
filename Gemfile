@@ -110,8 +110,6 @@ group :development do
   gem 'rubocop', require: false
   # Railsでrubocopを使うためのgem
   gem 'rubocop-rails'
-  # コミット時に自動でrubocopを動作してくれる
-  gem 'pre-commit', require: false
   # メールをWEB上で管理
   gem 'letter_opener'
   gem 'letter_opener_web', '~> 1.0 '
