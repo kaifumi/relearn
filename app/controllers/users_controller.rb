@@ -42,11 +42,11 @@ class UsersController < ApplicationController
 
   private
 
-    def user_params
-      params.require(:user).permit(:image, :name, :email, :email_status, :rank_status, :search_status)
-    end
+  def user_params
+    params.require(:user).permit(:image, :name, :email, :email_status, :rank_status, :search_status)
+  end
 
-    def delete_comment_params
-      params.require(:delete_comment).permit(:message)
-    end
+  def delete_comment_params
+    params.require(:delete_comment).permit(:message)
+  end
 end

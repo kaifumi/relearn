@@ -87,6 +87,32 @@ Layout/LineLength:
     - "app/helpers/notifications_helper.rb"
     - "app/models/friend.rb"
 
+# インデント修正
+Layout/AccessModifierIndentation:
+  Exclude:
+    - "app/controllers/application_controller.rb"
+
+Layout/IndentationWidth:
+  Exclude:
+    - "app/controllers/completes_controller.rb"
+    - "app/controllers/genres_controller.rb"
+    - "app/controllers/plan_timings_controller.rb"
+    - "app/controllers/posts_controller.rb"
+    - "app/controllers/relearn_points_controller.rb"
+    - "app/controllers/users/omniauth_callbacks_controller.rb"
+    - "app/controllers/users_controller.rb"
+
+Layout/IndentationConsistency:
+  Enabled: false
+  Exclude:
+    - "app/controllers/completes_controller.rb"
+    - "app/controllers/genres_controller.rb"
+    - "app/controllers/plan_timings_controller.rb"
+    - "app/controllers/posts_controller.rb"
+    - "app/controllers/relearn_points_controller.rb"
+    - "app/controllers/users/omniauth_callbacks_controller.rb"
+    - "app/controllers/users_controller.rb"
+
 # タブが過剰(ストロングパラメータ用)
 Layout/IndentationStyle:
   Exclude:

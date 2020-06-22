@@ -73,16 +73,16 @@ class CompletesController < ApplicationController
 
   private
 
-    # 検索可能者または友達かを判断するメソッド
-    def searchable_user_check
-      @other_user = User.find(params[:user_id])
-      # 利用ユーザーと入力されたユーザーのidが同じなら自分のビューを見ることになる
-      return if current_user.id == params[:user_id].to_i
-      return if @other_user.search_status
-      return if Friend.friend_user?(current_user, @other_user)
+  # 検索可能者または友達かを判断するメソッド
+  def searchable_user_check
+    @other_user = User.find(params[:user_id])
+    # 利用ユーザーと入力されたユーザーのidが同じなら自分のビューを見ることになる
+    return if current_user.id == params[:user_id].to_i
+    return if @other_user.search_status
+    return if Friend.friend_user?(current_user, @other_user)
 
-      # 友達でないかつ検索負荷の人の場合はエラーメッセージと共にルートへ飛ばす
-      flash[:danger] = 'このユーザーの投稿情報は見れないようになっています'
-      redirect_to root_path
-    end
+    # 友達でないかつ検索負荷の人の場合はエラーメッセージと共にルートへ飛ばす
+    flash[:danger] = 'このユーザーの投稿情報は見れないようになっています'
+    redirect_to root_path
+  end
 end
