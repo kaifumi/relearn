@@ -12,7 +12,7 @@
     <div class="sign_out_comment form-group">
       <p>よろしければ理由を教えて下さい（任意）</p>
       <%# ここでform_withを使うとdestroyアクション内でメッセージの保存ができない %>
-      <%= form_for(@delete_comment, url: user_path(current_user.id), method: :delete)  do |f| %>
+      <%= form_for(@withdrawal_comment, url: user_path(current_user.id), method: :delete)  do |f| %>
         <%= f.text_area :message, class: "sign_out_form form_control" %>
         <%= f.submit "削除", data: {confirm: "本当に削除しますか？"}, class: "user_delete_btn" %>
       <% end %>
