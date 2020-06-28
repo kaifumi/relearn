@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.0'
+ruby '2.7.1'
 
 gem 'rails', '~> 5.2.4', '>= 5.2.4.1'
 gem 'sqlite3'
@@ -73,9 +73,11 @@ gem 'redcarpet', '~> 2.3.0'
 # シンタックスハイライトに対応させるためのgem
 gem 'coderay'
 
+gem 'therubyracer'
+
 group :production do
   # 開発環境では、DBにはSQLiteを利用していたが、AWSで動作させる際にはMySQLを利用
-  gem 'mysql2'
+  # gem 'mysql2'
 end
 
 group :development, :test do
@@ -108,8 +110,6 @@ group :development do
   gem 'rubocop', require: false
   # Railsでrubocopを使うためのgem
   gem 'rubocop-rails'
-  # コミット時に自動でrubocopを動作してくれる
-  gem 'pre-commit', require: false
   # メールをWEB上で管理
   gem 'letter_opener'
   gem 'letter_opener_web', '~> 1.0 '

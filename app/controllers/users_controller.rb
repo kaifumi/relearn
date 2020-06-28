@@ -22,9 +22,9 @@ class UsersController < ApplicationController
   def destroy
     # 退会時のコメントを保存する
     # コメント保存できなくて挙動がおかしい
-    delete_comment = DeleteComment.new(user_id: current_user.id, message: params[:message])
-    delete_comment.message = delete_comment_params[:message]
-    delete_comment.save
+    withdrawal_comment = WithdrawalComment.new(user_id: current_user.id, message: params[:message])
+    withdrawal_comment.message = withdrawal_comment_params[:message]
+    withdrawal_comment.save
     user = User.find(current_user.id)
     if user.destroy
       flash[:warning] = 'ユーザーを削除しました。'
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 
   # 退会の選択の画面を表示
   def sign_out_confirmation
-    @delete_comment = DeleteComment.new
+    @withdrawal_comment = WithdrawalComment.new
   end
 
   private
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:image, :name, :email, :email_status, :rank_status, :search_status)
   end
 
-  def delete_comment_params
-    params.require(:delete_comment).permit(:message)
+  def withdrawal_comment_params
+    params.require(:withdrawal_comment).permit(:message)
   end
 end

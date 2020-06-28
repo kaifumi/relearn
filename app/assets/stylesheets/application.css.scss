@@ -1887,6 +1887,12 @@ footer {
   list-style: none;
 }
 
+@media screen and (max-width: 480px) {
+  .container {
+    width: 95%;
+  }
+}
+
 // 投稿詳細のグラフが見切れ出すサイズ
 @media screen and (max-width:1100px) {
   .container {
