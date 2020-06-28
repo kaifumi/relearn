@@ -1,25 +1,27 @@
 # Relearn
 
-## サイト概要
+# アプリ概要
 
-復習特化型 ToDo アプリ
+復習特化型のToDoアプリです。
 https://re-learn.work/
 
-### サイトテーマ
+<アプリの投稿詳細画面>
+<img src="app/assets/images/スクリーンショット 2020-06-28 18.35.03.png" alt="アプリ一部写真" title="サンプル">
 
-・エビングハウスの忘却曲線に沿ってベストな復習タイミングを通知してくれます。
+# このアプリでできること
 
-・効率的に学習ができます（通知きた時だけ復習する）
+・エビングハウスの忘却曲線に沿ってベストな復習タイミングをメールで通知してくれます。
+
+・効率的に学習ができます（通知きた時にだけ復習します。）
 
 ・グラフから忘れ具合を把握できます
 
-参考サイト
+# エビングハウスの概念について
+一度記憶されたことは下記画像のように忘れていきますが、ベストタイミングに復習することで忘れにくくなります。  
 
-https://studygeek.jp/forgetting_curve/
+<img src="app/assets/images/graph_image.jpg" alt="エビングハウス概念" title="サンプル">
 
-https://learn-tern.com/spaced-learning/
-
-### テーマを選んだ理由
+# このアプリ作成した理由
 
 学習したことを効率的に復習したいと思い、このアプリを制作しました。
 
@@ -29,18 +31,28 @@ https://learn-tern.com/spaced-learning/
 
 みなさんと一緒に成長していきたいです。
 
-### ターゲットユーザ
+# ターゲットユーザ
 
 長期記憶につながる学習を効率的にしたい方
 
-### 主な利用シーン
+# 主な利用シーン
 
-復習すべき内容の通知がきたら、その時だけ勉強する
+復習した内容があるが、自分では管理が手間な場合
+
+# デプロイ環境
+Ruby: 2.7.1  
+Rails: 5.2.4.3  
+DB: MySQL  
+OS: Linux  
+WEBサーバー: Nginx  
+Appサーバー: Puma  
+
+<img src="app/assets/images/スクリーンショット 2020-06-28 16.51.55.png" alt="デプロイ環境" title="サンプル">
 
 ## 設計書
 
 https://docs.google.com/spreadsheets/d/1V74t9IswrUKbrx4Mw2WNSCY-W1GDhJ9IyJlibP1A6KE/edit#gid=1418441861
 
-### 機能一覧
+## 機能一覧
 
 <https://docs.google.com/spreadsheets/d/15qeQrXbdv3tIt33XQfzTTch51YNXkE0QgNAu1W90Lrc/edit#gid=493036790>
