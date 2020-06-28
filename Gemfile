@@ -77,7 +77,7 @@ gem 'therubyracer'
 
 group :production do
   # 開発環境では、DBにはSQLiteを利用していたが、AWSで動作させる際にはMySQLを利用
-  # gem 'mysql2'
+  gem 'mysql2'
 end
 
 group :development, :test do
