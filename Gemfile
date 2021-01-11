@@ -69,7 +69,7 @@ gem 'chartkick'
 gem 'listen', '>= 3.0.5', '< 3.2'
 
 # マークダウン形式で記入するためのgem
-gem 'redcarpet', '~> 2.3.0'
+gem 'redcarpet', '~> 3.5.1'
 # シンタックスハイライトに対応させるためのgem
 gem 'coderay'
 
